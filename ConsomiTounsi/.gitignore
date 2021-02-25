@@ -19,8 +19,8 @@ target/
 *.iml
 *.ipr
 
-### Eclipse MoFarah ###
-/bin
+### Eclipse ###
+/bin/
 
 ### NetBeans ###
 /nbproject/private/

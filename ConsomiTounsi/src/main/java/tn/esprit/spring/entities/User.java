@@ -1,11 +1,6 @@
 package tn.esprit.spring.entities;
 
-<<<<<<< HEAD
-public class User {
 
-	int a;
-	String s,c;
-=======
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -175,7 +170,7 @@ public User() {
 	super();
 	// TODO Auto-generated constructor stub
 }
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+
 
 	
 

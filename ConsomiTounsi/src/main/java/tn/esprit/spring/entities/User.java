@@ -1,5 +1,6 @@
 package tn.esprit.spring.entities;
 
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -169,6 +170,7 @@ public User() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+
 
 	
 

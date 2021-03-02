@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +22,7 @@ import javax.persistence.Transient;
 
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -50,11 +53,18 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Reclamation> reclamations;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Comment> comments;
+
 @Override
 public String toString() {
 	return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", email=" + email + ", Adress="
 			+ Adress + ", login=" + login + ", password=" + password + ", passwordConfirm=" + passwordConfirm
-			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + "]";
+			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + ", products=" + products
+			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds + ", views=" + views + ", donations="
+			+ donations + ", participations=" + participations + "]";
 }
 public int getId() {
 	return id;
@@ -152,6 +162,20 @@ public Set<ADDView> getViews() {
 public void setViews(Set<ADDView> views) {
 	this.views = views;
 }
+
+public Set<Reclamation> getReclamations() {
+	return reclamations;
+}
+public void setReclamations(Set<Reclamation> reclamations) {
+	this.reclamations = reclamations;
+}
+
+public Set<Comment> getComments() {
+	return comments;
+}
+public void setComments(Set<Comment> comments) {
+	this.comments = comments;
+}
 public User(String firstName, String lastName, String email, String adress, String login, String password,
 		String passwordConfirm, long phone, Date inscriptionDate, Role role) {
 	super();
@@ -170,6 +194,27 @@ public User() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+
+
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+private Set<Donation> donations;
+
+@OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
+private Set<Participation> participations;
+public Set<Donation> getDonations() {
+	return donations;
+}
+public void setDonations(Set<Donation> donations) {
+	this.donations = donations;
+}
+public Set<Participation> getParticipations() {
+	return participations;
+}
+public void setParticipations(Set<Participation> participations) {
+	this.participations = participations;
+}
+
+
 
 
 	

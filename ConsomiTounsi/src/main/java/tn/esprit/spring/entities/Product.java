@@ -175,6 +175,16 @@ public void setAdds(List<Add> adds) {
 	this.adds = adds;
 }
 
+@ManyToOne
+DonChariot donchariot;
+
+public DonChariot getDonchariot() {
+	return donchariot;
+}
+
+public void setDonchariot(DonChariot donchariot) {
+	this.donchariot = donchariot;
+}
 
 
 

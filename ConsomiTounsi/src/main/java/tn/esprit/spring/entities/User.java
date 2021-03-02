@@ -50,11 +50,14 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
+
 @Override
 public String toString() {
 	return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", email=" + email + ", Adress="
 			+ Adress + ", login=" + login + ", password=" + password + ", passwordConfirm=" + passwordConfirm
-			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + "]";
+			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + ", products=" + products
+			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds + ", views=" + views + ", donations="
+			+ donations + ", participations=" + participations + "]";
 }
 public int getId() {
 	return id;
@@ -170,6 +173,27 @@ public User() {
 	super();
 	// TODO Auto-generated constructor stub
 }
+
+
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+private Set<Donation> donations;
+
+@OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
+private Set<Participation> participations;
+public Set<Donation> getDonations() {
+	return donations;
+}
+public void setDonations(Set<Donation> donations) {
+	this.donations = donations;
+}
+public Set<Participation> getParticipations() {
+	return participations;
+}
+public void setParticipations(Set<Participation> participations) {
+	this.participations = participations;
+}
+
+
 
 
 	

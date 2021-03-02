@@ -41,6 +41,8 @@ private List<Rating> ratings;
 private List<Add> adds;
 @ManyToOne
 User users ;
+@ManyToOne
+private Command command;
 
 @Override
 public String toString() {
@@ -51,6 +53,14 @@ public String toString() {
 public Product() {
 	super();
 	
+}
+
+public Command getCommand() {
+	return command;
+}
+
+public void setCommand(Command command) {
+	this.command = command;
 }
 
 public Product(int id, String description, String name, String image, double price, String reference, Date dateProd) {

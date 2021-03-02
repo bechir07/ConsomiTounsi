@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -41,6 +42,9 @@ public class Command implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name="payment_type")
 	public Payment_type payment_type;
+	
+	@ManyToOne
+    Delivery delivery;
 	
 	@OneToOne(mappedBy="command")
 	private Bill bill;
@@ -114,6 +118,16 @@ public class Command implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	
+	//livraison
+	public Delivery getDelivery() {
+		return delivery;
+	}
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
 	}
 
 	public Command(int reference, int quantity, float total_price, Date order_date, Payment_type payment_type,

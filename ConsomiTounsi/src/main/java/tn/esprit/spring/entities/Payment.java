@@ -34,6 +34,7 @@ public class Payment implements Serializable{
 	public Date payment_date;
 	public float total_price;
 	
+	
 	@OneToOne
 	private Bill bill;
 

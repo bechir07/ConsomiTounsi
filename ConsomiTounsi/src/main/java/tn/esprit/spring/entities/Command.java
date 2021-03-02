@@ -46,11 +46,23 @@ public class Command implements Serializable {
 	@ManyToOne
     Delivery delivery;
 	
+	
+	@ManyToOne
+    Donation donation;
+	
 	@OneToOne(mappedBy="command")
 	private Bill bill;
 	
 	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
 	private List<Product> product;
+
+	public Donation getDonation() {
+		return donation;
+	}
+
+	public void setDonation(Donation donation) {
+		this.donation = donation;
+	}
 
 	public int getReference() {
 		return reference;
@@ -155,6 +167,20 @@ public class Command implements Serializable {
 		this.total_price = total_price;
 		this.order_date = order_date;
 		this.payment_type = payment_type;
+		this.bill = bill;
+		this.product = product;
+	}
+
+	public Command(int reference, int quantity, String namePoduct, float total_price, Date order_date,
+			Payment_type payment_type, Donation donation, Bill bill, List<Product> product) {
+		super();
+		this.reference = reference;
+		this.quantity = quantity;
+		NamePoduct = namePoduct;
+		this.total_price = total_price;
+		this.order_date = order_date;
+		this.payment_type = payment_type;
+		this.donation = donation;
 		this.bill = bill;
 		this.product = product;
 	}

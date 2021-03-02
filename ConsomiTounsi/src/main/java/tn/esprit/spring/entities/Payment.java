@@ -18,8 +18,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="payment_type")
 public class Payment implements Serializable{
 
 
@@ -28,6 +26,13 @@ public class Payment implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int payment_id;
+	
+	@Enumerated(EnumType.STRING)
+	public Payment_type payment_type;
+	@Enumerated(EnumType.STRING)
+
+	public Payment_d_type payment_delivery_type;
+
 	//public int id_produit;////
 	//public int id_client;////
 	@Temporal(TemporalType.DATE)
@@ -35,6 +40,10 @@ public class Payment implements Serializable{
 	public float total_price;
 	
 	
+	public Payment() {
+		super();
+	}
+
 	@OneToOne
 	private Bill bill;
 
@@ -82,11 +91,7 @@ public class Payment implements Serializable{
 		this.bill = bill;
 	}
 
-	public Payment() {
-		super();
-	}
-	
-	
+
 
 	
 }

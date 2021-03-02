@@ -31,6 +31,11 @@ public class PaymentRestController {
 
 		return paymentService.getAllPayment();
 	}
+
+    @PutMapping(value = "/affecterBillPayment/{payment_id}/{bill_id}") 
+	public void affecterBillPayment(@PathVariable("payment_id")int id, @PathVariable("bill_id")int idd) {
+    	paymentService.affecterBillPayment(id, idd);
+	}
 	
 	  @PutMapping(value = "/updatepayment") 
 		public Payment updatePayment(@RequestBody Payment payment)  {

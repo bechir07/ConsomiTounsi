@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import tn.esprit.spring.Repository.BillRepository;
-import tn.esprit.spring.Repository.Cash_on_deliveryRepository;
 import tn.esprit.spring.Repository.CommandRepository;
-import tn.esprit.spring.Repository.Online_paymentRepository;
 import tn.esprit.spring.Repository.PaymentRepository;
 import tn.esprit.spring.Repository.ProductRepository;
+import tn.esprit.spring.entities.Bill;
+import tn.esprit.spring.entities.Command;
 import tn.esprit.spring.entities.Payment;
 
 
@@ -26,10 +27,6 @@ public class PaymentServiceImpl implements IServicePayment{
 	PaymentRepository paymentRepository;
 	@Autowired
 	ProductRepository productRepository;
-	@Autowired
-	Online_paymentRepository online_paymentRepository;
-	@Autowired
-	Cash_on_deliveryRepository cash_on_deliveryRepository;
 
 	@Override
 	public int addPayment(Payment payment) {
@@ -44,9 +41,15 @@ public class PaymentServiceImpl implements IServicePayment{
 	public Payment updatePayment(Payment p) {
 		
 		return paymentRepository.save(p);
-	
-		
 
+	}
+
+	public void affecterBillPayment(int payment_id, int bill_id) {
+		Bill bill = billRepository.findById(bill_id).get();
+		Payment payment =paymentRepository.findById(payment_id).get();
+		if (ObjectUtils.isEmpty(bill) && !ObjectUtils.isEmpty(payment))
+		payment.setBill(bill);
+		paymentRepository.save(payment);
 	}
 	
 	@Override

@@ -11,6 +11,6 @@ public interface IServicePayment {
 	public List<Payment> getAllPayment();
 	public Payment updatePayment(Payment p);
 	public void deleteById(int Payment_id);
-
+	public void affecterBillPayment(int payment_id, int bill_id);
 
 }

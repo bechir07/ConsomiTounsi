@@ -1,12 +1,16 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 @Entity
 public class Donation implements Serializable {
 
@@ -26,6 +30,17 @@ public class Donation implements Serializable {
 	
 	@ManyToOne
 	Jackpot jackpot;
+	
+	@OneToMany(mappedBy="donation", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	private List<Command> command;
+
+	public List<Command> getCommand() {
+		return command;
+	}
+
+	public void setCommand(List<Command> command) {
+		this.command = command;
+	}
 
 	public int getId() {
 		return id;

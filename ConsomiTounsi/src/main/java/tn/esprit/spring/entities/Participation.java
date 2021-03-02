@@ -2,11 +2,12 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+@Entity
 public class Participation implements Serializable {
 
 	/**
@@ -18,7 +19,7 @@ public class Participation implements Serializable {
 	private int id;
 	
 	@ManyToOne
-	private Event evntpr;
+	private Event eventpr;
 	
 	@ManyToOne
 	private User userpr;
@@ -31,12 +32,13 @@ public class Participation implements Serializable {
 		this.id = id;
 	}
 
-	public Event getEvntpr() {
-		return evntpr;
+	
+	public Event getEventpr() {
+		return eventpr;
 	}
 
-	public void setEvntpr(Event evntpr) {
-		this.evntpr = evntpr;
+	public void setEventpr(Event eventpr) {
+		this.eventpr = eventpr;
 	}
 
 	public User getUserpr() {
@@ -47,16 +49,16 @@ public class Participation implements Serializable {
 		this.userpr = userpr;
 	}
 
-	public Participation(int id, Event evntpr, User userpr) {
+	public Participation(int id, Event eventpr, User userpr) {
 		super();
 		this.id = id;
-		this.evntpr = evntpr;
+		this.eventpr = eventpr;
 		this.userpr = userpr;
 	}
 
 	@Override
 	public String toString() {
-		return "Participation [id=" + id + ", evntpr=" + evntpr + ", userpr=" + userpr + "]";
+		return "Participation [id=" + id + ", evntpr=" + eventpr + ", userpr=" + userpr + "]";
 	}
 
 }

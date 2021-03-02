@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+@Entity
 public class DonChariot implements Serializable {
 
 	/**
@@ -26,7 +27,7 @@ public class DonChariot implements Serializable {
 	private Set<Product> products;
 	
 	@ManyToOne
-	Chariot chariot;
+	private Chariot chariot;
 
 	public Chariot getChariot() {
 		return chariot;

@@ -53,10 +53,10 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
-//@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-//private Set<Reclamation> reclamations;
-//@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-//private Set<Comment> comments;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Reclamation> reclamations;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Comment> comments;
 
 @Override
 public String toString() {
@@ -162,20 +162,20 @@ public Set<ADDView> getViews() {
 public void setViews(Set<ADDView> views) {
 	this.views = views;
 }
-/*
+
 public Set<Reclamation> getReclamations() {
 	return reclamations;
 }
 public void setReclamations(Set<Reclamation> reclamations) {
 	this.reclamations = reclamations;
-}*/
-/*
+}
+
 public Set<Comment> getComments() {
 	return comments;
 }
 public void setComments(Set<Comment> comments) {
 	this.comments = comments;
-}*/
+}
 public User(String firstName, String lastName, String email, String adress, String login, String password,
 		String passwordConfirm, long phone, Date inscriptionDate, Role role) {
 	super();

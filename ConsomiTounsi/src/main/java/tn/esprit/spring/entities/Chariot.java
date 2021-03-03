@@ -87,6 +87,13 @@ public class Chariot implements Serializable {
 		return "Chariot [id=" + id + ", description=" + description + ", totalp=" + totalp + ", donchariots="
 				+ donchariots + ", event=" + event + "]";
 	}
+
+	public Chariot() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	
 	
 	

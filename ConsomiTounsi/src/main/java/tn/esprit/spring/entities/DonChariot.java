@@ -70,7 +70,14 @@ public class DonChariot implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DonChariot [id=" + id + ", price=" + price + ", products=" + products + "]";
+		return "DonChariot [id=" + id + ", price=" + price + ", products=" + products + ", chariot=" + chariot + "]";
 	}
+
+	public DonChariot() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	
 }

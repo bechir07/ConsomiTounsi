@@ -84,8 +84,16 @@ public class Donation implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Donation [id=" + id + ", montant=" + montant + ", user=" + user + ", jackpot=" + jackpot + "]";
+		return "Donation [id=" + id + ", montant=" + montant + ", user=" + user + ", jackpot=" + jackpot + ", command="
+				+ command + "]";
 	}
+
+	public Donation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
 	
 	

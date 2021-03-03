@@ -15,9 +15,9 @@ public class CouponServiceImpl implements ICouponService {
 	private CouponRepository CouponRepository;
 	
 	@Override
-	public int addCoupon(Coupon c) {
+	public Coupon addCoupon(Coupon c) {
 		CouponRepository.save(c);
-		return c.getId();
+		return c;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class CouponServiceImpl implements ICouponService {
 	}
 
 	@Override
-	public List<Coupon> retrieveAllCoupons(int id) {
+	public List<Coupon> retrieveAllCoupons() {
 		List<Coupon> coupons = (List<Coupon>) CouponRepository.findAll();	
 		return coupons;
 	}

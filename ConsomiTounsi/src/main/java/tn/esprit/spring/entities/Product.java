@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -28,11 +30,14 @@ private String Image;
 private double Price ;
 private String reference ;
 @Temporal (TemporalType.DATE)
+@Column(name="dateProd")
 private Date DateProd;
 
 @ManyToOne
+@JoinColumn(name="idCategory", referencedColumnName="id" , insertable =false , updatable=false)
 Category categories;
 @ManyToOne
+//@JoinColumn(name="idStock", referencedColumnName="id" , insertable =false , updatable=false)
 Stock stock;
 
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
@@ -42,8 +47,10 @@ private List<Rating> ratings;
 @OneToMany(mappedBy="prod",cascade = CascadeType.ALL )
 private List<Add> adds;
 @ManyToOne
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User users ;
 @ManyToOne
+//@JoinColumn(name="idCommand", referencedColumnName="id" , insertable =false , updatable=false)
 private Command command;
 
 @Override
@@ -178,6 +185,7 @@ public void setAdds(List<Add> adds) {
 }
 
 @ManyToOne
+//@JoinColumn(name="idDonChariot", referencedColumnName="id" , insertable =false , updatable=false)
 DonChariot donchariot;
 
 public DonChariot getDonchariot() {

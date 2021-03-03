@@ -6,11 +6,11 @@ import tn.esprit.spring.entities.Category;
 
 public interface ICategoryService {
 	
-	public int addCategory(Category c);
+	public Category addCategory(Category c);
 
 	public void deleteCategory(int i);
 	
-	public List<Category> retrieveAllCategories(int id);
+	public List<Category> retrieveAllCategories();
 	
 	public Category updateCategory(Category c);
 }

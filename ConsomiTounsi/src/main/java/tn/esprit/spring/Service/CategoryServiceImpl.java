@@ -15,9 +15,9 @@ public class CategoryServiceImpl implements ICategoryService {
 	@Autowired
 	private CategoryRepository CategoryRepository;
 	@Override
-	public int addCategory(Category c) {
+	public Category addCategory(Category c) {
 		CategoryRepository.save(c);
-		return c.getId();
+		return c;
 		
 	}
 
@@ -28,7 +28,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public List<Category> retrieveAllCategories(int id) {
+	public List<Category> retrieveAllCategories() {
 		List<Category> categories = (List<Category>) CategoryRepository.findAll();	
 		return categories;
 	}

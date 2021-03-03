@@ -15,9 +15,17 @@ public class ProductServiceImpl  implements IProductService{
 	@Autowired
 	private ProductRepository ProductRepository;
 	@Override
-	public int addProduct(Product r) {
-		ProductRepository.save(r);
-		return r.getId();
+	public String addProduct(Product p) {
+		if(p.getReference().startsWith("619")) 
+		{
+		ProductRepository.save(p);
+		return "product added successfuly";
+		}
+		else
+		{
+			return "non-tunisien product";
+		}
+		
 	}
 
 	@Override
@@ -27,15 +35,22 @@ public class ProductServiceImpl  implements IProductService{
 	}
 
 	@Override
-	public List<Product> retrieveAllProducts(int id) {
+	public List<Product> retrieveAllProducts() {
 		List<Product> products = (List<Product>) ProductRepository.findAll();	
 		return products;
 	}
 
 	@Override
-	public Product updateProduct(Product p) {
+	public String updateProduct(Product p) {
+		if(p.getReference().startsWith("619")) 
+		{
 		ProductRepository.save(p);
-		return p ;
+		return "product added successfuly";
+		}
+		else
+		{
+			return "non-tunisien product";
+		}
 	}
 
 }

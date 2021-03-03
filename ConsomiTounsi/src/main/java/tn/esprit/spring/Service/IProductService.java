@@ -5,12 +5,12 @@ import java.util.List;
 import tn.esprit.spring.entities.*;
 
 public interface IProductService {
-	public int addProduct(Product p);
+	public 	String addProduct(Product p);
 
 	public void deleteProduct(int i);
 	
-	public List<Product> retrieveAllProducts(int id);
+	public List<Product> retrieveAllProducts();
 	
-	public Product updateProduct(Product p);
+	public String updateProduct(Product p);
 
 }

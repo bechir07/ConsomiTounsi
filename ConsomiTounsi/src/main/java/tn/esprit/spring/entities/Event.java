@@ -112,6 +112,7 @@ public class Event implements Serializable {
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
+		
 	}
 	
 

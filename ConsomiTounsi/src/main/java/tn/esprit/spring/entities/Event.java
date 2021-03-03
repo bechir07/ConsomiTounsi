@@ -84,6 +84,38 @@ public class Event implements Serializable {
 		this.chariotev = chariotev;
 	}
 
+	public String getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(String lieu) {
+		this.lieu = lieu;
+	}
+
+	public int getNbpart() {
+		return nbpart;
+	}
+
+	public void setNbpart(int nbpart) {
+		this.nbpart = nbpart;
+	}
+
+	public Date getDateev() {
+		return dateev;
+	}
+
+	public void setDateev(Date dateev) {
+		this.dateev = dateev;
+	}
+
+	public Set<Participation> getParticipations() {
+		return participations;
+	}
+
+	public void setParticipations(Set<Participation> participations) {
+		this.participations = participations;
+	}
+
 	public Event(int id, String name, String description, Jackpot jackpotev, Chariot chariotev) {
 		super();
 		this.id = id;
@@ -93,10 +125,30 @@ public class Event implements Serializable {
 		this.chariotev = chariotev;
 	}
 
+	
+	
+
 	@Override
 	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", jackpotev=" + jackpotev
+		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", lieu=" + lieu + ", nbpart="
+				+ nbpart + ", dateev=" + dateev + ", participations=" + participations + ", jackpotev=" + jackpotev
 				+ ", chariotev=" + chariotev + "]";
+	}
+
+	public Event(int id, String name, String description, String lieu, int nbpart, Date dateev) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.lieu = lieu;
+		this.nbpart = nbpart;
+		this.dateev = dateev;
+	}
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+		
 	}
 	
 

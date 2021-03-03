@@ -17,9 +17,9 @@ public class RatingServiceImpl implements IRatingService {
 	private RatingRepository RatingRepository;
 	
 	@Override
-	public int addRating(Rating r) {
+	public Rating addRating(Rating r) {
 		RatingRepository.save(r);
-		return r.getId();
+		return r;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class RatingServiceImpl implements IRatingService {
 	}
 
 	@Override
-	public List<Rating> retrieveAllReviews(int id) {
+	public List<Rating> retrieveAllReviews() {
 		
 			List<Rating> ratings = (List<Rating>) RatingRepository.findAll();	
 			return ratings;

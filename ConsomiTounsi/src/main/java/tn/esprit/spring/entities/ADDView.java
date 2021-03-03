@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
 @Entity
 public class ADDView implements Serializable{
 	private static final long serialVersionUID = 1L;

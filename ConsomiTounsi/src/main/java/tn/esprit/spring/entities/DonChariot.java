@@ -23,6 +23,7 @@ public class DonChariot implements Serializable {
 	
 	private float price;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="donchariot")
 	private Set<Product> products;
 	

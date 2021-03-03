@@ -98,6 +98,21 @@ public class Event implements Serializable {
 		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", jackpotev=" + jackpotev
 				+ ", chariotev=" + chariotev + "]";
 	}
+
+	public Event(int id, String name, String description, String lieu, int nbpart, Date dateev) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.lieu = lieu;
+		this.nbpart = nbpart;
+		this.dateev = dateev;
+	}
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 
 }

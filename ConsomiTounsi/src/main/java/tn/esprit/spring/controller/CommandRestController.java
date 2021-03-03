@@ -26,7 +26,7 @@ public class CommandRestController {
 
 	@Autowired
 	CommandServiceImpl commandService;
-	
+	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addCommand")
 	public int addCommand(@RequestBody Command command) {
 		commandService.addCommand(command);

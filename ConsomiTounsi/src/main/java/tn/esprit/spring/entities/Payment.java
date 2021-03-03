@@ -30,8 +30,7 @@ public class Payment implements Serializable{
 	@Enumerated(EnumType.STRING)
 	public Payment_type payment_type;
 	@Enumerated(EnumType.STRING)
-
-	public Payment_d_type payment_delivery_type;
+    public Payment_d_type payment_delivery_type;
 
 	//public int id_produit;////
 	//public int id_client;////

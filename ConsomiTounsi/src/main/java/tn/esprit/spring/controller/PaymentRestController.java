@@ -20,6 +20,7 @@ public class PaymentRestController {
 
 	@Autowired
 	PaymentServiceImpl paymentService;
+	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addPayment")
 	public int addPayment(@RequestBody Payment payment) {
 		paymentService.addPayment(payment);

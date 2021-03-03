@@ -55,6 +55,8 @@ public class Command implements Serializable {
 	
 	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
 	private List<Product> product;
+	@ManyToOne
+	private User client;
 
 	public Donation getDonation() {
 		return donation;

@@ -3,12 +3,14 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -201,6 +203,9 @@ private Set<Donation> donations;
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
 private Set<Participation> participations;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+private Set<Command> command;
+
 public Set<Donation> getDonations() {
 	return donations;
 }

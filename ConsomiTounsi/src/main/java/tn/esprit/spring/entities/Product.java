@@ -32,6 +32,8 @@ private Date DateProd;
 
 @ManyToOne
 Category categories;
+@ManyToOne
+Stock stock;
 
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
 private List<Coupon> coupon;

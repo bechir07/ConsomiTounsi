@@ -5,12 +5,14 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,17 +30,24 @@ public class Add implements Serializable {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private int id;
 @Temporal(TemporalType.DATE)
+@Column(name="dateStart")
 private Date DateStart;
 @Temporal(TemporalType.DATE)
+@Column(name="dateEnd")
 private Date DateEnd;
+@Column(name="priceSponsoring")
 private double priceSponsoring ;
+@Column(name="average")
 private float average ;
+@Column(name="Image")
 private String Image ;
 @Enumerated(EnumType.STRING)
 TypeADD type;
 
 @ManyToOne
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
 Product prod;
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 @ManyToOne
 User users ;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="adds")

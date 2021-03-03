@@ -20,10 +20,11 @@ private String Code ;
 private double Promo ;
 
 @ManyToOne
-//@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
 Product product;
 
 @ManyToOne
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User users ;
 
 @Override

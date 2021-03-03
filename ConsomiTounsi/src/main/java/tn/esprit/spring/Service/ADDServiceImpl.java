@@ -15,9 +15,9 @@ public class ADDServiceImpl implements IADDService {
 	private AddRepository AddRepository;
 
 	@Override
-	public int addADD(Add a) {
+	public Add addADD(Add a) {
 		AddRepository.save(a);
-		return a.getId();
+		return a;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class ADDServiceImpl implements IADDService {
 	}
 
 	@Override
-	public List<Add> retrieveAllAdds(int id) {
+	public List<Add> retrieveAllAdds() {
 		List<Add> adds = (List<Add>) AddRepository.findAll();	
 		return adds;
 	}

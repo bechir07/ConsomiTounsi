@@ -29,7 +29,7 @@ public class BillRestController {
 
 	@Autowired
 	IBillService billService;
-	
+	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addBill")
 	
 	public int addbillM(@RequestBody Bill bill) {
@@ -51,7 +51,7 @@ public class BillRestController {
 
 		}
 
-	 @PutMapping(value = "/updateFacture") 
+	 @PutMapping(value = "/updateBill") 
 		public Bill updateBill(@RequestBody Bill bill)  {
 			return billService.updateBill(bill);
 		}
@@ -60,8 +60,8 @@ public class BillRestController {
 	//public void deleteByIdfacture(@PathVariable("id_facture")int id_facture) {
 	//	factureService.deleteByIdfacture(id_facture);
 
-@DeleteMapping(value = "/deleteById/{bill_id}")
-public void deleteById(@PathVariable("id_facture")int bill_id) {
+@DeleteMapping(value = "/deletebillById/{bill_id}")
+public void deleteById(@PathVariable("bill_id")int bill_id) {
 	billService.deleteByBillId(bill_id);
 	
 	

@@ -11,7 +11,7 @@ public interface IEventService {
 
 	public void deleteEvent(int i);
 	
-	public List<Event> retrieveAllEvents(int id);
+	public List<Event> retrieveAllEvents();
 	
 	public Event updateEvent(Event e);
 

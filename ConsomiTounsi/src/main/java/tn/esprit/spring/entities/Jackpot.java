@@ -66,6 +66,13 @@ public class Jackpot implements Serializable {
 		return "Jackpot [id=" + id + ", name=" + name + ", donations=" + donations + ", event=" + event + "]";
 	}
 
+	public Jackpot() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+
 	
 	
 }

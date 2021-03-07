@@ -58,7 +58,14 @@ public class Participation implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Participation [id=" + id + ", evntpr=" + eventpr + ", userpr=" + userpr + "]";
+		return "Participation [id=" + id + ", eventpr=" + eventpr + ", userpr=" + userpr + "]";
 	}
+
+	public Participation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 
 }

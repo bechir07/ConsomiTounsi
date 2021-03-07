@@ -23,6 +23,7 @@ public class DonChariot implements Serializable {
 	
 	private float price;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="donchariot")
 	private Set<Product> products;
 	
@@ -70,7 +71,14 @@ public class DonChariot implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DonChariot [id=" + id + ", price=" + price + ", products=" + products + "]";
+		return "DonChariot [id=" + id + ", price=" + price + ", products=" + products + ", chariot=" + chariot + "]";
 	}
+
+	public DonChariot() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
 	
 }

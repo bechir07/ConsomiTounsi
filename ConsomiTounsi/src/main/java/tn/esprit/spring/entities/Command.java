@@ -34,14 +34,10 @@ public class Command implements Serializable {
 	public int reference;
 	//public int id_product;////
 	//public int id_client;/////
-	public int quantity;
-	public String NamePoduct;
 	public float total_price;
 	@Temporal(TemporalType.DATE)
 	public Date order_date;
-	@Enumerated(EnumType.STRING)
-	@Column(name="payment_type")
-	public Payment_type payment_type;
+
 	
 	@ManyToOne
     Delivery delivery;
@@ -54,138 +50,108 @@ public class Command implements Serializable {
 	private Bill bill;
 	
 	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
-	private List<Product> product;
+	private List<Command_line> Command_line;
 	@ManyToOne
 	private User client;
-
-	public Donation getDonation() {
-		return donation;
-	}
-
-	public void setDonation(Donation donation) {
-		this.donation = donation;
-	}
-
+	
 	public int getReference() {
 		return reference;
 	}
-
-	public String getNamePoduct() {
-		return NamePoduct;
-	}
-
-	public void setNamePoduct(String namePoduct) {
-		NamePoduct = namePoduct;
-	}
-
 	public void setReference(int reference) {
 		this.reference = reference;
 	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	public float getTotal_price() {
 		return total_price;
 	}
-
 	public void setTotal_price(float total_price) {
 		this.total_price = total_price;
 	}
-
 	public Date getOrder_date() {
 		return order_date;
 	}
-
 	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
-
-	public Payment_type getPayment_type() {
-		return payment_type;
+	public Delivery getDelivery() {
+		return delivery;
 	}
-
-	public void setPayment_type(Payment_type payment_type) {
-		this.payment_type = payment_type;
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
 	}
-
+	public Donation getDonation() {
+		return donation;
+	}
+	public void setDonation(Donation donation) {
+		this.donation = donation;
+	}
 	public Bill getBill() {
 		return bill;
 	}
-
 	public void setBill(Bill bill) {
 		this.bill = bill;
 	}
 
-	public List<Product> getProduct() {
-		return product;
+	public User getClient() {
+		return client;
 	}
-
-	public void setProduct(List<Product> product) {
-		this.product = product;
+	public void setClient(User client) {
+		this.client = client;
 	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
-	//livraison
-	public Delivery getDelivery() {
-		return delivery;
-	}
-
-	public void setDelivery(Delivery delivery) {
-		this.delivery = delivery;
-	}
-
-	public Command(int reference, int quantity, float total_price, Date order_date, Payment_type payment_type,
-			Bill bill, List<Product> product) {
+	public Command(int reference, float total_price, Date order_date, Delivery delivery, Donation donation, Bill bill,
+			 User client) {
 		super();
 		this.reference = reference;
-		this.quantity = quantity;
 		this.total_price = total_price;
 		this.order_date = order_date;
-		this.payment_type = payment_type;
+		this.delivery = delivery;
+		this.donation = donation;
 		this.bill = bill;
-		this.product = product;
+		this.client = client;
 	}
-
+	public Command(int reference, float total_price, Date order_date, Delivery delivery, Donation donation) {
+		super();
+		this.reference = reference;
+		this.total_price = total_price;
+		this.order_date = order_date;
+		this.delivery = delivery;
+		this.donation = donation;
+	}
+	public Command(int reference, float total_price, Date order_date) {
+		super();
+		this.reference = reference;
+		this.total_price = total_price;
+		this.order_date = order_date;
+	}
+	public Command(float total_price, Date order_date, Delivery delivery, Donation donation, Bill bill,
+			 User client) {
+		super();
+		this.total_price = total_price;
+		this.order_date = order_date;
+		this.delivery = delivery;
+		this.donation = donation;
+		this.bill = bill;
+		this.client = client;
+	}
+	@Override
+	public String toString() {
+		return "Command [reference=" + reference + ", total_price=" + total_price + ", order_date=" + order_date
+				+ ", delivery=" + delivery + ", donation=" + donation + ", bill=" + bill + ", client=" + client + "]";
+	}
+	public List<Command_line> getCommand_line() {
+		return Command_line;
+	}
+	public void setCommand_line(List<Command_line> command_line) {
+		Command_line = command_line;
+	}
 	public Command() {
 		super();
 	}
+	
+	
 
-	public Command(int reference, int quantity, String namePoduct, float total_price, Date order_date,
-			Payment_type payment_type, Bill bill, List<Product> product) {
-		super();
-		this.reference = reference;
-		this.quantity = quantity;
-		NamePoduct = namePoduct;
-		this.total_price = total_price;
-		this.order_date = order_date;
-		this.payment_type = payment_type;
-		this.bill = bill;
-		this.product = product;
-	}
-
-	public Command(int reference, int quantity, String namePoduct, float total_price, Date order_date,
-			Payment_type payment_type, Donation donation, Bill bill, List<Product> product) {
-		super();
-		this.reference = reference;
-		this.quantity = quantity;
-		NamePoduct = namePoduct;
-		this.total_price = total_price;
-		this.order_date = order_date;
-		this.payment_type = payment_type;
-		this.donation = donation;
-		this.bill = bill;
-		this.product = product;
-	}
 	
 
 

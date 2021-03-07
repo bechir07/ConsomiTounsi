@@ -8,13 +8,10 @@ public interface ICommandService {
 
 
 public int addCommand(Command command);
-public void affecterCommandABill(int reference, int bill_id);
 public List<Command> getAllCommandes();
 public Command updateCommande(Command c);
-public void affecterPoductACommand(int Id, int reference);
-public String getNamePoductByReference(int reference);
 public void deleteByReference(int reference);
-List<String> getCommandByReferenceJPQL(int reference);
+public List<String> getCommandByReferenceJPQL(int reference);
 
 
 	

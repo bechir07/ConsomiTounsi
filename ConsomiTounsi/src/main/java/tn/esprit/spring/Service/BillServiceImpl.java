@@ -11,6 +11,9 @@ import tn.esprit.spring.Repository.CommandRepository;
 import tn.esprit.spring.Repository.PaymentRepository;
 import tn.esprit.spring.Repository.ProductRepository;
 import tn.esprit.spring.entities.*;
+import org.springframework.data.domain.Sort;
+import javax.transaction.Transactional;
+
 
 @Service
 public class BillServiceImpl implements IBillService{
@@ -54,10 +57,18 @@ public void affecterCommandeABill(int reference, int bill_id) {
 	Command command = commandRepository.findById(reference).get();
 	Bill bill =billRepository.findById(bill_id).get();
 	if (ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(bill))
-	bill.setCommand(command);
-	billRepository.save(bill);
+	command.setBill(bill);
+	commandRepository.save(command);
 	}
+
+
+ 
+public List<Bill> listAll() {
+    return billRepository.findAll(Sort.by("total_price").ascending());
 }
+}
+
+
 
 	
 	

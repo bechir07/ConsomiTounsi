@@ -206,6 +206,7 @@ private Set<Participation> participations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 private Set<Command> command;
 
+
 public Set<Donation> getDonations() {
 	return donations;
 }
@@ -217,6 +218,12 @@ public Set<Participation> getParticipations() {
 }
 public void setParticipations(Set<Participation> participations) {
 	this.participations = participations;
+}
+public Set<Command> getCommand() {
+	return command;
+}
+public void setCommand(Set<Command> command) {
+	this.command = command;
 }
 
 

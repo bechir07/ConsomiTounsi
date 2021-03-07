@@ -1,5 +1,6 @@
 package tn.esprit.spring.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -19,10 +20,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lowagie.text.DocumentException;
 
+import tn.esprit.spring.Service.BillServiceImpl;
+import tn.esprit.spring.Service.Bill_PdfServiceImpl;
 import tn.esprit.spring.Service.IBillService;
 import tn.esprit.spring.entities.Bill;
 
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+ 
+import javax.servlet.http.HttpServletResponse;
+ 
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
 
 @RestController
 public class BillRestController {
@@ -65,6 +79,23 @@ public void deleteById(@PathVariable("bill_id")int bill_id) {
 	billService.deleteByBillId(bill_id);
 	
 	
+}
+
+@GetMapping("/pdf")
+public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+    response.setContentType("application/pdf");
+    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+    String currentDateTime = dateFormatter.format(new Date());
+     
+    String headerKey = "Content-Disposition";
+    String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+    response.setHeader(headerKey, headerValue);
+     
+    List<Bill> listBill = billService.listAll();
+     
+    Bill_PdfServiceImpl exporter = new Bill_PdfServiceImpl(listBill);
+    exporter.export(response);
+     
 }
 }
 //}

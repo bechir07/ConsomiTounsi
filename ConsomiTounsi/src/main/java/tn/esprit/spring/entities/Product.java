@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,9 +50,8 @@ private List<Add> adds;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User users ;
-@ManyToOne
-//@JoinColumn(name="idCommand", referencedColumnName="id" , insertable =false , updatable=false)
-private Command command;
+@OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+private List<Command_line> Command_line;
 
 @Override
 public String toString() {
@@ -64,13 +64,6 @@ public Product() {
 	
 }
 
-public Command getCommand() {
-	return command;
-}
-
-public void setCommand(Command command) {
-	this.command = command;
-}
 
 public Product(int id, String description, String name, String image, double price, String reference, Date dateProd) {
 	super();
@@ -193,6 +186,55 @@ public DonChariot getDonchariot() {
 }
 
 public void setDonchariot(DonChariot donchariot) {
+	this.donchariot = donchariot;
+}
+
+public Stock getStock() {
+	return stock;
+}
+
+public void setStock(Stock stock) {
+	this.stock = stock;
+}
+
+public List<Coupon> getCoupon() {
+	return coupon;
+}
+
+public void setCoupon(List<Coupon> coupon) {
+	this.coupon = coupon;
+}
+
+public List<Command_line> getCommand_line() {
+	return Command_line;
+}
+
+public void setCommand_line(List<Command_line> command_line) {
+	Command_line = command_line;
+}
+
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
+public Product(int id, String description, String name, String image, double price, String reference, Date dateProd,
+		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User users,
+		List<tn.esprit.spring.entities.Command_line> command_line, DonChariot donchariot) {
+	super();
+	this.id = id;
+	Description = description;
+	Name = name;
+	Image = image;
+	Price = price;
+	this.reference = reference;
+	DateProd = dateProd;
+	this.categories = categories;
+	this.stock = stock;
+	this.coupon = coupon;
+	this.ratings = ratings;
+	this.adds = adds;
+	this.users = users;
+	Command_line = command_line;
 	this.donchariot = donchariot;
 }
 

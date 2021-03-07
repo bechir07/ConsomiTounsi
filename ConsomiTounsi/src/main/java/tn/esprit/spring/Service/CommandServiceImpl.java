@@ -6,8 +6,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entities.Command;
-import tn.esprit.spring.entities.Bill;
-import tn.esprit.spring.entities.Product;
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.Repository.*;
 
 
@@ -21,6 +20,8 @@ public class CommandServiceImpl implements ICommandService{
 	PaymentRepository paiementRepository;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public int addCommand(Command command) {
@@ -28,12 +29,15 @@ public class CommandServiceImpl implements ICommandService{
 	}
 	
 	
-	public void affecterCommandABill(int reference, int bill_id) {
+	
+	
+	public void affecterClientACommand(int id, int reference) {
 		Command command = commandRepository.findById(reference).get();
-		Bill bill =billRepository.findById(bill_id).get();
-		if (ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(bill))
-		bill.setCommand(command);
-		billRepository.save(bill);
+		User user =userRepository.findById(id).get();
+		if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(user))
+			user.getCommand().add(command);
+			//user.setCommand(command);
+		userRepository.save(user);
 	}
 	
 	@Override
@@ -49,26 +53,17 @@ public class CommandServiceImpl implements ICommandService{
 
 	}
 	
-	public long getNombreCommandJPQL() {
+	/*public long getNombreCommandJPQL() {
 		return commandRepository.getNombreCommandJPQL();
 	}
-	
-    @Override
-	public void affecterPoductACommand(int Id, int reference) {
-		Command command = commandRepository.findById(reference).get();
-		Product product = productRepository.findById(Id).get();
-		if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(product)) {
-			command.getProduct().add(product);
-
-			commandRepository.save(command);
-		}
-	}
-    
-	public String getNamePoductByReference(int reference) {
+	*/
+ 
+    /*
+	public Date getNamePoductByReference(int reference) {
 		
-		return commandRepository.findByReference(reference).getNamePoduct();
+		return commandRepository.findByReference(reference).getOrder_date();
 	
-	}
+	}*/
 
 	@Override
 	public void deleteByReference(int reference) {

@@ -55,10 +55,12 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
 private Set<Reclamation> reclamations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+private Set<Exchange> exchanges;
 
 @Override
 public String toString() {
@@ -178,6 +180,16 @@ public Set<Comment> getComments() {
 public void setComments(Set<Comment> comments) {
 	this.comments = comments;
 }
+
+
+public Set<Exchange> getExchanges() {
+	return exchanges;
+}
+public void setExchanges(Set<Exchange> exchanges) {
+	this.exchanges = exchanges;
+}
+
+
 public User(String firstName, String lastName, String email, String adress, String login, String password,
 		String passwordConfirm, long phone, Date inscriptionDate, Role role) {
 	super();

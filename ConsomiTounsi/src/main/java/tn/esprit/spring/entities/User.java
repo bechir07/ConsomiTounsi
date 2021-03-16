@@ -58,10 +58,12 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
 private Set<Reclamation> reclamations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+private Set<Exchange> exchanges;
 
 
 
@@ -151,11 +153,19 @@ public void setComments(Set<Comment> comments) {
 }
 
 
-
+public Set<Exchange> getExchanges() {
+	return exchanges;
+}
+public void setExchanges(Set<Exchange> exchanges) {
+	this.exchanges = exchanges;
+}
 
 public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
 		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
 		Set<Comment> comments, Set<Donation> donations, Set<Participation> participations) {
+
+
+
 	super();
 	this.id = id;
 	this.username = username;
@@ -185,6 +195,10 @@ private Set<Donation> donations;
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
 private Set<Participation> participations;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
+private Set<Command> command;
+
+
 public Set<Donation> getDonations() {
 	return donations;
 }

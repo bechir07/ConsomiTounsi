@@ -4,41 +4,36 @@ import java.util.*;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.OneToOne;
 
 import lombok.Data;
 
+/**
+ * 
+ */
 @Entity
 @Data
-public class Delivery {
+public class Reparation {
 
     /**
      * Default constructor
      */
-    public Delivery() {
+    public Reparation() {
     }
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
-    private String adresse;
-    private boolean state;
-    private float frais;
-    private LocalDate date;
-    private float poids;
-    @ManyToOne
-    @JsonIgnore
-    DeliveryMen deliverMen;
-    @OneToMany( mappedBy="delivery",cascade = CascadeType.ALL)
-    private List<Command> commands;
-
-
+    private String typePanne;
+    private float prixReparation;
+    private LocalDate dateReparation;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="reparation",fetch = FetchType.EAGER)
+    private Product product;
 
 
 }

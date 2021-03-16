@@ -48,8 +48,8 @@ public class PaymentServiceImpl implements IServicePayment{
 		Bill bill = billRepository.findById(bill_id).get();
 		Payment payment =paymentRepository.findById(payment_id).get();
 		if (ObjectUtils.isEmpty(bill) && !ObjectUtils.isEmpty(payment))
-		payment.setBill(bill);
-		paymentRepository.save(payment);
+		bill.setPayment(payment);
+		billRepository.save(bill);
 	}
 	
 	@Override

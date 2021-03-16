@@ -1,13 +1,13 @@
 package tn.esprit.spring.entities;
-import java.util.*;
+
+import java.time.LocalDate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -15,24 +15,22 @@ import lombok.Data;
 /**
  * 
  */
-@Entity @Data
-public class Reclamation {
+@Entity
+@Data
+public class Exchange {
 
  
-    
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
-    private String typeReclamation;
-    private String objet;
-    private boolean state;
-    @Enumerated(EnumType.STRING)
-    private Decision decision;
-    private Date dateLimit;
+    private int numCoupon;
+
+    private LocalDate dateLimite;
+
+    private float couponValue;
     @ManyToOne()
     User users;
-
-    public Reclamation() {
+    public Exchange() {
     }
+
 
 }

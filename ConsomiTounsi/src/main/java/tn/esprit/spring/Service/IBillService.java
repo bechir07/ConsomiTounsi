@@ -13,6 +13,7 @@ public interface IBillService {
 	public void deleteByBillId(int bill_id);
 	public List<Bill> getAllBillM() ;
 	public int addBillM(Bill bill);
+	public List<Bill> listAll();
 
 
 }

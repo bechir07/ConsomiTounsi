@@ -33,12 +33,12 @@ public class CommandRestController {
 		return command.getReference();
 	}
 	
-	  @GetMapping("/nombreCommand")
+	/*  @GetMapping("/nombreCommand")
 	  @ResponseBody
 	public long getNombreCommandeJPQL() {
 	 return commandService.getNombreCommandJPQL();
 	  }
-	
+	*/
 	@GetMapping("/getAllCommandes")
 	public List<Command> getAllCommandes() {
 
@@ -51,16 +51,12 @@ public class CommandRestController {
 //}
 	
 
-    @PutMapping(value = "/affecterProductACommand/{id}/{reference}") 
-	public void affecterProductACommand(@PathVariable("id")int id, @PathVariable("reference")int reference) {
-		commandService.affecterPoductACommand(id, reference);
-	}
-
+/*
     @GetMapping("/getNamePoductByReference/{reference}")
 	public String getNamePoductByReference(@PathVariable("reference") int reference) {
 		return commandService.getNamePoductByReference(reference);
 	}
-
+*/
 
     @GetMapping("/getCommandByReference/{reference}")
 	public List<String> getCommandByReferenceJPQL(@PathVariable("reference") int reference) {

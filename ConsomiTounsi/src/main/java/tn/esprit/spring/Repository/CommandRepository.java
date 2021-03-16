@@ -9,10 +9,10 @@ import tn.esprit.spring.entities.Command;
 @Repository
 public interface CommandRepository extends CrudRepository<Command, Integer> {
 
-	
+	/*
 	@Query("SELECT count(u.reference) FROM Command u")
 	 long getNombreCommandJPQL();
-	
+	*/
 	// Afficher commande d'un commande passé en paramètre
 	
 	public Command findByReference(int reference);

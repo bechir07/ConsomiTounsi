@@ -2,24 +2,15 @@ package tn.esprit.spring.entities;
 
 
 import java.io.Serializable;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Collection;
-=======
 import java.util.Date;
-import java.util.List;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-<<<<<<< HEAD
 
-=======
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -67,12 +58,10 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
-private Set<Exchange> exchanges;
 
 
 
@@ -162,24 +151,11 @@ public void setComments(Set<Comment> comments) {
 }
 
 
-<<<<<<< HEAD
 
 
 public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
 		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
 		Set<Comment> comments, Set<Donation> donations, Set<Participation> participations) {
-=======
-public Set<Exchange> getExchanges() {
-	return exchanges;
-}
-public void setExchanges(Set<Exchange> exchanges) {
-	this.exchanges = exchanges;
-}
-
-
-public User(String firstName, String lastName, String email, String adress, String login, String password,
-		String passwordConfirm, long phone, Date inscriptionDate, Role role) {
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 	super();
 	this.id = id;
 	this.username = username;
@@ -209,10 +185,6 @@ private Set<Donation> donations;
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
 private Set<Participation> participations;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
-private Set<Command> command;
-
-
 public Set<Donation> getDonations() {
 	return donations;
 }
@@ -231,6 +203,7 @@ public Set<Command> getCommand() {
 public void setCommand(Set<Command> command) {
 	this.command = command;
 }
+
 
 
 

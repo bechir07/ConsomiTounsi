@@ -31,7 +31,7 @@ public class Donation implements Serializable {
 	@ManyToOne
 	Jackpot jackpot;
 	
-	@OneToMany(mappedBy="donation", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="donation", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Command> command;
 
 	public List<Command> getCommand() {

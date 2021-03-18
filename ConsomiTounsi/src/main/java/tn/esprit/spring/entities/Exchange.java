@@ -25,7 +25,7 @@ public class Exchange {
     private int numCoupon;
 
     private LocalDate dateLimite;
-
+    private String state;
     private float couponValue;
     @ManyToOne()
     User users;

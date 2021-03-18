@@ -14,9 +14,9 @@ import tn.esprit.spring.entities.User;
 public interface IUserService extends UserDetailsService {
 	List<User> retrieveAllUsers();
 	User addUser(User u);
-	void deleteUser(int id);
+	void deleteUser(Long id);
 	User updateUser(User u);
-	User retrieveUser(int id);
+	User retrieveUser(Long id);
 	//public User authenticate(String login, String password) ;
 	public User saveUser(String username,String password,String confirmedPassword);
     public Role save(Role role);

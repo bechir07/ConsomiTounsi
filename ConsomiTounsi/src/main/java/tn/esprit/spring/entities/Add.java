@@ -43,6 +43,16 @@ private float average ;
 private String Image ;
 @Enumerated(EnumType.STRING)
 TypeADD type;
+@Column(name="name")
+private String name;
+
+public String getName() {
+	return name;
+}
+
+public void setName(String name) {
+	this.name = name;
+}
 
 @ManyToOne
 @JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
@@ -50,7 +60,7 @@ Product prod;
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 @ManyToOne
 User users ;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="adds")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> views;
 
 @Override

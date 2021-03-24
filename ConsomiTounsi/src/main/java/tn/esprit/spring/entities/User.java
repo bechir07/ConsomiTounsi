@@ -47,13 +47,13 @@ Role role;
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Product> products;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Rating> ratings;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Coupon> coupons;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Add> adds;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Add> add;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<ADDView> views;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
@@ -65,7 +65,7 @@ public String toString() {
 	return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", email=" + email + ", Adress="
 			+ Adress + ", login=" + login + ", password=" + password + ", passwordConfirm=" + passwordConfirm
 			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + ", products=" + products
-			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds + ", views=" + views + ", donations="
+			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + add + ", views=" + views + ", donations="
 			+ donations + ", participations=" + participations + "]";
 }
 public int getId() {
@@ -152,11 +152,12 @@ public Set<Coupon> getCoupons() {
 public void setCoupons(Set<Coupon> coupons) {
 	this.coupons = coupons;
 }
-public Set<Add> getAdds() {
-	return adds;
+
+public Set<Add> getAdd() {
+	return add;
 }
-public void setAdds(Set<Add> adds) {
-	this.adds = adds;
+public void setAdd(Set<Add> add) {
+	this.add = add;
 }
 public Set<ADDView> getViews() {
 	return views;

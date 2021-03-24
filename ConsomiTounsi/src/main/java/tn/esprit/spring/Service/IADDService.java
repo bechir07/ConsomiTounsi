@@ -12,4 +12,11 @@ public interface IADDService {
 	public List<Add> retrieveAllAdds();
 	
 	public Add updateADD(Add a);
+	
+	byte[] findImage(int imageId);
+	
+	List<Add> searchAdd(String msg);
+	List<Add> retrieveAdds();
+
+
 }

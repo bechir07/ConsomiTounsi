@@ -27,10 +27,18 @@ private Date DateView;
 
 @ManyToOne
 @JoinColumn(name="idAdd", referencedColumnName="id" , insertable =false , updatable=false)
-Add adds;
+Add add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+User user ;
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
 
 @Override
 public String toString() {
@@ -64,13 +72,15 @@ public void setDateView(Date dateView) {
 	DateView = dateView;
 }
 
-public Add getAdds() {
-	return adds;
+public Add getAdd() {
+	return add;
 }
 
-public void setAdds(Add adds) {
-	this.adds = adds;
+public void setAdd(Add add) {
+	this.add = add;
 }
+
+
 
 
 }

@@ -46,7 +46,7 @@ private List<Coupon> coupon;
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
 private List<Rating> ratings;
 @OneToMany(mappedBy="prod",cascade = CascadeType.ALL )
-private List<Add> adds;
+private List<Add> add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User users ;
@@ -170,11 +170,11 @@ public void setRatings(List<Rating> ratings) {
 }
 
 public List<Add> getAdds() {
-	return adds;
+	return add;
 }
 
 public void setAdds(List<Add> adds) {
-	this.adds = adds;
+	this.add = adds;
 }
 
 @ManyToOne
@@ -232,7 +232,7 @@ public Product(int id, String description, String name, String image, double pri
 	this.stock = stock;
 	this.coupon = coupon;
 	this.ratings = ratings;
-	this.adds = adds;
+	this.add = adds;
 	this.users = users;
 	Command_line = command_line;
 	this.donchariot = donchariot;

@@ -1,5 +1,7 @@
 package tn.esprit.spring.Repository;
 
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -10,8 +12,12 @@ import tn.esprit.spring.entities.*;
 
 
 @Repository
-public interface UserRepository extends JpaRepository <User, Integer> {
+/*public interface UserRepository extends JpaRepository <User, Integer> {
 	@Query("SELECT e FROM User e WHERE e.email=:email and e.password=:password")
 	public User getUserByEmailAndPassword(@Param("email")String login,
 	@Param("password")String password);
+*/
+public interface UserRepository extends JpaRepository <User, Long> {
+	public User findByUsername(String username);
+
 }

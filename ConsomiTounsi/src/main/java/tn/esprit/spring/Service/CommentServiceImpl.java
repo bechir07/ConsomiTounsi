@@ -72,7 +72,7 @@ public void affecterSubjectAComment(int ids, int id) {
 @Override
 public void affecterUserAComment(int idu, int id) {
 	Comment comment = commentRepository.findById(id).get();
-	tn.esprit.spring.entities.User user = userRepository.findById(idu).get();
+	tn.esprit.spring.entities.User user = userRepository.findById((long) idu).get();
 	if (!ObjectUtils.isEmpty(comment) && !ObjectUtils.isEmpty(user))
 		comment.setUsers(user);
 	userRepository.save(user);

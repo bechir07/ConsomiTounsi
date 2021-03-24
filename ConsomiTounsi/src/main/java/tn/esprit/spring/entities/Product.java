@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -52,6 +53,10 @@ private List<Add> adds;
 User users ;
 @OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
 private List<Command_line> Command_line;
+
+@OneToOne
+private Reparation reparation;
+
 
 @Override
 public String toString() {
@@ -189,6 +194,7 @@ public void setDonchariot(DonChariot donchariot) {
 	this.donchariot = donchariot;
 }
 
+
 public Stock getStock() {
 	return stock;
 }
@@ -236,6 +242,14 @@ public Product(int id, String description, String name, String image, double pri
 	this.users = users;
 	Command_line = command_line;
 	this.donchariot = donchariot;
+}
+public Reparation getReparation() {
+	return reparation;
+}
+
+public void setReparation(Reparation reparation) {
+	this.reparation = reparation;
+
 }
 
 

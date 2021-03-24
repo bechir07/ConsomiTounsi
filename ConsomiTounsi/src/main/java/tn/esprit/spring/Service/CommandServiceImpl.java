@@ -41,8 +41,8 @@ public class CommandServiceImpl implements ICommandService{
 	
 	public void affecterClientACommand(int id, int reference) {
 		Command command = commandRepository.findById(reference).get();
-		User user =userRepository.findById(id).get();
-		System.out.println("user "+user.getFirstName());
+		User user =userRepository.findById((long) id).get();
+		System.out.println("user "+user.getUsername());
 		System.out.println("command "+command.getReference());
 		if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(user))
 			{
@@ -104,7 +104,8 @@ public class CommandServiceImpl implements ICommandService{
 	
 	//Stistique (client du mois) id client nbr commande
 	public HashMap<Integer , Integer> stat(){
-		HashMap<Integer , Integer> tt = new HashMap<Integer , Integer>();
+		return null;
+		/*HashMap<Integer , Integer> tt = new HashMap<Integer , Integer>();
 		int a=0;
 		List<User> us = userRepository.findAll();
 		for(User u : us){
@@ -118,7 +119,7 @@ public class CommandServiceImpl implements ICommandService{
 			
 		}
 		System.out.println("=> "+tt.toString());
-		return tt;
+		return tt;*/
 	}
 	
 	@Override

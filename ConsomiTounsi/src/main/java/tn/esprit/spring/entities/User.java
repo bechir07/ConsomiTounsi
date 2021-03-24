@@ -2,48 +2,51 @@ package tn.esprit.spring.entities;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+
+
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
+
+
+
+
+@Entity(name = "user")
+
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String username;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+    private boolean actived;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles=new ArrayList<>();
 
-@Id
-@GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id ;
-private String FirstName ;
-private String LastName ;
-private String email ;
-private String Adress ;
-private String login ;
-private String password ;
-@Transient
-private String passwordConfirm;
-private long phone ;
-@Temporal (TemporalType.DATE)
-private Date InscriptionDate;
-@Enumerated(EnumType.STRING)
-Role role;
+
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Product> products;
@@ -55,54 +58,47 @@ private Set<Coupon> coupons;
 private Set<Add> adds;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
 private Set<Reclamation> reclamations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+private Set<Exchange> exchanges;
+
+
+
+
 
 @Override
 public String toString() {
-	return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", email=" + email + ", Adress="
-			+ Adress + ", login=" + login + ", password=" + password + ", passwordConfirm=" + passwordConfirm
-			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + ", products=" + products
-			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds + ", views=" + views + ", donations="
+	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
+			+ roles + ", products=" + products + ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds
+			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
 			+ donations + ", participations=" + participations + "]";
 }
-public int getId() {
+public Long getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
-public String getFirstName() {
-	return FirstName;
+public String getUsername() {
+	return username;
 }
-public void setFirstName(String firstName) {
-	FirstName = firstName;
+public void setUsername(String username) {
+	this.username = username;
 }
-public String getLastName() {
-	return LastName;
+public boolean isActived() {
+	return actived;
 }
-public void setLastName(String lastName) {
-	LastName = lastName;
+public void setActived(boolean actived) {
+	this.actived = actived;
 }
-public String getEmail() {
-	return email;
+public Collection<Role> getRoles() {
+	return roles;
 }
-public void setEmail(String email) {
-	this.email = email;
-}
-public String getAdress() {
-	return Adress;
-}
-public void setAdress(String adress) {
-	Adress = adress;
-}
-public String getLogin() {
-	return login;
-}
-public void setLogin(String login) {
-	this.login = login;
+public void setRoles(Collection<Role> roles) {
+	this.roles = roles;
 }
 public String getPassword() {
 	return password;
@@ -110,30 +106,7 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
-public String getPasswordConfirm() {
-	return passwordConfirm;
-}
-public void setPasswordConfirm(String passwordConfirm) {
-	this.passwordConfirm = passwordConfirm;
-}
-public long getPhone() {
-	return phone;
-}
-public void setPhone(long phone) {
-	this.phone = phone;
-}
-public Date getInscriptionDate() {
-	return InscriptionDate;
-}
-public void setInscriptionDate(Date inscriptionDate) {
-	InscriptionDate = inscriptionDate;
-}
-public Role getRole() {
-	return role;
-}
-public void setRole(Role role) {
-	this.role = role;
-}
+
 public Set<Product> getProducts() {
 	return products;
 }
@@ -178,20 +151,39 @@ public Set<Comment> getComments() {
 public void setComments(Set<Comment> comments) {
 	this.comments = comments;
 }
-public User(String firstName, String lastName, String email, String adress, String login, String password,
-		String passwordConfirm, long phone, Date inscriptionDate, Role role) {
-	super();
-	FirstName = firstName;
-	LastName = lastName;
-	this.email = email;
-	Adress = adress;
-	this.login = login;
-	this.password = password;
-	this.passwordConfirm = passwordConfirm;
-	this.phone = phone;
-	InscriptionDate = inscriptionDate; 
-	this.role = role;
+
+
+public Set<Exchange> getExchanges() {
+	return exchanges;
 }
+public void setExchanges(Set<Exchange> exchanges) {
+	this.exchanges = exchanges;
+}
+
+public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
+		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
+		Set<Comment> comments, Set<Donation> donations, Set<Participation> participations) {
+
+
+
+	super();
+	this.id = id;
+	this.username = username;
+	this.password = password;
+	this.actived = actived;
+	this.roles = roles;
+	this.products = products;
+	this.ratings = ratings;
+	this.coupons = coupons;
+	this.adds = adds;
+	this.views = views;
+	this.reclamations = reclamations;
+	this.comments = comments;
+	this.donations = donations;
+	this.participations = participations;
+}
+
+
 public User() {
 	super();
 	// TODO Auto-generated constructor stub
@@ -225,6 +217,7 @@ public Set<Command> getCommand() {
 public void setCommand(Set<Command> command) {
 	this.command = command;
 }
+
 
 
 

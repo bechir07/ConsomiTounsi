@@ -20,11 +20,12 @@ public class Command_lineController{
 
 	@Autowired
 	Command_lineServiceImpl command_lineService;
-	
+	tn.esprit.spring.Repository.Command_lineRepository Command_lineRepository;
 	//http://localhost:8081/ConsomiTounsi/servlet/
 		@PostMapping("/addCommand_line")
 		public int addCommand_line(@RequestBody Command_line command) {
 			command_lineService.addCommandline(command);
+			//Command_lineRepository.getQuntityIngredient(0);
 			return command.getId();
 		}
 		
@@ -49,11 +50,13 @@ public class Command_lineController{
 	    @PutMapping(value = "/affecterProductACommand_line/{id}/{id}") 
 		public void affecterProductACommand_line(@PathVariable("id")int id, @PathVariable("id")int idc) {
 			command_lineService.affecterPoductACommand_line(id, idc);
+			command_lineService.update_prix();
 		}
 	    
 	    @PutMapping(value = "/affecterCommandACommand_line/{reference}/{id}") 
 			public void affecterCommandACommand_line(@PathVariable("reference")int reference, @PathVariable("id")int id) {
 				command_lineService.affecterCommandACommand_line(reference, id);
+				
 			}
 	/*
 	    @GetMapping("/getNamePoductByReference/{reference}")
@@ -75,7 +78,21 @@ public class Command_lineController{
 				public Command_line updateCommande_line(@RequestBody Command_line command)  {
 					return command_lineService.updateCommande_line(command);
 				}
+			  
+			 @PutMapping(value = "/updateprixtotal") 
+				public int updatetootal()  {
+					return command_lineService.updatetotal();
+				}
 			
 
-
+			  ////////////////////// update le prix total du commande ligne//////////////////////////////
+			  @PutMapping(value = "/updateprix") 
+				public int update_price()  {
+					return command_lineService.update_prix();
+				}
+			
+			 /* @GetMapping("/prix")
+				public int CalculPrixPlat() {
+					return command_lineService.somme();
+			  }*/
 }

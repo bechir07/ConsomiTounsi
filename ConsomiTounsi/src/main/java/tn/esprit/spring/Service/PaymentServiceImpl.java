@@ -45,10 +45,10 @@ public class PaymentServiceImpl implements IServicePayment{
 	}
 
 	public void affecterBillPayment(int payment_id, int bill_id) {
+		Payment payment = paymentRepository.findById(payment_id).get();
 		Bill bill = billRepository.findById(bill_id).get();
-		Payment payment =paymentRepository.findById(payment_id).get();
-		if (ObjectUtils.isEmpty(bill) && !ObjectUtils.isEmpty(payment))
-		bill.setPayment(payment);
+		if (!ObjectUtils.isEmpty(payment) && !ObjectUtils.isEmpty(bill))
+			payment.setBill(bill);
 		billRepository.save(bill);
 	}
 	
@@ -57,4 +57,31 @@ public class PaymentServiceImpl implements IServicePayment{
 		
 		paymentRepository.deleteById(Payment_id );
 	}
+	
+	@Override
+	public int update_prix() {//
+		return paymentRepository.getTotalPrace(0);}
+	
+	@Override
+	public List<?> getpaymentdetails() {
+		List<?> p = (List<?>) paymentRepository.getpaymentdetails();
+		return p;
+	}
+	
+	@Override
+	public List<?> getpaymentByclient(int id) {
+		 List<?> billsC = (List<?>) paymentRepository.getpaymentbyclient(id);
+			return billsC;
+	}
+	@Override
+	public List<?> getpaymentByEtat(String payment_type) {
+		 List<?> pe = (List<?>) paymentRepository.getpaymentByEtat(payment_type);
+			return pe;
+	}
+	@Override
+	public List<?> getpaymentbyproduct(String name) {
+		 List<?> pc = (List<?>) paymentRepository.getpaymentbyproduct(name);
+			return pc;
+	}
+	
 }

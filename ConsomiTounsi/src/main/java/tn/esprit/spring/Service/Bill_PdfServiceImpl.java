@@ -41,8 +41,8 @@ public class Bill_PdfServiceImpl {
         cell.setPhrase(new Phrase("date_of_bill", font));
         table.addCell(cell);  
         
-        cell.setPhrase(new Phrase("command_reference", font));
-        table.addCell(cell); 
+        /*cell.setPhrase(new Phrase("command_reference", font));
+        table.addCell(cell); */
     }
      
     private void writeTableData(PdfPTable table) {
@@ -52,7 +52,8 @@ public class Bill_PdfServiceImpl {
             table.addCell(bill.getState().toString());
             table.addCell(bill.getPayment_type().toString());
             table.addCell(String.valueOf(bill.getDate_of_bill()));
-            table.addCell(bill.getCommand().toString());
+            //table.addCell(bill.getCommand().toString());
+            //table.addCell(String.valueOf(bill.getCommand()));
            
         }
     }

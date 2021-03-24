@@ -36,6 +36,7 @@ public class PaymentRestController {
     @PutMapping(value = "/affecterBillPayment/{payment_id}/{bill_id}") 
 	public void affecterBillPayment(@PathVariable("payment_id")int id, @PathVariable("bill_id")int idd) {
     	paymentService.affecterBillPayment(id, idd);
+    	paymentService.update_prix();
 	}
 	
 	  @PutMapping(value = "/updatepayment") 
@@ -46,5 +47,29 @@ public class PaymentRestController {
 		@DeleteMapping(value = "/deleteById/{payment_id}")
 		public void deleteById(@PathVariable("payment_id")int payment_id) {
 			paymentService.deleteById(payment_id);
+		}
+		
+		@PutMapping(value = "/updatetotalpricepayment") 
+		public int update_price()  {
+			return paymentService.update_prix();
+		}
+		
+		@GetMapping(value = "/getpaymentdetails")
+		public List<?> getpaymentdetails() {
+			return paymentService.getpaymentdetails();
+			
+		}
+		@GetMapping(value = "/getpaymentByclient/{id}")
+		public List<?> getpaymentByclient(@PathVariable("id") int id) {
+			return paymentService.getpaymentByclient(id);
+		}
+		@GetMapping(value = "/getpaymentByEtat/{payment_type}")
+		public List<?> getpaymentByEtat(@PathVariable("payment_type") String payment_type) {
+			return paymentService.getpaymentByEtat(payment_type);
+			
+		}
+		@GetMapping(value = "/getpaymentbyproduct/{name}")
+		public List<?> getpaymentbyproduct(@PathVariable("name") String name) {
+			return paymentService.getpaymentbyproduct(name);
 		}
 }

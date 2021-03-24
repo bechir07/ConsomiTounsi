@@ -12,11 +12,16 @@ public interface ICommand_lineService {
 
 	public Command_line updateCommande_line(Command_line c);
 
-
+	public int updatetotal() ;
 	public void deleteById(int id);
-
+	//public int somme();
 	public void affecterPoductACommand_line(int Id, int reference);
 
 	public void affecterCommandACommand_line(int reference, int id);
+
+	//public int CalculPrixPlat();
+
+	public int update_prix();
+	//public String CalculPrixPlat();
 
 }

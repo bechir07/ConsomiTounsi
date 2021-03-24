@@ -12,8 +12,12 @@ public interface IBillService {
 	public Bill updateBill(Bill c) ;
 	public void deleteByBillId(int bill_id);
 	public List<Bill> getAllBillM() ;
-	public int addBillM(Bill bill);
+	public String addBillM(Bill bill);
 	public List<Bill> listAll();
-
+	int update_prix();
+	public List<?> getBillByEtat(String payment_type);
+	List<?> getafficher();
+	List<?> getBillByclient(int client_id);
+	List<?> getBillByclientname(String first_name);
 
 }

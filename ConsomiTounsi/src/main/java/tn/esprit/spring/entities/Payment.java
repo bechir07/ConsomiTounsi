@@ -88,6 +88,29 @@ public class Payment implements Serializable{
 		this.bill = bill;
 	}
 
+	public Payment_type getPayment_type() {
+		return payment_type;
+	}
+
+	public void setPayment_type(Payment_type payment_type) {
+		this.payment_type = payment_type;
+	}
+
+	public Payment(int payment_id, Payment_type payment_type, Date payment_date, float total_price, Bill bill) {
+		super();
+		this.payment_id = payment_id;
+		this.payment_type = payment_type;
+		this.payment_date = payment_date;
+		this.total_price = total_price;
+		this.bill = bill;
+	}
+
+	@Override
+	public String toString() {
+		return "Payment [payment_id=" + payment_id + ", payment_type=" + payment_type + ", payment_date=" + payment_date
+				+ ", total_price=" + total_price + ", bill=" + bill + "]";
+	}
+
 
 
 	

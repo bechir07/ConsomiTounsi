@@ -12,5 +12,10 @@ public interface IServicePayment {
 	public Payment updatePayment(Payment p);
 	public void deleteById(int Payment_id);
 	public void affecterBillPayment(int payment_id, int bill_id);
+	int update_prix();
+	List<?> getpaymentdetails();
+	List<?> getpaymentByclient(int id);
+	List<?> getpaymentByEtat(String payment_type);
+	List<?> getpaymentbyproduct(String name);
 
 }

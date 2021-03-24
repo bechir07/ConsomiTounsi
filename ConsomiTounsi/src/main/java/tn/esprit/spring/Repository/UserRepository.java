@@ -1,6 +1,11 @@
 package tn.esprit.spring.Repository;
 
 
+<<<<<<< HEAD
+=======
+
+import org.springframework.data.jpa.repository.JpaRepository;
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +15,7 @@ import tn.esprit.spring.entities.*;
 
 
 @Repository
+<<<<<<< HEAD
 public interface UserRepository extends CrudRepository <User, Integer> {
 	//Optional<User> findBy(String login);
 	//User findUserByUsername(String login);
@@ -20,4 +26,10 @@ public interface UserRepository extends CrudRepository <User, Integer> {
 	
 	
 	
+=======
+
+public interface UserRepository extends JpaRepository <User, Long> {
+	public User findByUsername(String username);
+
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 }

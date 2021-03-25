@@ -7,6 +7,7 @@ import tn.esprit.spring.entities.*;
 public interface IProductService {
 	public 	String addProduct(Product p);
 
+	public void deleteProduct(Long i);
 	
 	public List<Product> retrieveAllProducts();
 	

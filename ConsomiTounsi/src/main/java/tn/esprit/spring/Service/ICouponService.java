@@ -7,7 +7,7 @@ import tn.esprit.spring.entities.Coupon;
 public interface ICouponService {
 	public Coupon addCoupon(Coupon c);
 
-	public void deleteCoupon(int i);
+	public void deleteCoupon(Long i);
 	
 	public List<Coupon> retrieveAllCoupons();
 	

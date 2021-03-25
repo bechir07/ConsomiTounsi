@@ -39,6 +39,7 @@ public class CommandServiceImpl implements ICommandService{
 	
 	
 	
+
 	public void affecterClientACommand(long id, long reference) {
 		Command command = commandRepository.findById(reference).get();
 		User user = userRepository.findById(id).get();

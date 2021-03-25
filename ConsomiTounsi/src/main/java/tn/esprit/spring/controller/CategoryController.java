@@ -47,7 +47,7 @@ return categoryService.retrieveAllCategories();
 
 @DeleteMapping("/remove-category/{id}")
 @ResponseBody
-public void removeCategory(@PathVariable("id") int id) {
+public void removeCategory(@PathVariable("id") Long id) {
 categoryService.deleteCategory(id);
  }
 

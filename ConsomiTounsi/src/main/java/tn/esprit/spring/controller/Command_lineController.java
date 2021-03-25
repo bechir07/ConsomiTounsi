@@ -49,6 +49,7 @@ public class Command_lineController{
 
 	    @PutMapping(value = "/affecterProductACommand_line/{id}/{id}") 
 		public void affecterProductACommand_line(@PathVariable("id")long id, @PathVariable("id")long idc) {
+
 			command_lineService.affecterPoductACommand_line(id, idc);
 			command_lineService.update_prix();
 		}

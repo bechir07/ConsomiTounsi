@@ -21,7 +21,7 @@ public class CouponServiceImpl implements ICouponService {
 	}
 
 	@Override
-	public void deleteCoupon(int i) {
+	public void deleteCoupon(Long i) {
 		CouponRepository.deleteById(i);
 		
 	}

@@ -108,6 +108,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 		return command_lineRepository.getQuntityIngredient(0);
 		}
 
+
 	/*@Override
 	public int somme() {
 		return command_lineRepository.getmonta2();

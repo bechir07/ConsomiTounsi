@@ -18,8 +18,6 @@ public interface ICommand_lineService {
 
 	public void affecterCommandACommand_line(long reference, long id);
 
-	//public int CalculPrixPlat();
-
 	public int update_prix();
 	//public String CalculPrixPlat();
 

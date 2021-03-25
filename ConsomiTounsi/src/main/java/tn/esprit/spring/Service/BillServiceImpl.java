@@ -56,7 +56,7 @@ public class BillServiceImpl implements IBillService{
 	
 	
 	@Override
-	public void deleteByBillId(int bill_id) {
+	public void deleteByBillId(long bill_id) {
 		
 		billRepository.deleteById(bill_id);
 	}
@@ -69,7 +69,7 @@ public class BillServiceImpl implements IBillService{
 
 	}
 @Override
-public void affecterCommandeABill(int reference, int bill_id) {
+public void affecterCommandeABill(long reference, long bill_id) {
 	Bill bill = billRepository.findById(bill_id).get();
 	Command command = commandRepository.findById(reference).get();
 	if (!ObjectUtils.isEmpty(bill) && !ObjectUtils.isEmpty(command))
@@ -96,13 +96,13 @@ public List<?> getBillByEtat(String payment_type) {
 		return Ebills;
 }
 @Override
-public List<?> getBillByclient(int client_id) {
+public List<?> getBillByclient(long client_id) {
 	 List<?> billsC = (List<?>) billRepository.getbillbyclient(client_id);
 		return billsC;
 }
 @Override
-public List<?> getBillByclientname(String first_name) {
-	 List<?> billsCN = (List<?>) billRepository.getbillbyclientname(first_name);
+public List<?> getBillByclientname(String username) {
+	 List<?> billsCN = (List<?>) billRepository.getbillbyclientname(username);
 		return billsCN;
 }
 

@@ -20,6 +20,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedDate;
+
 
 @Entity
 public class Command implements Serializable {
@@ -32,13 +34,15 @@ public class Command implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int reference;
+	public long reference;
 	//public int id_product;////
 	//public int id_client;/////
 	public float total_price;
-	public LocalDate order_date;
+	@Enumerated(EnumType.STRING)
+	@Column(name="type")
+	public Payment_type type;
+	public LocalDate order_date = LocalDate.now();
 
-	
 	@ManyToOne
     Delivery delivery;
 	
@@ -49,15 +53,15 @@ public class Command implements Serializable {
 	@OneToOne(mappedBy="command")
 	private Bill bill;
 	
-	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="command", cascade = CascadeType.ALL)
 	private List<Command_line> Command_line;
 	@ManyToOne
 	private User client;
 	
-	public int getReference() {
+	public long getReference() {
 		return reference;
 	}
-	public void setReference(int reference) {
+	public void setReference(long reference) {
 		this.reference = reference;
 	}
 	public float getTotal_price() {
@@ -120,7 +124,7 @@ public class Command implements Serializable {
 		this.delivery = delivery;
 		this.donation = donation;
 	}
-	public Command(int reference, float total_price, LocalDate order_date) {
+	public Command(long reference, float total_price, LocalDate order_date) {
 		super();
 		this.reference = reference;
 		this.total_price = total_price;

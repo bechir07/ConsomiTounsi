@@ -68,7 +68,7 @@ public class BillRestController {
 	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addBill")
 	
-	public int addbillM(@RequestBody Bill bill) {
+	public long addbillM(@RequestBody Bill bill) {
 		String body = "Hello. Good Morning!! A New Invoice Successfully Added!! Thank You.";
 		twillioService.sendSms(to, from, body);
 		billService.addBillM(bill);
@@ -89,7 +89,7 @@ public class BillRestController {
 	}
 	
 		@PutMapping("/affecterCommandtoBill/{refcom}/{idbill}")
-		public void affecterCommandtoBill(@PathVariable("refcom") int reference, @PathVariable("idbill") int bill_id) {
+		public void affecterCommandtoBill(@PathVariable("refcom") long reference, @PathVariable("idbill") long bill_id) {
 			billService.affecterCommandeABill(reference,bill_id);
 
 		}
@@ -104,7 +104,7 @@ public class BillRestController {
 	//	factureService.deleteByIdfacture(id_facture);
 
 @DeleteMapping(value = "/deletebillById/{bill_id}")
-public void deleteById(@PathVariable("bill_id")int bill_id) {
+public void deleteById(@PathVariable("bill_id")long bill_id) {
 	billService.deleteByBillId(bill_id);
 	
 	
@@ -116,12 +116,12 @@ public List<?> getBillByEtat(@PathVariable("payment_type") String payment_type) 
 	return billService.getBillByEtat(payment_type);
 	
 }
-@GetMapping(value = "/getBillByclientname/{first_name}")
-public List<?> getBillByclient(@PathVariable("first_name") String first_name) {
-	return billService.getBillByclientname(first_name);
+@GetMapping(value = "/getBillByclientname/{username}")
+public List<?> getBillByclient(@PathVariable("username") String username) {
+	return billService.getBillByclientname(username);
 }
 @GetMapping(value = "/getBillByclient/{client_id}")
-public List<?> getBillByclient(@PathVariable("client_id") int client_id) {
+public List<?> getBillByclient(@PathVariable("client_id") long client_id) {
 	return billService.getBillByclient(client_id);
 }
 @GetMapping(value = "/getFACTURE")

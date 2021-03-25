@@ -21,7 +21,7 @@ public class Comment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String content_comment;
     @Temporal(TemporalType.DATE)
     private Date dateComment;
@@ -30,11 +30,11 @@ public class Comment implements Serializable{
     @ManyToOne
     Subject subject;
     
-    public int getId() {
+    public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -67,7 +67,7 @@ public class Comment implements Serializable{
 	public Comment() {
     }
 
-	public Comment(int id, String content_comment, Date dateComment, User users, Subject subject) {
+	public Comment(long id, String content_comment, Date dateComment, User users, Subject subject) {
 		super();
 		this.id = id;
 		this.content_comment = content_comment;

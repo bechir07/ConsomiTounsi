@@ -2,6 +2,7 @@ package tn.esprit.spring.Repository;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.Command_line;
 @Repository
-public interface Command_lineRepository  extends CrudRepository<Command_line, Integer>{
+public interface Command_lineRepository  extends JpaRepository<Command_line, Long>{
 	/*/
 	@Query("SELECT count(c.id) FROM Command_line c")
 	long getNombreCommand_lineJPQL();

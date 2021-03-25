@@ -48,7 +48,7 @@ public class CommentServiceImpl implements ICommentService{
 	
 	
 	@Override
-	public void deleteByCommentId(int id) {
+	public void deleteByCommentId(long id) {
 		
 		commentRepository.deleteById(id);
 	}
@@ -61,7 +61,7 @@ public class CommentServiceImpl implements ICommentService{
 
 	}
 @Override
-public void affecterSubjectAComment(int ids, int id) {
+public void affecterSubjectAComment(long ids, long id) {
 	Comment comment = commentRepository.findById(id).get();
 	tn.esprit.spring.entities.Subject subject = subjectRepository.findById(ids).get();
 	if (!ObjectUtils.isEmpty(comment) && !ObjectUtils.isEmpty(subject))
@@ -70,9 +70,9 @@ public void affecterSubjectAComment(int ids, int id) {
 	
 	}
 @Override
-public void affecterUserAComment(int idu, int id) {
+public void affecterUserAComment(long idu, long id) {
 	Comment comment = commentRepository.findById(id).get();
-	tn.esprit.spring.entities.User user = userRepository.findById((long) idu).get();
+	tn.esprit.spring.entities.User user = userRepository.findById(idu).get();
 	if (!ObjectUtils.isEmpty(comment) && !ObjectUtils.isEmpty(user))
 		comment.setUsers(user);
 	userRepository.save(user);

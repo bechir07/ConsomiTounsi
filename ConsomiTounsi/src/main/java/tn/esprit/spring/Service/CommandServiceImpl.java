@@ -32,16 +32,16 @@ public class CommandServiceImpl implements ICommandService{
 	@Autowired
 	public JavaMailSender javamailsender;
 	@Override
-	public int addCommand(Command command) {
+	public long addCommand(Command command) {
 		return commandRepository.save(command).getReference();
 	}
 	
 	
 	
 	
-	public void affecterClientACommand(int id, int reference) {
+	public void affecterClientACommand(long id, long reference) {
 		Command command = commandRepository.findById(reference).get();
-		User user =userRepository.findById((long) id).get();
+		User user = userRepository.findById(id).get();
 		System.out.println("user "+user.getUsername());
 		System.out.println("command "+command.getReference());
 		if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(user))
@@ -79,13 +79,13 @@ public class CommandServiceImpl implements ICommandService{
 	}*/
 
 	@Override
-	public void deleteByReference(int reference) {
+	public void deleteByReference(long reference) {
 		
 		commandRepository.deleteById(reference);
 	}
 
 	@Override
-	public List<String> getCommandByReferenceJPQL(int reference) {
+	public List<String> getCommandByReferenceJPQL(long reference) {
 		// TODO Auto-generated method stub
 		return null;
 	}

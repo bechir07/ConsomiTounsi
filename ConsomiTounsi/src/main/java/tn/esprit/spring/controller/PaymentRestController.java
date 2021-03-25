@@ -22,7 +22,7 @@ public class PaymentRestController {
 	PaymentServiceImpl paymentService;
 	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addPayment")
-	public int addPayment(@RequestBody Payment payment) {
+	public long addPayment(@RequestBody Payment payment) {
 		paymentService.addPayment(payment);
 		return payment.getPayment_id();
 	}
@@ -34,7 +34,7 @@ public class PaymentRestController {
 	}
 
     @PutMapping(value = "/affecterBillPayment/{payment_id}/{bill_id}") 
-	public void affecterBillPayment(@PathVariable("payment_id")int id, @PathVariable("bill_id")int idd) {
+	public void affecterBillPayment(@PathVariable("payment_id")long id, @PathVariable("bill_id")long idd) {
     	paymentService.affecterBillPayment(id, idd);
     	paymentService.update_prix();
 	}
@@ -45,7 +45,7 @@ public class PaymentRestController {
 		}
 	  
 		@DeleteMapping(value = "/deleteById/{payment_id}")
-		public void deleteById(@PathVariable("payment_id")int payment_id) {
+		public void deleteById(@PathVariable("payment_id")long payment_id) {
 			paymentService.deleteById(payment_id);
 		}
 		
@@ -60,7 +60,7 @@ public class PaymentRestController {
 			
 		}
 		@GetMapping(value = "/getpaymentByclient/{id}")
-		public List<?> getpaymentByclient(@PathVariable("id") int id) {
+		public List<?> getpaymentByclient(@PathVariable("id") long id) {
 			return paymentService.getpaymentByclient(id);
 		}
 		@GetMapping(value = "/getpaymentByEtat/{payment_type}")

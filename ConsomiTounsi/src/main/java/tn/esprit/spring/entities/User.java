@@ -73,8 +73,9 @@ private Set<Exchange> exchanges;
 public String toString() {
 	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
 			+ roles + ", products=" + products + ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds
-			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
-			+ donations + ", participations=" + participations + "]";
+			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", exchanges="
+			+ exchanges + ", donations=" + donations + ", participations=" + participations + ", command=" + command
+			+ "]";
 }
 public Long getId() {
 	return id;
@@ -215,6 +216,28 @@ public Set<Command> getCommand() {
 	return command;
 }
 public void setCommand(Set<Command> command) {
+	this.command = command;
+}
+public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
+		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
+		Set<Comment> comments, Set<Exchange> exchanges, Set<Donation> donations, Set<Participation> participations,
+		Set<Command> command) {
+	super();
+	this.id = id;
+	this.username = username;
+	this.password = password;
+	this.actived = actived;
+	this.roles = roles;
+	this.products = products;
+	this.ratings = ratings;
+	this.coupons = coupons;
+	this.adds = adds;
+	this.views = views;
+	this.reclamations = reclamations;
+	this.comments = comments;
+	this.exchanges = exchanges;
+	this.donations = donations;
+	this.participations = participations;
 	this.command = command;
 }
 

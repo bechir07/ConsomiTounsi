@@ -38,12 +38,12 @@ public class CommentRestController {
 	
 	
 		@PutMapping("/affecterSubjecttoComment/{ids}/{id}")
-		public void affecterSubjecttoComment(@PathVariable("ids") int ids, @PathVariable("id") int id) {
+		public void affecterSubjecttoComment(@PathVariable("ids") long ids, @PathVariable("id") long id) {
 			commentService.affecterSubjectAComment(ids, id);
 
 		}
 		@PutMapping("/affecterUsertoComment/{idu}/{id}")
-		public void affecterUsertoComment(@PathVariable("idu") int idu, @PathVariable("id") int id) {
+		public void affecterUsertoComment(@PathVariable("idu") long idu, @PathVariable("id") long id) {
 			commentService.affecterUserAComment(idu, id);
 
 		}
@@ -56,7 +56,7 @@ public class CommentRestController {
 
 
 @DeleteMapping(value = "/deletecommentById/{id}")
-public void deleteById(@PathVariable("id")int id) {
+public void deleteById(@PathVariable("id")long id) {
 	commentService.deleteByCommentId(id);
 	
 	

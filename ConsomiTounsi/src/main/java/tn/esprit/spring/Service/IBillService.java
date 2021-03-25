@@ -8,16 +8,16 @@ public interface IBillService {
 
 
 
-	public void affecterCommandeABill(int reference, int bill_id) ;
+	public void affecterCommandeABill(long reference, long bill_id) ;
 	public Bill updateBill(Bill c) ;
-	public void deleteByBillId(int bill_id);
 	public List<Bill> getAllBillM() ;
 	public String addBillM(Bill bill);
 	public List<Bill> listAll();
 	int update_prix();
 	public List<?> getBillByEtat(String payment_type);
 	List<?> getafficher();
-	List<?> getBillByclient(int client_id);
+	List<?> getBillByclient(long client_id);
 	List<?> getBillByclientname(String first_name);
+	void deleteByBillId(long bill_id);
 
 }

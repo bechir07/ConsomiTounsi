@@ -29,7 +29,7 @@ public class PaymentServiceImpl implements IServicePayment{
 	ProductRepository productRepository;
 
 	@Override
-	public int addPayment(Payment payment) {
+	public long addPayment(Payment payment) {
 		return paymentRepository.save(payment).getPayment_id();
 	}
 	
@@ -44,7 +44,7 @@ public class PaymentServiceImpl implements IServicePayment{
 
 	}
 
-	public void affecterBillPayment(int payment_id, int bill_id) {
+	public void affecterBillPayment(long payment_id, long bill_id) {
 		Payment payment = paymentRepository.findById(payment_id).get();
 		Bill bill = billRepository.findById(bill_id).get();
 		if (!ObjectUtils.isEmpty(payment) && !ObjectUtils.isEmpty(bill))
@@ -53,7 +53,7 @@ public class PaymentServiceImpl implements IServicePayment{
 	}
 	
 	@Override
-	public void deleteById(int Payment_id) {
+	public void deleteById(long Payment_id) {
 		
 		paymentRepository.deleteById(Payment_id );
 	}
@@ -69,7 +69,7 @@ public class PaymentServiceImpl implements IServicePayment{
 	}
 	
 	@Override
-	public List<?> getpaymentByclient(int id) {
+	public List<?> getpaymentByclient(long id) {
 		 List<?> billsC = (List<?>) paymentRepository.getpaymentbyclient(id);
 			return billsC;
 	}

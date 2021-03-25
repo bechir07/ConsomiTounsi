@@ -39,14 +39,14 @@ public class CommandRestController {
 	private String to;
 	//http://localhost:8081/ConsomiTounsi/servlet/
 	@PostMapping("/addCommand")
-	public int addCommand(@RequestBody Command command) {
+	public long addCommand(@RequestBody Command command) {
 		String body = "Hello. Good Morning!! A New Command Successfully Added!! Thank You.";
 		twillioService.sendSms(to, from, body);
 		commandService.addCommand(command);
 		return command.getReference();
 	}
 	 @PutMapping(value = "/affecterClientaCommande/{id}/{reference}") 
-		public void affecterClientACommand(@PathVariable("id")int id, @PathVariable("reference")int reference) {
+		public void affecterClientACommand(@PathVariable("id")long id, @PathVariable("reference")long reference) {
 			commandService.affecterClientACommand(id, reference);
 		}
 	
@@ -81,12 +81,12 @@ public class CommandRestController {
 		
 
     @GetMapping("/getCommandByReference/{reference}")
-	public List<String> getCommandByReferenceJPQL(@PathVariable("reference") int reference) {
+	public List<String> getCommandByReferenceJPQL(@PathVariable("reference") long reference) {
 		return commandService.getCommandByReferenceJPQL(reference);
 	}
     
 	@DeleteMapping(value = "/deleteByReference/{reference}")
-	public void deleteByReference(@PathVariable("reference")int reference) {
+	public void deleteByReference(@PathVariable("reference")long reference) {
 		commandService.deleteByReference(reference);
 	}
 		  @PutMapping(value = "/updatecommande") 

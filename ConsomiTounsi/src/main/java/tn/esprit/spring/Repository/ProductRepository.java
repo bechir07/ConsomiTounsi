@@ -37,6 +37,6 @@ import tn.esprit.spring.entities.*;
 	 		 +"ip.id=:command_line" )
 	    public double getQuntityIngredient(@Param("product") int product,@Param("command_line") int command_line);*/
 	
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }

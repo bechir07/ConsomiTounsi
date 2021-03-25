@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.Subject;
 @Repository
-public interface SubjectRepository  extends JpaRepository<Subject, Integer> {
+public interface SubjectRepository  extends JpaRepository<Subject, Long> {
 	
 	
 	

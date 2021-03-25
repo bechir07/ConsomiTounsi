@@ -51,7 +51,7 @@ private List<Add> adds;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User users ;
-@OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
 private List<Command_line> Command_line;
 
 @OneToOne

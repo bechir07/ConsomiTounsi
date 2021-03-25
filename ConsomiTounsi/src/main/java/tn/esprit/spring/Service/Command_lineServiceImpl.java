@@ -30,7 +30,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	Command_lineRepository command_lineRepository;
 	
 	@Override
-	public int addCommandline(Command_line command_line) {
+	public long addCommandline(Command_line command_line) {
 		return command_lineRepository.save(command_line).getId();
 	}
 	
@@ -61,7 +61,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	}*/
 	
 	   @Override
-		public void affecterPoductACommand_line(int Id, int reference) {
+		public void affecterPoductACommand_line(long Id, long reference) {
 			Command_line command_line = command_lineRepository.findById(reference).get();
 			Product product = productRepository.findById(Id).get();
 			if (!ObjectUtils.isEmpty(command_line) && !ObjectUtils.isEmpty(product)) {
@@ -71,7 +71,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 			}
 		}
 	   @Override
-			public void affecterCommandACommand_line(int reference, int id) {
+			public void affecterCommandACommand_line(long reference, long id) {
 				Command_line command_line = command_lineRepository.findById(id).get();
 				Command command = commandRepository.findById(reference).get();
 				if (!ObjectUtils.isEmpty(command_line) && !ObjectUtils.isEmpty(command)) {
@@ -89,7 +89,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	}
 */
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(long id) {
 		
 		command_lineRepository.deleteById(id);
 	}

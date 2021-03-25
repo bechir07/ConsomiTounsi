@@ -10,12 +10,15 @@ public interface ICommentService {
 
 	List<Comment> getComments();
 
-	void deleteByCommentId(int id);
 
 	Comment updateComment(Comment c);
 
-	void affecterSubjectAComment(int ids, int id);
 
-	void affecterUserAComment(int idu, int id);
+
+	void deleteByCommentId(long id);
+
+	void affecterSubjectAComment(long ids, long id);
+
+	void affecterUserAComment(long idu, long id);
 
 }

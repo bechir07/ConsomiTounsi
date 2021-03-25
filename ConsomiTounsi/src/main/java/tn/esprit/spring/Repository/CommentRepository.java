@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.Comment;
 @Repository
-public interface CommentRepository   extends JpaRepository<Comment, Integer> {
+public interface CommentRepository   extends JpaRepository<Comment, Long> {
 	
 	/*@Query(value="SELECT * FROM comment WHERE content_comment LIKE '@N%'", nativeQuery = true)
 	public List<?> getbillByEtat(@Param("payment_type") String payment_type);*/

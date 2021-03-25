@@ -2,16 +2,16 @@ package tn.esprit.spring.Repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entities.*;
 
 @Repository
-public interface AddRepository extends CrudRepository <Add, Integer> {
-	//<Optional> Add findById(int id);
+public interface AddRepository extends JpaRepository <Add, Long> {
+	//<Optional> Add findById(Long id);
 
 	@Query("select a from Add a where a.priceSponsoring>200 ")
     public List<Add> listAdd();

@@ -36,8 +36,8 @@ public class RatingServiceImpl implements IRatingService {
 			{
 				// updateRating(rate.getId());
 				Rating ratingEdit = new Rating();
-
-				ratingEdit = RatingRepository.findById(rate.getId());
+				
+				ratingEdit = RatingRepository.findById(rate.getId()).get();
 
 				// rating.setNote(note);
 
@@ -60,28 +60,28 @@ public class RatingServiceImpl implements IRatingService {
 	}
 
 	@Override
-	public void deleteRating(int i) {
+	public void deleteRating(Long i) {
 		RatingRepository.deleteById(i);
 		
 	}
 
 	@Override
-	public List<Rating> retrieveAllReviews(int id) {
+	public List<Rating> retrieveAllReviews(Long id) {
 		
 		return RatingRepository.listReviews(id);
 
 	}
 
 	@Override
-	public int nbReview(int id) {
+	public int nbReview(Long id) {
 		return RatingRepository.nbreviews(id);
 	}
 
 	@Override
-	public String updateRating(int id, int note) {
+	public String updateRating(Long id, int note) {
 		Rating rating = new Rating();
 
-		rating = RatingRepository.findById(id);
+		rating = RatingRepository.findById(id).get();
 
 		 rating.setNote(note);
 
@@ -93,7 +93,7 @@ public class RatingServiceImpl implements IRatingService {
 	}
 
 	@Override
-	public List<Rating> listLastReviews(int id) {
+	public List<Rating> listLastReviews(Long id) {
 		return RatingRepository.listLastReviews(id);
 	}
 

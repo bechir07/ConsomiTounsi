@@ -15,7 +15,7 @@ public class Coupon implements Serializable {
 	private static final long serialVersionUID = 1L;
 @Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id ;
+private Long id ;
 private String Code ;
 private double Promo ;
 
@@ -25,14 +25,14 @@ Product product;
 
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+User user ;
 
 @Override
 public String toString() {
 	return "Coupon [id=" + id + ", Code=" + Code + ", Promo=" + Promo + "]";
 }
 
-public Coupon(int id, String code, double promo) {
+public Coupon(Long id, String code, double promo) {
 	super();
 	this.id = id;
 	Code = code;
@@ -44,11 +44,11 @@ public Coupon() {
 	
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -68,11 +68,11 @@ public void setPromo(double promo) {
 	Promo = promo;
 }
 
-public Product getProducts() {
+public Product getProduct() {
 	return product;
 }
 
-public void setProducts(Product products) {
+public void setProduct(Product products) {
 	this.product = products;
 }
 

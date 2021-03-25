@@ -46,7 +46,7 @@ public class ADDController {
 	// http://localhost:8081/ConsomiTounsi/servlet/remove-add/{id}
 	@DeleteMapping("/remove-add/{id}")
 	@ResponseBody
-	public void removeAdd(@PathVariable("id") int id) {
+	public void removeAdd(@PathVariable("id") Long id) {
 		addService.deleteADD(id);
 	}
 	

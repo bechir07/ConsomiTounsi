@@ -20,7 +20,7 @@ public class ADDView implements Serializable{
 
 @Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id;
+private Long id;
 @Temporal (TemporalType.DATE)
 @Column(name="dateView")
 private Date DateView;
@@ -42,7 +42,7 @@ public void setUser(User user) {
 
 @Override
 public String toString() {
-	return "ADDView [id=" + id + ", DateView=" + DateView + "]";
+	return "ADDView [id=" + id + ", DateView=" + DateView + ", add=" + add + ", user=" + user + "]";
 }
 
 public ADDView() {
@@ -50,17 +50,17 @@ public ADDView() {
 	// TODO Auto-generated constructor stub
 }
 
-public ADDView(int id, Date dateView) {
+public ADDView(Long id, Date dateView) {
 	super();
 	this.id = id;
 	DateView = dateView;
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 

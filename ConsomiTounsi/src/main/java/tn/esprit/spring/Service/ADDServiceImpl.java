@@ -32,7 +32,7 @@ public class ADDServiceImpl implements IADDService {
 	}*/
 
 	@Override
-	public void deleteADD(int i) {
+	public void deleteADD(Long i) {
 		AddRepository.deleteById(i);
 		
 	}

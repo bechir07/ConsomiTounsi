@@ -8,6 +8,6 @@ import tn.esprit.spring.entities.*;
 
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
 }

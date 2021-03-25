@@ -15,7 +15,7 @@ public interface ICommand_lineService {
 
 	public void deleteById(int id);
 
-	public void affecterPoductACommand_line(int Id, int reference);
+	public void affecterPoductACommand_line(Long Id, int reference);
 
 	public void affecterCommandACommand_line(int reference, int id);
 

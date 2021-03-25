@@ -20,14 +20,14 @@ public class ADDViewServiceImpl implements IADDViewService{
 	private static final Logger L =(Logger) LogManager.getLogger(ADDViewServiceImpl.class);
 	
 	
-	public String addVu(int iduser,int idad, ADDView addview){
+	public String addVu(Long iduser,Long idad, ADDView addview){
 		addview.setDateView(new Date());
 		addviewRepository.save(addview);
 	
 		return "add with succes";
 	}
 	
-	public int nbVu(int id)
+	public int nbVu(Long id)
 	{
 		return  addviewRepository.nbVu(id);
 	}

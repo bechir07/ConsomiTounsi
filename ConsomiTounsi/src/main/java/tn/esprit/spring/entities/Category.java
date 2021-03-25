@@ -17,22 +17,22 @@ private static final long serialVersionUID = 1L;
 
 @Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id ;
+private Long id ;
 private String Name ;
 
-@OneToMany(cascade = CascadeType.ALL, mappedBy="categories")
-private Set<Product> products;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
+private Set<Product> product;
 
 @Override
 public String toString() {
-	return "Category [id=" + id + ", Name=" + Name + "]";
+	return "Category [id=" + id + ", Name=" + Name + ", product=" + product + "]";
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -44,12 +44,12 @@ public void setName(String name) {
 	Name = name;
 }
 
-public Set<Product> getProducts() {
-	return products;
+public Set<Product> getProduct() {
+	return product;
 }
 
-public void setProducts(Set<Product> products) {
-	this.products = products;
+public void setProduct(Set<Product> products) {
+	this.product = products;
 }
 
 public Category() {
@@ -57,7 +57,7 @@ public Category() {
 	
 }
 
-public Category(int id, String name) {
+public Category(Long id, String name) {
 	super();
 	this.id = id;
 	Name = name;

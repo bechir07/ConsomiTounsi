@@ -49,7 +49,7 @@ public class Command implements Serializable {
 	@OneToOne(mappedBy="command")
 	private Bill bill;
 	
-	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="command", cascade = {CascadeType.ALL})
 	private List<Command_line> Command_line;
 	@ManyToOne
 	private User client;

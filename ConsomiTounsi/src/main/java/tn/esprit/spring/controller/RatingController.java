@@ -45,7 +45,7 @@ public class RatingController {
 	//http://localhost:8081/ConsomiTounsi/servlet/remove-rating/{id}
 	@DeleteMapping("/remove-rating/{id}")
 	@ResponseBody
-	public void removeRating(@PathVariable("id") int id) {
+	public void removeRating(@PathVariable("id") Long id) {
 	ratingService.deleteRating(id);
 	 }
 	
@@ -58,7 +58,7 @@ public class RatingController {
 
 	}
 	@GetMapping("/editNote/{id}&{note}")
-	public String updateNote(@PathVariable("id") int id,@PathVariable("note") int note){
+	public String updateNote(@PathVariable("id") Long id,@PathVariable("note") int note){
 			return ratingService.updateRating(id, note);
 		
 	}
@@ -66,7 +66,7 @@ public class RatingController {
 	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-nbvu
 		@GetMapping(value ="/retrieve-nbvu")
 		@ResponseBody
-		public int getNbvu(@PathVariable("id") int id) 
+		public int getNbvu(@PathVariable("id") Long id) 
 		{
 		
 		return ratingService.nbReview(id);
@@ -76,7 +76,7 @@ public class RatingController {
 		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-all-ratingParProduct/{id}
 		@GetMapping(value = "retrieve-all-ratingParProduct/{id}")
 		@ResponseBody
-		public List<Rating> getReviewsParProduct(@PathVariable("id") int id) {
+		public List<Rating> getReviewsParProduct(@PathVariable("id") Long id) {
 
 			return ratingService. retrieveAllReviews(id);
 
@@ -86,7 +86,7 @@ public class RatingController {
 		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-last-reviews
 		@GetMapping(value ="/retrieve-last-reviews")
 		@ResponseBody
-		public List<Rating> getLastReviews(int id) 
+		public List<Rating> getLastReviews(Long id) 
 		{
 		
 		return ratingService.listLastReviews(id);

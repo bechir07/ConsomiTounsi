@@ -61,7 +61,7 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	}*/
 	
 	   @Override
-		public void affecterPoductACommand_line(int Id, int reference) {
+		public void affecterPoductACommand_line(Long Id, int reference) {
 			Command_line command_line = command_lineRepository.findById(reference).get();
 			Product product = productRepository.findById(Id).get();
 			if (!ObjectUtils.isEmpty(command_line) && !ObjectUtils.isEmpty(product)) {

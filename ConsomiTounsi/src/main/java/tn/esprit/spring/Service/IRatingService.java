@@ -8,16 +8,16 @@ public interface IRatingService  {
 	
 	public String addRating(Rating r);
 
-	public void deleteRating(int i);
+	public void deleteRating(Long i);
 	
-	public List<Rating> retrieveAllReviews(int id);
+	public List<Rating> retrieveAllReviews(Long id);
 		
-	public int nbReview(int id);
+	public int nbReview(Long id);
 
 
 
-	String updateRating(int id,int note);
+	String updateRating(Long id,int note);
 
-	public List<Rating> listLastReviews(int id);
+	public List<Rating> listLastReviews(Long id);
 
 }

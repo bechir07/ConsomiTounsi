@@ -19,7 +19,7 @@ public class Rating implements Serializable {
 
 @Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id ;
+private Long id ;
 
 @Temporal (TemporalType.DATE)
 @Column(name="dateRating")
@@ -39,7 +39,7 @@ public String toString() {
 	return "Rating [id=" + id + ", DateRating=" + DateRating + ", note=" + note + ", review=" + review + "]";
 }
 
-public Rating(int id, Date dateRating, int note, String review) {
+public Rating(Long id, Date dateRating, int note, String review) {
 	super();
 	this.id = id;
 	DateRating = dateRating;
@@ -52,11 +52,11 @@ public Rating() {
 	// TODO Auto-generated constructor stub
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 

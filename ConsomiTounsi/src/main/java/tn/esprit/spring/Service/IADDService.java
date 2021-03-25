@@ -7,7 +7,7 @@ import tn.esprit.spring.entities.Add;
 public interface IADDService {
 	public Add addADD(Add a);
 
-	public void deleteADD(int i);
+	public void deleteADD(Long i);
 	
 	public List<Add> retrieveAllAdds();
 	

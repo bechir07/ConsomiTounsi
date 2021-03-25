@@ -47,7 +47,7 @@ public class Command_lineController{
 		
 
 	    @PutMapping(value = "/affecterProductACommand_line/{id}/{id}") 
-		public void affecterProductACommand_line(@PathVariable("id")int id, @PathVariable("id")int idc) {
+		public void affecterProductACommand_line(@PathVariable("id")Long id, @PathVariable("id")int idc) {
 			command_lineService.affecterPoductACommand_line(id, idc);
 		}
 	    

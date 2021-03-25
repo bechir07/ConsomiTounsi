@@ -44,7 +44,7 @@ public class ProductController {
 	//http://localhost:8081/ConsomiTounsi/servlet/deleteProduct/{id_product}
 	@DeleteMapping("/deleteProduct/{id_product}") 
 	@ResponseBody 
-	public void deleteProduct(@PathVariable("id_product") int id) {
+	public void deleteProduct(@PathVariable("id_product")Long id) {
 		productService.deleteProduct(id);
 	}
 

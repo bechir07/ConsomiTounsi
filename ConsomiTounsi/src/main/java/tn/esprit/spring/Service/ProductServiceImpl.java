@@ -29,7 +29,7 @@ public class ProductServiceImpl  implements IProductService{
 	}
 
 	@Override
-	public void deleteProduct(int i) {
+	public void deleteProduct(Long i) {
 		ProductRepository.deleteById(i);
 		
 	}

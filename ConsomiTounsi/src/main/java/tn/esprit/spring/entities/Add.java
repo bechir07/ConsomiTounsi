@@ -28,7 +28,7 @@ public class Add implements Serializable {
 
 @Id
 @GeneratedValue(strategy = GenerationType.IDENTITY)
-private int id;
+private Long id;
 @Temporal(TemporalType.DATE)
 @Column(name="dateStart")
 private Date DateStart;
@@ -59,14 +59,15 @@ public void setName(String name) {
 Product prod;
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 @ManyToOne
-User users ;
+User user ;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
-private Set<ADDView> views;
+private Set<ADDView> view;
 
 @Override
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
-			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + "]";
+			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
+			+ ", prod=" + prod + ", user=" + user + ", view=" + view + "]";
 }
 
 public Add() {
@@ -74,7 +75,7 @@ public Add() {
 	// TODO Auto-generated constructor stub
 }
 
-public Add(int id, Date dateStart, Date dateEnd, double priceSponsoring, float average, String image, TypeADD type) {
+public Add(Long id, Date dateStart, Date dateEnd, double priceSponsoring, float average, String image, TypeADD type) {
 	super();
 	this.id = id;
 	DateStart = dateStart;
@@ -85,11 +86,11 @@ public Add(int id, Date dateStart, Date dateEnd, double priceSponsoring, float a
 	this.type = type;
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -151,20 +152,20 @@ public void setProd(Product prod) {
 	this.prod = prod;
 }
 
-public User getUsers() {
-	return users;
+public User getUser() {
+	return user;
 }
 
-public void setUsers(User users) {
-	this.users = users;
+public void setUser(User users) {
+	this.user = users;
 }
 
 public Set<ADDView> getViews() {
-	return views;
+	return view;
 }
 
 public void setViews(Set<ADDView> views) {
-	this.views = views;
+	this.view = view;
 }
 
 

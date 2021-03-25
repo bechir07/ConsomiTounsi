@@ -48,21 +48,21 @@ public class User implements Serializable {
 
 
 
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Product> products;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-private Set<Rating> ratings;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Coupon> coupons;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+private Set<Product> product;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+private Set<Rating> rating;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+private Set<Coupon> coupon;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Add> add;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-private Set<ADDView> views;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+private Set<ADDView> view;
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Exchange> exchanges;
 
 
@@ -71,16 +71,10 @@ private Set<Exchange> exchanges;
 
 @Override
 public String toString() {
-<<<<<<< HEAD
-	return "User [id=" + id + ", FirstName=" + FirstName + ", LastName=" + LastName + ", email=" + email + ", Adress="
-			+ Adress + ", login=" + login + ", password=" + password + ", passwordConfirm=" + passwordConfirm
-			+ ", phone=" + phone + ", InscriptionDate=" + InscriptionDate + ", role=" + role + ", products=" + products
-			+ ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + add + ", views=" + views + ", donations="
-=======
+
 	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
-			+ roles + ", products=" + products + ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds
-			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+			+ roles + ", products=" + product + ", ratings=" + rating + ", coupons=" + coupon + ", adds=" + add
+			+ ", views=" + view + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
 			+ donations + ", participations=" + participations + "]";
 }
 public Long getId() {
@@ -114,23 +108,23 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public Set<Product> getProducts() {
-	return products;
+public Set<Product> getProduct() {
+	return product;
 }
-public void setProducts(Set<Product> products) {
-	this.products = products;
+public void setProduct(Set<Product> products) {
+	this.product = products;
 }
-public Set<Rating> getRatings() {
-	return ratings;
+public Set<Rating> getRating() {
+	return rating;
 }
-public void setRatings(Set<Rating> ratings) {
-	this.ratings = ratings;
+public void setRating(Set<Rating> ratings) {
+	this.rating = ratings;
 }
-public Set<Coupon> getCoupons() {
-	return coupons;
+public Set<Coupon> getCoupon() {
+	return coupon;
 }
-public void setCoupons(Set<Coupon> coupons) {
-	this.coupons = coupons;
+public void setCoupon(Set<Coupon> coupons) {
+	this.coupon = coupons;
 }
 
 public Set<Add> getAdd() {
@@ -139,11 +133,11 @@ public Set<Add> getAdd() {
 public void setAdd(Set<Add> add) {
 	this.add = add;
 }
-public Set<ADDView> getViews() {
-	return views;
+public Set<ADDView> getView() {
+	return view;
 }
-public void setViews(Set<ADDView> views) {
-	this.views = views;
+public void setView(Set<ADDView> view) {
+	this.view = view;
 }
 
 public Set<Reclamation> getReclamations() {
@@ -180,11 +174,11 @@ public User(Long id, String username, String password, boolean actived, Collecti
 	this.password = password;
 	this.actived = actived;
 	this.roles = roles;
-	this.products = products;
-	this.ratings = ratings;
-	this.coupons = coupons;
-	this.adds = adds;
-	this.views = views;
+	this.product = products;
+	this.rating = ratings;
+	this.coupon = coupons;
+	this.add = adds;
+	this.view = views;
 	this.reclamations = reclamations;
 	this.comments = comments;
 	this.donations = donations;

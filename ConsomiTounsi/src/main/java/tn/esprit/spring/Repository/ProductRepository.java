@@ -1,21 +1,16 @@
 package tn.esprit.spring.Repository;
 import java.util.List;
 
-<<<<<<< HEAD
+
 import java.util.List;
 
-=======
 import javax.persistence.NamedNativeQuery;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.jpa.repository.JpaRepository;
-<<<<<<< HEAD
 import org.springframework.data.jpa.repository.Query;
-=======
 import org.springframework.data.repository.CrudRepository;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entities.*;

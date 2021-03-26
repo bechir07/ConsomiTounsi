@@ -63,7 +63,6 @@ public class ProductServiceImpl  implements IProductService{
 		}
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void affectProduitToCategory(Long productId, Long catId)
 	{
@@ -115,8 +114,5 @@ public class ProductServiceImpl  implements IProductService{
 		return ProductRepository.getProductByName(msg);
 	}
 
-=======
-	
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 }

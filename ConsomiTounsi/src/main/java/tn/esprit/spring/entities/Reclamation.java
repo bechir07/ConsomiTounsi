@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 /**
@@ -30,6 +32,7 @@ public class Reclamation {
     private Decision decision;
     private Date dateLimit;
     @ManyToOne()
+    @JsonIgnore
     User users;
 
     public Reclamation() {

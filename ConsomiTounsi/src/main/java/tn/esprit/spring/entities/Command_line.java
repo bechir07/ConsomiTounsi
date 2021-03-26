@@ -13,7 +13,7 @@ public class Command_line implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	public int id;
+	public long id;
 	public int amount;
 	public float total_product_price;
 
@@ -21,10 +21,10 @@ public class Command_line implements Serializable{
     Command command;
 	@ManyToOne
     Product product;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public int getAmount() {
@@ -59,7 +59,7 @@ public class Command_line implements Serializable{
 		return "Command_line [id=" + id + ", amount=" + amount + ", total_product_price=" + total_product_price
 				+ ", command=" + command + ", product=" + product + "]";
 	}
-	public Command_line(int id, int amount, float total_product_price, Command command, Product product) {
+	public Command_line(long id, int amount, float total_product_price, Command command, Product product) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -67,7 +67,7 @@ public class Command_line implements Serializable{
 		this.command = command;
 		this.product = product;
 	}
-	public Command_line(int id, int amount, float total_product_price) {
+	public Command_line(long id, int amount, float total_product_price) {
 		super();
 		this.id = id;
 		this.amount = amount;

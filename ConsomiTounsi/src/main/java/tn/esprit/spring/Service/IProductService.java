@@ -9,11 +9,11 @@ import tn.esprit.spring.entities.*;
 public interface IProductService {
 	public 	String addProduct(Product p);
 
-	public void deleteProduct(Long i);
 	
 	public List<Product> retrieveAllProducts();
 	
 	public String updateProduct(Product p);
+<<<<<<< HEAD
 	
 	public void affectProduitToCategory(Long productId, Long catId);
 	
@@ -26,4 +26,9 @@ public interface IProductService {
 	public float SommeNote( Long idProduct);
 	
 	public Product getProductByName( String msg);
+=======
+
+	void deleteProduct(long i);
+
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 }

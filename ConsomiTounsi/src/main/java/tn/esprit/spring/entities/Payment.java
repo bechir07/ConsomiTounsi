@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -25,15 +26,14 @@ public class Payment implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int payment_id;
+	public long payment_id;
 	
 	@Enumerated(EnumType.STRING)
 	public Payment_type payment_type;
 
 	//public int id_produit;////
 	//public int id_client;////
-	@Temporal(TemporalType.DATE)
-	public Date payment_date;
+	public LocalDate payment_date = LocalDate.now();
 	public float total_price;
 	
 	
@@ -44,19 +44,19 @@ public class Payment implements Serializable{
 	@OneToOne
 	private Bill bill;
 
-	public int getPayment_id() {
+	public long getPayment_id() {
 		return payment_id;
 	}
 
-	public void setPayment_id(int payment_id) {
+	public void setPayment_id(long payment_id) {
 		this.payment_id = payment_id;
 	}
 
-	public Date getPayment_date() {
+	public LocalDate getPayment_date() {
 		return payment_date;
 	}
 
-	public void setPayment_date(Date payment_date) {
+	public void setPayment_date(LocalDate payment_date) {
 		this.payment_date = payment_date;
 	}
 
@@ -80,12 +80,35 @@ public class Payment implements Serializable{
 		return serialVersionUID;
 	}
 
-	public Payment(int payment_id, Date payment_date, float total_price, Bill bill) {
+	public Payment(long payment_id, LocalDate payment_date, float total_price, Bill bill) {
 		super();
 		this.payment_id = payment_id;
 		this.payment_date = payment_date;
 		this.total_price = total_price;
 		this.bill = bill;
+	}
+
+	public Payment_type getPayment_type() {
+		return payment_type;
+	}
+
+	public void setPayment_type(Payment_type payment_type) {
+		this.payment_type = payment_type;
+	}
+
+	public Payment(long payment_id, Payment_type payment_type, LocalDate payment_date, float total_price, Bill bill) {
+		super();
+		this.payment_id = payment_id;
+		this.payment_type = payment_type;
+		this.payment_date = payment_date;
+		this.total_price = total_price;
+		this.bill = bill;
+	}
+
+	@Override
+	public String toString() {
+		return "Payment [payment_id=" + payment_id + ", payment_type=" + payment_type + ", payment_date=" + payment_date
+				+ ", total_price=" + total_price + ", bill=" + bill + "]";
 	}
 
 

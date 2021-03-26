@@ -38,7 +38,8 @@ public class ProductServiceImpl  implements IProductService{
 	}
 
 	@Override
-	public void deleteProduct(Long i) {
+	public void deleteProduct(long i) {
+
 		ProductRepository.deleteById(i);
 		
 	}
@@ -62,6 +63,7 @@ public class ProductServiceImpl  implements IProductService{
 		}
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void affectProduitToCategory(Long productId, Long catId)
 	{
@@ -113,5 +115,8 @@ public class ProductServiceImpl  implements IProductService{
 		return ProductRepository.getProductByName(msg);
 	}
 
+=======
+	
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 }

@@ -30,13 +30,13 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	Command_lineRepository command_lineRepository;
 	
 	@Override
-	public int addCommandline(Command_line command_line) {
+	public long addCommandline(Command_line command_line) {
 		return command_lineRepository.save(command_line).getId();
 	}
 	
 	/*
 	public void affecterCommandABill(int reference, int bill_id) {
-		Command command = commandRepository.findById(reference).get();
+ 		Command command = commandRepository.findById(reference).get();
 		Bill bill =billRepository.findById(bill_id).get();
 		if (ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(bill))
 		bill.setCommand(command);
@@ -61,23 +61,21 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	}*/
 	
 	   @Override
-		public void affecterPoductACommand_line(Long Id, int reference) {
+		public void affecterPoductACommand_line(long Id, long reference) {
 			Command_line command_line = command_lineRepository.findById(reference).get();
 			Product product = productRepository.findById(Id).get();
 			if (!ObjectUtils.isEmpty(command_line) && !ObjectUtils.isEmpty(product)) {
-				//command_line.getProduct().add(product);
-				product.getCommand_line().add(command_line);
-
+			
+				command_line.setProduct(product);
 				productRepository.save(product);
 			}
 		}
 	   @Override
-			public void affecterCommandACommand_line(int reference, int id) {
+			public void affecterCommandACommand_line(long reference, long id) {
 				Command_line command_line = command_lineRepository.findById(id).get();
 				Command command = commandRepository.findById(reference).get();
 				if (!ObjectUtils.isEmpty(command_line) && !ObjectUtils.isEmpty(command)) {
-					command.getCommand_line().add(command_line);
-					//command.setCommand_line(command_line);
+					command_line.setCommand(command);
 
 					commandRepository.save(command);
 				}
@@ -91,9 +89,50 @@ public class Command_lineServiceImpl  implements ICommand_lineService{
 	}
 */
 	@Override
-	public void deleteById(int id) {
+	public void deleteById(long id) {
 		
 		command_lineRepository.deleteById(id);
 	}
+
+	/*@Override
+	public int CalculPrixPlat() {
+		// TODO Auto-generated method stub
+		return 0;
+	}*/
+	@Override
+	public int updatetotal() {
+		 return command_lineRepository.getmonta(0);
+	}
+	@Override
+	public int update_prix() {//
+		return command_lineRepository.getQuntityIngredient(0);
+		}
+
+
+	/*@Override
+	public int somme() {
+		return command_lineRepository.getmonta2();
+	}*/
+
+	
+	/*@Override
+	public String CalculPrixPlat() {
+		float m=0;
+		List<Command_line> command_line=productRepository.GetIPlat();
+		for(Command_line p:command_line){
+		m=0;
+		List<Product> products =productRepository.GetIngreidnet(p.getId());
+		for(Product i:products){
+			float q;
+			q=(float) productRepository.getQuntityIngredient(i.getId(),p.getId());
+			m=(float) (m+i.getPrice()*q);
+			p.setTotal_product_price(m);
+			command_lineRepository.save(p);
+					
+			}	
+	}	
+		return "Prix de plats modifié!";
+	}*/
+    
 
 }

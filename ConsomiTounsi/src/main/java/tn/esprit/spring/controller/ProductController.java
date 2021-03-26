@@ -54,4 +54,63 @@ public class ProductController {
 	public void updateProduct(@RequestBody Product p) {
 		productService.updateProduct(p);
 	}
+	
+	//http://localhost:8081/ConsomiTounsi/servlet/deleteProduct/{id_product}
+	@PostMapping("/affectProductCategory/{productId}/{catId}") 
+	@ResponseBody 
+	public void affectProduitToCategory(@PathVariable("productId")Long idProduct,@PathVariable("catId") Long idCat) {
+		productService.affectProduitToCategory(idProduct, idCat);
+	}
+	
+	// http://localhost:8081/ConsomiTounsi/servlet/retrieve-products-by-category
+		@GetMapping(value = "/retrieve-products-by-category")
+		@ResponseBody
+		public List<Product> getProductsByCategory(@PathVariable("id") Long id) {
+
+			return productService.retrieveProductByCategory(id);
+
+		}
+		
+		
+		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-rating-product
+		@GetMapping(value ="/retrieve-rating-product")
+		@ResponseBody
+		public float getRatingProduct(@PathVariable("id") Long id) 
+		{
+		
+		return productService.getRating(id);
+	    
+		}
+		
+		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-not-expensive
+		@GetMapping(value ="/retrieve-product-not-expensive")
+		@ResponseBody
+		public List<Product> getProductNotExpensive() 
+		{
+		
+		return productService.listProductNotExpensive();	    
+		} 
+		
+		
+		
+		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-note
+		@GetMapping(value ="/retrieve-product-note")
+		@ResponseBody
+		public float getNoteProduct(@PathVariable("id") Long id) 
+		{
+				
+		return productService.SommeNote(id);
+			    
+		}
+		
+
+		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-by-name
+		    	@GetMapping(value="/retrieve-product-by-name/{name}")
+		    	@ResponseBody
+		    	public Product getProductByName(@PathVariable("name") String name) {
+		    	return productService.getProductByName(name);
+		}
+		    	
+		
+		    	
 }

@@ -16,7 +16,11 @@ public interface IADDService {
 	byte[] findImage(int imageId);
 	
 	List<Add> searchAdd(String msg);
-	List<Add> retrieveAdds();
+	
+	List<Add> retrieveAddsExpensive();
+	
+	public Add getAddByName(String msg);
+	
 
 
 }

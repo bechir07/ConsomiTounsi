@@ -1,5 +1,6 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,9 +9,8 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Repository.AddRepository;
 import tn.esprit.spring.Repository.ProductRepository;
-import tn.esprit.spring.entities.ADDView;
 import tn.esprit.spring.entities.Add;
-import tn.esprit.spring.entities.Product;
+
 
 
 @Service
@@ -25,12 +25,7 @@ public class ADDServiceImpl implements IADDService {
 		AddRepository.save(a);
 		return a;
 	}
-	/*public String PubProduct(Product p, Add add)
-	{
-		
-		
-	}*/
-
+	
 	@Override
 	public void deleteADD(Long i) {
 		AddRepository.deleteById(i);
@@ -63,9 +58,17 @@ public class ADDServiceImpl implements IADDService {
 	}
 
 	@Override
-	public List<Add> retrieveAdds() {
+	public List<Add> retrieveAddsExpensive() {
 		return AddRepository.listAdd();
 
 	}
+	
+	@Override
+	public Add getAddByName(String msg) {
+		return AddRepository.getAddByName(msg);
+	}
+	
+	
+	
 
 }

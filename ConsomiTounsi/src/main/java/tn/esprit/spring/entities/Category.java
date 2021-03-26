@@ -1,6 +1,7 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -21,7 +22,7 @@ private Long id ;
 private String Name ;
 
 @OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
-private Set<Product> product;
+private List<Product> product;
 
 @Override
 public String toString() {
@@ -44,12 +45,14 @@ public void setName(String name) {
 	Name = name;
 }
 
-public Set<Product> getProduct() {
+
+
+public List<Product> getProduct() {
 	return product;
 }
 
-public void setProduct(Set<Product> products) {
-	this.product = products;
+public void setProduct(List<Product> product) {
+	this.product = product;
 }
 
 public Category() {

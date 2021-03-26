@@ -1,11 +1,16 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.Repository.CategoryRepository;
 import tn.esprit.spring.Repository.ProductRepository;
+import tn.esprit.spring.entities.Category;
 import tn.esprit.spring.entities.Product;
 import tn.esprit.spring.entities.Rating;
 
@@ -14,6 +19,10 @@ public class ProductServiceImpl  implements IProductService{
 
 	@Autowired
 	private ProductRepository ProductRepository;
+	@Autowired
+	private CategoryRepository CatRepository;
+	private static final Logger l=LogManager.getLogger(ProductServiceImpl.class);
+	
 	@Override
 	public String addProduct(Product p) {
 		if(p.getReference().startsWith("619")) 
@@ -52,5 +61,57 @@ public class ProductServiceImpl  implements IProductService{
 			return "non-tunisien product";
 		}
 	}
+
+	@Override
+	public void affectProduitToCategory(Long productId, Long catId)
+	{
+		Category categoryEntity = CatRepository.findById(catId).get();
+		Product productEntity = ProductRepository.findById(productId).get();
+
+		if(categoryEntity.getProduct() == null){
+
+			List<Product> products = new ArrayList<>();
+			 products.add(productEntity);
+			categoryEntity.setProduct(products);
+		}else{
+
+			categoryEntity.getProduct().add(productEntity);
+
+		}
+		
+		
+	}
+
+	@Override
+	public List<Product> retrieveProductByCategory(Long  idc) {
+		Category c = CatRepository.findById(idc).get();
+		List<Product> products = (List<Product>) ProductRepository.retrieveProductByCategory(c);
+		for (Product p : products){
+			l.info("product +++"+p);
+		}
+		return products;
+	}
+
+	@Override
+	public float getRating(Long id) {
+		return ProductRepository.getRating(id);
+	}
+
+	@Override
+	public List<Product> listProductNotExpensive() {
+		List<Product> products = (List<Product>) ProductRepository.listProductNotExpensive();	
+		return products;
+	}
+
+	@Override
+	public float SommeNote(Long idProduct) {
+		return ProductRepository.SommeNote(idProduct);
+	}
+
+	@Override
+	public Product getProductByName(String msg) {
+		return ProductRepository.getProductByName(msg);
+	}
+
 
 }

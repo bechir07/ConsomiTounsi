@@ -15,13 +15,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -31,8 +30,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity(name = "user")
-
-public class User implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public  class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -43,7 +42,9 @@ public class User implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private boolean actived;
-    @ManyToMany(fetch = FetchType.EAGER)
+    private String email;
+    //erreur hethy el eager t5arej fi erreur!! fetch = FetchType.EAGER
+      @ManyToMany()
     private Collection<Role> roles=new ArrayList<>();
 
 
@@ -98,6 +99,13 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
+
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
 public Set<Product> getProduct() {
 	return product;
 }
@@ -129,7 +137,7 @@ public Set<ADDView> getView() {
 public void setView(Set<ADDView> view) {
 	this.view = view;
 }
-
+@JsonIgnore
 public Set<Reclamation> getReclamations() {
 	return reclamations;
 }
@@ -144,7 +152,7 @@ public void setComments(Set<Comment> comments) {
 	this.comments = comments;
 }
 
-
+@JsonIgnore
 public Set<Exchange> getExchanges() {
 	return exchanges;
 }

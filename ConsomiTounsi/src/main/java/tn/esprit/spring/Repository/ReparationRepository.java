@@ -5,7 +5,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import tn.esprit.spring.entities.Reparation;
 
-@RepositoryRestResource(path = "Exchange")
+@RepositoryRestResource(path = "Reparation")
 public interface ReparationRepository extends JpaRepository<Reparation, Integer> {
 
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Repository.CategoryRepository;
 import tn.esprit.spring.Repository.ProductRepository;
+import tn.esprit.spring.Repository.AddRepository;
+import tn.esprit.spring.entities.Add;
 import tn.esprit.spring.entities.Category;
 import tn.esprit.spring.entities.Product;
 import tn.esprit.spring.entities.Rating;
@@ -21,6 +23,8 @@ public class ProductServiceImpl  implements IProductService{
 	private ProductRepository ProductRepository;
 	@Autowired
 	private CategoryRepository CatRepository;
+	@Autowired
+	private AddRepository AddRepository;
 	private static final Logger l=LogManager.getLogger(ProductServiceImpl.class);
 	
 	@Override
@@ -115,6 +119,25 @@ public class ProductServiceImpl  implements IProductService{
 		return ProductRepository.getProductByName(msg);
 	}
 
+	@Override
+	public void affectProduitToAdd(Long productId, Long addId)
+	{
+		Add addEntity = AddRepository.findById(addId).get();
+		Product productEntity = ProductRepository.findById(productId).get();
 
+		if(productEntity.getAdd() == null){
 
+			List<Add> adds = new ArrayList<>();
+			 adds.add(addEntity);
+			productEntity.setAdd(adds);
+		}else{
+
+			productEntity.getAdd().add(addEntity);
+
+		}
+		
+		
+		
+
+}
 }

@@ -6,7 +6,7 @@ import tn.esprit.spring.entities.Rating;
 
 public interface IRatingService  {
 	
-	public String addRating(Rating r);
+	public String addRating(Rating r,Long idp,long u );
 
 	public void deleteRating(Long i);
 	

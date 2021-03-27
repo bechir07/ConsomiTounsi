@@ -29,6 +29,6 @@ public interface IProductService {
 
 
 	void deleteProduct(long i);
-
+	public void affectProduitToAdd(Long productId, Long addId);
 
 }

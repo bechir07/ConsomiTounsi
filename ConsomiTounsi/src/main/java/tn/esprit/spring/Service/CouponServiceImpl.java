@@ -1,19 +1,23 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.Repository.CouponRepository;
-import tn.esprit.spring.entities.Coupon;
+import tn.esprit.spring.Repository.ProductRepository;
 
+import tn.esprit.spring.entities.Coupon;
+import tn.esprit.spring.entities.Product;
 
 @Service
 public class CouponServiceImpl implements ICouponService {
 	@Autowired
 	private CouponRepository CouponRepository;
-	
+	@Autowired
+	private ProductRepository ProductRepository;
 	@Override
 	public Coupon addCoupon(Coupon c) {
 		CouponRepository.save(c);
@@ -37,5 +41,6 @@ public class CouponServiceImpl implements ICouponService {
 		CouponRepository.save(c);
 		return c;
 	}
+	
 
 }

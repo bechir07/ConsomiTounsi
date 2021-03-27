@@ -3,6 +3,7 @@ package tn.esprit.spring.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +25,7 @@ public class RatingServiceImpl implements IRatingService {
 
 	
 	@Override
-	public String addRating(Rating r) {
+	public String addRating(Rating r,Long idp,long u ){
 
 		List<Rating> rating = new ArrayList<Rating>();
 		rating = (List<Rating>) RatingRepository.findAll();
@@ -34,29 +35,25 @@ public class RatingServiceImpl implements IRatingService {
 					&& (r.getUser().getId()==(rate.getUser().getId())))
 
 			{
-				// updateRating(rate.getId());
-				Rating ratingEdit = new Rating();
+			
 				
-				ratingEdit = RatingRepository.findById(rate.getId()).get();
-
-				// rating.setNote(note);
-
-				ratingEdit.setNote(r.getNote());
-				ratingEdit.setReview(r.getReview());
-				ratingEdit.setDateRating(new Date());
-				RatingRepository.save(ratingEdit);
-				return "user a déja évalué cette pub";
-
+					return "user a déja évalué ce Produit ";
+				
 			}
 
-			// r.setDateRating(new Date());
-			// RatingRepository.save(r);
+			 else 
+			    {  
+				 
+				 r.setDateRating(new Date ());
+				 RatingRepository.save(r);
+				 return " rating added successfully" ;
+				 
+			    }
+			
 
 		}
 
-		r.setDateRating(new Date());
-		RatingRepository.save(r);
-		return "note enregistré";
+				return "note enregistré";
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class ProductController {
 		productService.updateProduct(p);
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/deleteProduct/{id_product}
+	//http://localhost:8081/ConsomiTounsi/servlet/affectProductCategory/{productId}/{catId}
 	@PostMapping("/affectProductCategory/{productId}/{catId}") 
 	@ResponseBody 
 	public void affectProduitToCategory(@PathVariable("productId")Long idProduct,@PathVariable("catId") Long idCat) {
@@ -111,6 +111,12 @@ public class ProductController {
 		    	return productService.getProductByName(name);
 		}
 		    	
-		
+		    	//http://localhost:8081/ConsomiTounsi/servlet/affectProductCategory/{productId}/{addId}
+		    	@PostMapping("/affectProductCategory/{productId}/{addId}") 
+		    	@ResponseBody 
+		    	public void affectProduitToAdd(@PathVariable("productId")Long idProduct,@PathVariable("addId") Long addCat) {
+		    		productService.affectProduitToAdd(idProduct, addCat);
+		    	}
+
 		    	
 }

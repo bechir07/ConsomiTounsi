@@ -4,33 +4,13 @@ import java.util.List;
 
 import java.util.List;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import javax.persistence.NamedNativeQuery;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.jpa.repository.JpaRepository;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.jpa.repository.Query;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
-import org.springframework.data.repository.CrudRepository;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entities.*;

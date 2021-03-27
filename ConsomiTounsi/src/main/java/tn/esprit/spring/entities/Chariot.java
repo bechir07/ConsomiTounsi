@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Chariot implements Serializable {
 	
@@ -25,9 +27,13 @@ public class Chariot implements Serializable {
 	
 	private float totalp;
 	
+	//@OneToMany(cascade = CascadeType.ALL, mappedBy="chariot")
+	//private Set<DonChariot> donchariots;
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="chariot")
-	private Set<DonChariot> donchariots;
+	private Set<Command> Commands;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL,mappedBy="chariotev")
 	private Event event;
 
@@ -57,13 +63,7 @@ public class Chariot implements Serializable {
 		this.totalp = totalp;
 	}
 
-	public Set<DonChariot> getDonchariots() {
-		return donchariots;
-	}
-
-	public void setDonchariots(Set<DonChariot> donchariots) {
-		this.donchariots = donchariots;
-	}
+	
 
 	public Event getEvent() {
 		return event;
@@ -72,26 +72,36 @@ public class Chariot implements Serializable {
 	public void setEvent(Event event) {
 		this.event = event;
 	}
-	
-	public Chariot(int id, String description, float totalp, Set<DonChariot> donchariots, Event event) {
-		super();
-		this.id = id;
-		this.description = description;
-		this.totalp = totalp;
-		this.donchariots = donchariots;
-		this.event = event;
+
+	public Set<Command> getCommands() {
+		return Commands;
+	}
+
+	public void setCommands(Set<Command> commands) {
+		Commands = commands;
 	}
 
 	@Override
 	public String toString() {
-		return "Chariot [id=" + id + ", description=" + description + ", totalp=" + totalp + ", donchariots="
-				+ donchariots + ", event=" + event + "]";
+		return "Chariot [id=" + id + ", description=" + description + ", totalp=" + totalp + ", Commands=" + Commands
+				+ ", event=" + event + "]";
+	}
+
+	public Chariot(int id, String description, float totalp, Set<Command> commands, Event event) {
+		super();
+		this.id = id;
+		this.description = description;
+		this.totalp = totalp;
+		Commands = commands;
+		this.event = event;
 	}
 
 	public Chariot() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 	
 	

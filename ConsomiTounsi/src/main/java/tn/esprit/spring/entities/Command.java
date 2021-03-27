@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Command implements Serializable {
@@ -42,14 +44,16 @@ public class Command implements Serializable {
 	@ManyToOne
     Delivery delivery;
 	
-	
+	@JsonIgnore
 	@ManyToOne
-    Donation donation;
+	private Chariot chariot;
+	
+	
 	
 	@OneToOne(mappedBy="command")
 	private Bill bill;
 	
-	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Command_line> Command_line;
 	@ManyToOne
 	private User client;
@@ -78,12 +82,7 @@ public class Command implements Serializable {
 	public void setDelivery(Delivery delivery) {
 		this.delivery = delivery;
 	}
-	public Donation getDonation() {
-		return donation;
-	}
-	public void setDonation(Donation donation) {
-		this.donation = donation;
-	}
+	
 	public Bill getBill() {
 		return bill;
 	}
@@ -100,24 +99,24 @@ public class Command implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Command(int reference, float total_price, Date order_date, Delivery delivery, Donation donation, Bill bill,
+	public Command(int reference, float total_price, Date order_date, Delivery delivery, Bill bill,
 			 User client) {
 		super();
 		this.reference = reference;
 		this.total_price = total_price;
 		this.order_date = order_date;
 		this.delivery = delivery;
-		this.donation = donation;
+
 		this.bill = bill;
 		this.client = client;
 	}
-	public Command(int reference, float total_price, Date order_date, Delivery delivery, Donation donation) {
+	public Command(int reference, float total_price, Date order_date, Delivery delivery) {
 		super();
 		this.reference = reference;
 		this.total_price = total_price;
 		this.order_date = order_date;
 		this.delivery = delivery;
-		this.donation = donation;
+		
 	}
 	public Command(int reference, float total_price, Date order_date) {
 		super();
@@ -125,20 +124,20 @@ public class Command implements Serializable {
 		this.total_price = total_price;
 		this.order_date = order_date;
 	}
-	public Command(float total_price, Date order_date, Delivery delivery, Donation donation, Bill bill,
+	public Command(float total_price, Date order_date, Delivery delivery, Bill bill,
 			 User client) {
 		super();
 		this.total_price = total_price;
 		this.order_date = order_date;
 		this.delivery = delivery;
-		this.donation = donation;
+		
 		this.bill = bill;
 		this.client = client;
 	}
 	@Override
 	public String toString() {
 		return "Command [reference=" + reference + ", total_price=" + total_price + ", order_date=" + order_date
-				+ ", delivery=" + delivery + ", donation=" + donation + ", bill=" + bill + ", client=" + client + "]";
+				+ ", delivery=" + delivery + ", bill=" + bill + ", client=" + client + "]";
 	}
 	public List<Command_line> getCommand_line() {
 		return Command_line;

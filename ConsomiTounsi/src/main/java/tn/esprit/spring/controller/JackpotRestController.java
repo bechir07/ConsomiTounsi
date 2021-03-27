@@ -43,4 +43,27 @@ public class JackpotRestController {
 	public Jackpot updateJackpot(@RequestBody Jackpot j) {
 		return jackpotService.updateJackpot(j);
 	}
+	
+	@PutMapping(value = "/affecterEventAJackpot/{id}/{id}") 
+	public void affecterEventAJackpot(@PathVariable("id")int eventId, @PathVariable("id")int jackpotId) {
+		jackpotService.affecterEventAJackpot(eventId, jackpotId);
+	}
+	@PutMapping(value = "/desaffecterEventDuJackpot/{id}/{id}") 
+	public void desaffecterEventDuJackpot(@PathVariable("id")int eventId, @PathVariable("id")int jackpotId) {
+		jackpotService.desaffecterEventDuJackpot(eventId, jackpotId);
+	}
+	
+	@PutMapping(value = "/affecterDonationAJackpot/{id}/{id}") 
+	public void affecterDonationAJackpot(@PathVariable("id")int donationId, @PathVariable("id")int jackpotId) {
+		jackpotService.affecterDonationAJackpot(donationId, jackpotId);
+	}
+	@PutMapping(value = "/desaffecterDonationDuJackpot/{id}/{id}") 
+	public void desaffecterDonationDuJackpot(@PathVariable("id")int donationId, @PathVariable("id")int jackpotId) {
+		jackpotService.desaffecterDonationDuJackpot(donationId, jackpotId);
+	}
+	@GetMapping(value = "getMaxDonationForJackpot/{id}")
+	public String getMaxDonationForJackpot(@PathVariable("id")int jackpotId){
+		double i = jackpotService.getMaxDonationForJackpot(jackpotId);
+		return "La donation maximale de cet jackpot:["+ i +"]";
+	}
 }

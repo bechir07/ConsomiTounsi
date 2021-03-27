@@ -14,12 +14,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-
+import org.springframework.util.ObjectUtils;
 
 import tn.esprit.spring.Configuration.UserPrincipal;
 import tn.esprit.spring.Repository.RoleRepository;
 import tn.esprit.spring.Repository.UserRepository;
+import tn.esprit.spring.Repository.DonationRepository;
+import tn.esprit.spring.entities.Donation;
+import tn.esprit.spring.entities.Jackpot;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.User;
 
@@ -32,6 +34,8 @@ public class UserServiceImpl implements IUserService{
 	UserRepository userRepository;
 	@Autowired
 	RoleRepository RoleRepository;
+	@Autowired
+	DonationRepository DonationRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
     
@@ -114,4 +118,29 @@ public class UserServiceImpl implements IUserService{
 		return userRepository.findByUsername(userName);
 		
 	}
+    @Override	
+    public void affecterUserADonation(String username, int donationId) {
+    		
+    	User user = userRepository.findByUsername(username);
+    	Donation donation = DonationRepository.findById(donationId).get();
+    		if (!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(donation)) {
+    			donation.setUser(user);
+    			DonationRepository.save(donation);
+    		}
+    }
+    
+    @Override
+    public void desaffecterUserDuDonation(String username, int donationId)
+    {
+    	
+    	 Donation donation = DonationRepository.findById(donationId).get();
+    	User user = userRepository.findByUsername(username);
+    	if (!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(donation)) {
+            //departement.getEmployes().remove(departement.getEmployes().indexOf(employe));
+    		//jackpot.getDonations().remove(donation);
+    		donation.setUser(null);
+    		DonationRepository.save(donation);
+    	}
+    }
+    
 }

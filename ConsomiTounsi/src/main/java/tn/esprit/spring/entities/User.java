@@ -20,8 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -47,21 +46,35 @@ public class User implements Serializable {
     private Collection<Role> roles=new ArrayList<>();
 
 
-
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Product> products;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Rating> ratings;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Coupon> coupons;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Add> adds;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> views;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
 private Set<Reclamation> reclamations;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
 private Set<Exchange> exchanges;
 
@@ -74,7 +87,7 @@ public String toString() {
 	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
 			+ roles + ", products=" + products + ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds
 			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
-			+ donations + ", participations=" + participations + "]";
+			+ donations + ", eventsuser=" + eventsuser + "]";
 }
 public Long getId() {
 	return id;
@@ -162,7 +175,7 @@ public void setExchanges(Set<Exchange> exchanges) {
 
 public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
 		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
-		Set<Comment> comments, Set<Donation> donations, Set<Participation> participations) {
+		Set<Comment> comments, Set<Donation> donations, Set<Event> eventsuser) {
 
 
 
@@ -180,7 +193,7 @@ public User(Long id, String username, String password, boolean actived, Collecti
 	this.reclamations = reclamations;
 	this.comments = comments;
 	this.donations = donations;
-	this.participations = participations;
+	this.eventsuser = eventsuser;
 }
 
 
@@ -189,12 +202,15 @@ public User() {
 	// TODO Auto-generated constructor stub
 }
 
-
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Donation> donations;
 
-@OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
-private Set<Participation> participations;
+@JsonIgnore
+@ManyToMany(cascade = CascadeType.ALL, mappedBy="usersevent")
+private Set<Event> eventsuser;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 private Set<Command> command;
 
@@ -205,17 +221,18 @@ public Set<Donation> getDonations() {
 public void setDonations(Set<Donation> donations) {
 	this.donations = donations;
 }
-public Set<Participation> getParticipations() {
-	return participations;
-}
-public void setParticipations(Set<Participation> participations) {
-	this.participations = participations;
-}
+
 public Set<Command> getCommand() {
 	return command;
 }
 public void setCommand(Set<Command> command) {
 	this.command = command;
+}
+public Set<Event> getEventsuser() {
+	return eventsuser;
+}
+public void setEventsuser(Set<Event> eventsuser) {
+	this.eventsuser = eventsuser;
 }
 
 

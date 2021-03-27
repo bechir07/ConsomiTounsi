@@ -6,6 +6,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import tn.esprit.spring.entities.DeliveryMen;
 
 @RepositoryRestResource(path = "DeliveryMen")
-public interface DeliveryMenRepository extends JpaRepository<DeliveryMen, Integer> {
+public interface DeliveryMenRepository extends JpaRepository<DeliveryMen, Long> {
 
 }

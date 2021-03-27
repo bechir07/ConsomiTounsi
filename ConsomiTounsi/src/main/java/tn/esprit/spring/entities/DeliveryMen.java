@@ -14,7 +14,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data 
+@Data @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @PrimaryKeyJoinColumn(name = "id")
 public class DeliveryMen extends User {
@@ -26,13 +26,13 @@ public class DeliveryMen extends User {
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean available;
-    private float distance;
+    private float latitude;
+    private float longitude;
     private float prime;
-    @OneToMany( mappedBy="deliverMen",cascade = CascadeType.ALL)
+    @OneToMany( mappedBy="deliverMen")
     private List<Delivery> deliveries;
+    
+    
 
-    public DeliveryMen() {
-    	super();
-    }
 
 }

@@ -6,17 +6,21 @@ import tn.esprit.spring.entities.Command_line;
 
 public interface ICommand_lineService {
 
-	public int addCommandline(Command_line command_line);
+	public long addCommandline(Command_line command_line);
 
 	public List<Command_line> getAllCommandes_line();
 
 	public Command_line updateCommande_line(Command_line c);
 
+	public int updatetotal() ;
+	//public int somme();
+	public void affecterPoductACommand_line(long Id, long reference);
 
-	public void deleteById(int id);
+	public void affecterCommandACommand_line(long reference, long id);
 
-	public void affecterPoductACommand_line(int Id, int reference);
+	public int update_prix();
+	//public String CalculPrixPlat();
 
-	public void affecterCommandACommand_line(int reference, int id);
+	void deleteById(long id);
 
 }

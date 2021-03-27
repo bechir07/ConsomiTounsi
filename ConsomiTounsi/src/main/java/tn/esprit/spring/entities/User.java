@@ -15,8 +15,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
@@ -30,8 +30,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity(name = "user")
-
-public class User implements Serializable {
+@Inheritance(strategy = InheritanceType.JOINED)
+public  class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -42,32 +42,33 @@ public class User implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
     private boolean actived;
+    private String email;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles=new ArrayList<>();
 
 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Product> products;
+private Set<Product> product;
 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Rating> ratings;
+private Set<Rating> rating;
 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Coupon> coupons;
+private Set<Coupon> coupon;
 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<Add> adds;
+private Set<Add> add;
 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
-private Set<ADDView> views;
+private Set<ADDView> view;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
 
 @JsonIgnore
@@ -75,7 +76,7 @@ private Set<Reclamation> reclamations;
 private Set<Comment> comments;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users",fetch = FetchType.EAGER)
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Exchange> exchanges;
 
 
@@ -85,8 +86,8 @@ private Set<Exchange> exchanges;
 @Override
 public String toString() {
 	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
-			+ roles + ", products=" + products + ", ratings=" + ratings + ", coupons=" + coupons + ", adds=" + adds
-			+ ", views=" + views + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
+			+ roles + ", products=" + product + ", ratings=" + rating + ", coupons=" + coupon + ", adds=" + add
+			+ ", views=" + view + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
 			+ donations + ", eventsuser=" + eventsuser + "]";
 }
 public Long getId() {
@@ -120,35 +121,43 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-public Set<Product> getProducts() {
-	return products;
+public String getEmail() {
+	return email;
 }
-public void setProducts(Set<Product> products) {
-	this.products = products;
+public void setEmail(String email) {
+	this.email = email;
 }
-public Set<Rating> getRatings() {
-	return ratings;
+
+public Set<Product> getProduct() {
+	return product;
 }
-public void setRatings(Set<Rating> ratings) {
-	this.ratings = ratings;
+public void setProduct(Set<Product> products) {
+	this.product = products;
 }
-public Set<Coupon> getCoupons() {
-	return coupons;
+public Set<Rating> getRating() {
+	return rating;
 }
-public void setCoupons(Set<Coupon> coupons) {
-	this.coupons = coupons;
+public void setRating(Set<Rating> ratings) {
+	this.rating = ratings;
 }
-public Set<Add> getAdds() {
-	return adds;
+public Set<Coupon> getCoupon() {
+	return coupon;
 }
-public void setAdds(Set<Add> adds) {
-	this.adds = adds;
+public void setCoupon(Set<Coupon> coupons) {
+	this.coupon = coupons;
 }
-public Set<ADDView> getViews() {
-	return views;
+
+public Set<Add> getAdd() {
+	return add;
 }
-public void setViews(Set<ADDView> views) {
-	this.views = views;
+public void setAdd(Set<Add> add) {
+	this.add = add;
+}
+public Set<ADDView> getView() {
+	return view;
+}
+public void setView(Set<ADDView> view) {
+	this.view = view;
 }
 
 public Set<Reclamation> getReclamations() {
@@ -185,11 +194,11 @@ public User(Long id, String username, String password, boolean actived, Collecti
 	this.password = password;
 	this.actived = actived;
 	this.roles = roles;
-	this.products = products;
-	this.ratings = ratings;
-	this.coupons = coupons;
-	this.adds = adds;
-	this.views = views;
+	this.product = products;
+	this.rating = ratings;
+	this.coupon = coupons;
+	this.add = adds;
+	this.view = views;
 	this.reclamations = reclamations;
 	this.comments = comments;
 	this.donations = donations;

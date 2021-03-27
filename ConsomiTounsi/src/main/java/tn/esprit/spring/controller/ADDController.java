@@ -46,7 +46,7 @@ public class ADDController {
 	// http://localhost:8081/ConsomiTounsi/servlet/remove-add/{id}
 	@DeleteMapping("/remove-add/{id}")
 	@ResponseBody
-	public void removeAdd(@PathVariable("id") int id) {
+	public void removeAdd(@PathVariable("id") Long id) {
 		addService.deleteADD(id);
 	}
 	
@@ -59,5 +59,29 @@ public class ADDController {
 		return addService.retrieveAllAdds();
 
 	}
+	
+	// http://localhost:8081/ConsomiTounsi/servlet/retrieve-adds-expensive
+	@GetMapping(value = "/retrieve-adds-expensive")
+	@ResponseBody
+	public List<Add> getExpensiveAdd() {
+
+		return addService.retrieveAddsExpensive();
+
+	}
+	
+	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-add-by-name
+	@GetMapping(value="/retrieve-add-by-name/{name}")
+	@ResponseBody
+	public Add getAddByName(@PathVariable("name") String name) {
+	return addService.getAddByName(name);
+	}
+
+	//http://localhost:8081/ConsomiTounsi/servlet/search-add
+	    	@GetMapping(value="/search-add/{msg}")
+	    	@ResponseBody
+	    	public List<Add> getAddSearch(@PathVariable("msg") String msg) {
+	    	return addService.searchAdd(msg);
+	}
+	
 	
 }

@@ -8,7 +8,7 @@ public interface ICategoryService {
 	
 	public Category addCategory(Category c);
 
-	public void deleteCategory(int i);
+	public void deleteCategory(Long i);
 	
 	public List<Category> retrieveAllCategories();
 	

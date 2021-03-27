@@ -23,7 +23,7 @@ public class Bill implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-    public int bill_id;
+    public long bill_id;
 	//public int id_client;////
 	//public int id_livraison;//
 	public float total_price;
@@ -43,11 +43,11 @@ public class Bill implements Serializable{
 	@OneToOne(mappedBy="bill")
 	private Payment Payment;
 
-	public int getBill_id() {
+	public long getBill_id() {
 		return bill_id;
 	}
 
-	public void setBill_id(int bill_id) {
+	public void setBill_id(long bill_id) {
 		this.bill_id = bill_id;
 	}
 
@@ -103,7 +103,7 @@ public class Bill implements Serializable{
 		return serialVersionUID;
 	}
 
-	public Bill(int bill_id, float total_price, State state, Payment_type payment_type, Date date_of_bill,
+	public Bill(long bill_id, float total_price, State state, Payment_type payment_type, Date date_of_bill,
 			Command command, tn.esprit.spring.entities.Payment payment) {
 		super();
 		this.bill_id = bill_id;

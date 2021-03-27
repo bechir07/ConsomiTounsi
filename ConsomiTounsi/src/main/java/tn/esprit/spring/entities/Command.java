@@ -1,7 +1,8 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -21,6 +22,9 @@ import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.data.annotation.CreatedDate;
+
+
 
 @Entity
 public class Command implements Serializable {
@@ -33,12 +37,14 @@ public class Command implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int reference;
+	public long reference;
 	//public int id_product;////
 	//public int id_client;/////
 	public float total_price;
-	@Temporal(TemporalType.DATE)
-	public Date order_date;
+	@Enumerated(EnumType.STRING)
+	@Column(name="type")
+	public Payment_type type;
+	public LocalDate order_date = LocalDate.now();
 
 	
 	@ManyToOne
@@ -53,15 +59,15 @@ public class Command implements Serializable {
 	@OneToOne(mappedBy="command")
 	private Bill bill;
 	
-	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(mappedBy="command", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 	private List<Command_line> Command_line;
 	@ManyToOne
 	private User client;
 	
-	public int getReference() {
+	public long getReference() {
 		return reference;
 	}
-	public void setReference(int reference) {
+	public void setReference(long reference) {
 		this.reference = reference;
 	}
 	public float getTotal_price() {
@@ -70,10 +76,11 @@ public class Command implements Serializable {
 	public void setTotal_price(float total_price) {
 		this.total_price = total_price;
 	}
-	public Date getOrder_date() {
+
+	public LocalDate getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(Date order_date) {
+	public void setOrder_date(LocalDate order_date) {
 		this.order_date = order_date;
 	}
 	public Delivery getDelivery() {
@@ -99,7 +106,7 @@ public class Command implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public Command(int reference, float total_price, Date order_date, Delivery delivery, Bill bill,
+	public Command(int reference, float total_price, LocalDate order_date, Delivery delivery, Bill bill,
 			 User client) {
 		super();
 		this.reference = reference;
@@ -110,7 +117,7 @@ public class Command implements Serializable {
 		this.bill = bill;
 		this.client = client;
 	}
-	public Command(int reference, float total_price, Date order_date, Delivery delivery) {
+	public Command(int reference, float total_price, LocalDate order_date, Delivery delivery) {
 		super();
 		this.reference = reference;
 		this.total_price = total_price;
@@ -118,13 +125,13 @@ public class Command implements Serializable {
 		this.delivery = delivery;
 		
 	}
-	public Command(int reference, float total_price, Date order_date) {
+	public Command(int reference, float total_price, LocalDate order_date) {
 		super();
 		this.reference = reference;
 		this.total_price = total_price;
 		this.order_date = order_date;
 	}
-	public Command(float total_price, Date order_date, Delivery delivery, Bill bill,
+	public Command(float total_price, LocalDate order_date, Delivery delivery, Bill bill,
 			 User client) {
 		super();
 		this.total_price = total_price;

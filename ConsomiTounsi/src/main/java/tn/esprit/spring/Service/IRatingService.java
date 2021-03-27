@@ -6,12 +6,18 @@ import tn.esprit.spring.entities.Rating;
 
 public interface IRatingService  {
 	
-	public Rating addRating(Rating r);
+	public String addRating(Rating r);
 
-	public void deleteRating(int i);
+	public void deleteRating(Long i);
 	
-	public List<Rating> retrieveAllReviews();
-	
-	public Rating updateRating(Rating r);
+	public List<Rating> retrieveAllReviews(Long id);
+		
+	public int nbReview(Long id);
+
+
+
+	String updateRating(Long id,int note);
+
+	public List<Rating> listLastReviews(Long id);
 
 }

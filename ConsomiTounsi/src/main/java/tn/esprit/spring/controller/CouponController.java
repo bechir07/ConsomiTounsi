@@ -42,7 +42,7 @@ public class CouponController {
 	//http://localhost:8081/ConsomiTounsi/servlet/remove-coupon/{id}
 	@DeleteMapping("/remove-coupon/{id}")
 	@ResponseBody
-	public void removeCoupon(@PathVariable("id") int id) {
+	public void removeCoupon(@PathVariable("id") Long id) {
 	couponService.deleteCoupon(id);
 	 }
 	

@@ -25,7 +25,7 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 @GeneratedValue (strategy = GenerationType.IDENTITY)
-private int id ;
+private Long id ;
 private String Description;
 private String Name;
 private String Image;
@@ -37,7 +37,7 @@ private Date DateProd;
 
 @ManyToOne
 @JoinColumn(name="idCategory", referencedColumnName="id" , insertable =false , updatable=false)
-Category categories;
+Category categorie;
 @ManyToOne
 //@JoinColumn(name="idStock", referencedColumnName="id" , insertable =false , updatable=false)
 Stock stock;
@@ -45,13 +45,13 @@ Stock stock;
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
 private List<Coupon> coupon;
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
-private List<Rating> ratings;
+private List<Rating> rating;
 @OneToMany(mappedBy="prod",cascade = CascadeType.ALL )
-private List<Add> adds;
+private List<Add> add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
-@OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+User user ;
+@OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
 
 @OneToOne
@@ -70,7 +70,7 @@ public Product() {
 }
 
 
-public Product(int id, String description, String name, String image, double price, String reference, Date dateProd) {
+public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd) {
 	super();
 	this.id = id;
 	Description = description;
@@ -81,11 +81,11 @@ public Product(int id, String description, String name, String image, double pri
 	DateProd = dateProd;
 }
 
-public int getId() {
+public Long getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(Long id) {
 	this.id = id;
 }
 
@@ -137,12 +137,12 @@ public void setDateProd(Date dateProd) {
 	DateProd = dateProd;
 }
 
-public Category getCategories() {
-	return categories;
+public Category getCategorie() {
+	return categorie;
 }
 
-public void setCategories(Category categories) {
-	this.categories = categories;
+public void setCategorie(Category categorie) {
+	this.categorie = categorie;
 }
 
 
@@ -158,28 +158,28 @@ public void setCoupons(List<Coupon> coupons) {
 	this.coupon = coupons;
 }
 
-public User getUsers() {
-	return users;
+public User getUser() {
+	return user;
 }
 
-public void setUsers(User users) {
-	this.users = users;
+public void setUser(User users) {
+	this.user = users;
 }
 
-public List<Rating> getRatings() {
-	return ratings;
+public List<Rating> getRating() {
+	return rating;
 }
 
-public void setRatings(List<Rating> ratings) {
-	this.ratings = ratings;
+public void setRating(List<Rating> ratings) {
+	this.rating = ratings;
 }
 
-public List<Add> getAdds() {
-	return adds;
+public List<Add> getAdd() {
+	return add;
 }
 
-public void setAdds(List<Add> adds) {
-	this.adds = adds;
+public void setAdd(List<Add> adds) {
+	this.add = adds;
 }
 
 
@@ -213,7 +213,7 @@ public static long getSerialversionuid() {
 	return serialVersionUID;
 }
 
-public Product(int id, String description, String name, String image, double price, String reference, Date dateProd,
+public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
 		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User users,
 		List<tn.esprit.spring.entities.Command_line> command_line) {
 	super();
@@ -224,12 +224,12 @@ public Product(int id, String description, String name, String image, double pri
 	Price = price;
 	this.reference = reference;
 	DateProd = dateProd;
-	this.categories = categories;
+	this.categorie = categories;
 	this.stock = stock;
 	this.coupon = coupon;
-	this.ratings = ratings;
-	this.adds = adds;
-	this.users = users;
+	this.rating = ratings;
+	this.add = adds;
+	this.user = users;
 	Command_line = command_line;
 	
 }

@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements ICategoryService {
 	}
 
 	@Override
-	public void deleteCategory(int i) {
+	public void deleteCategory(Long i) {
 		CategoryRepository.deleteById(i);
 		
 	}

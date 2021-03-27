@@ -31,8 +31,9 @@ public class Reparation {
     private int id;
     private String typePanne;
     private float prixReparation;
+    private String state;
     private LocalDate dateReparation;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy="reparation",fetch = FetchType.EAGER)
+    @OneToOne( mappedBy="reparation",fetch = FetchType.EAGER)
     private Product product;
 
 

@@ -51,7 +51,7 @@ private List<Add> add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 User user ;
-@OneToMany(mappedBy="product", cascade = CascadeType.ALL)
+@OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
 
 @OneToOne
@@ -182,17 +182,7 @@ public void setAdd(List<Add> adds) {
 	this.add = adds;
 }
 
-@ManyToOne
-//@JoinColumn(name="idDonChariot", referencedColumnName="id" , insertable =false , updatable=false)
-DonChariot donchariot;
 
-public DonChariot getDonchariot() {
-	return donchariot;
-}
-
-public void setDonchariot(DonChariot donchariot) {
-	this.donchariot = donchariot;
-}
 
 
 public Stock getStock() {
@@ -225,7 +215,7 @@ public static long getSerialversionuid() {
 
 public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
 		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User users,
-		List<tn.esprit.spring.entities.Command_line> command_line, DonChariot donchariot) {
+		List<tn.esprit.spring.entities.Command_line> command_line) {
 	super();
 	this.id = id;
 	Description = description;
@@ -241,7 +231,7 @@ public Product(Long id, String description, String name, String image, double pr
 	this.add = adds;
 	this.user = users;
 	Command_line = command_line;
-	this.donchariot = donchariot;
+	
 }
 public Reparation getReparation() {
 	return reparation;

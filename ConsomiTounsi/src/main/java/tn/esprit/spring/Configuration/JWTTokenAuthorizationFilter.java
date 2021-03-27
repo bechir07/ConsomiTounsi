@@ -8,7 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -25,7 +26,7 @@ import tn.esprit.spring.Service.IUserService;
 @Component
 public class JWTTokenAuthorizationFilter extends OncePerRequestFilter
 {
-	//private static final Logger logger = LogManager.getLogger(JWTTokenAuthorizationFilter.class);
+	private static final Logger logger = LogManager.getLogger(JWTTokenAuthorizationFilter.class);
 
 	@Autowired
 	private JWTTokenUtil jwtTokenUtil;
@@ -46,7 +47,7 @@ public class JWTTokenAuthorizationFilter extends OncePerRequestFilter
 			
 			String userName = null;
 			String jwtToken = null;
-			
+			System.out.println(requestToken);
 			if(requestToken !=null && requestToken.startsWith("Bearer ")) {
 				jwtToken = requestToken.substring(7);
 				userName = this.jwtTokenUtil.getUserNameFromToken(jwtToken);

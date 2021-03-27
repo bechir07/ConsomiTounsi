@@ -43,5 +43,14 @@ public class ChariotRestController {
 	public Chariot updateChariot(@RequestBody Chariot c) {
 		return chariotService.updateChariot(c);
 	}
+	
+	@PutMapping(value = "/affecterEventAJackpot/{id}/{id}") 
+	public void affecterEventAJackpot(@PathVariable("id")int eventId, @PathVariable("id")int chariotId) {
+		chariotService.affecterChariotAEvent(eventId, chariotId);
+	}
+	@PutMapping(value = "/desaffecterEventDuJackpot/{id}/{id}") 
+	public void desaffecterEventDuJackpot(@PathVariable("id")int chariotId, @PathVariable("id")int eventId) {
+		chariotService.desaffecterChariotDuEvent(chariotId, eventId);
+	}
 
 }

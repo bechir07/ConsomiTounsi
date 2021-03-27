@@ -23,5 +23,7 @@ public interface IUserService extends UserDetailsService {
     public UserDetails loadUserByUsername(String username);
     public void addRoleToUser(String username,String rolename);
     public User findUserByUserName(String userName);
+    public void affecterUserADonation(String username, int donationId);
+    public void desaffecterUserDuDonation(String username, int donationId);
 	
 }

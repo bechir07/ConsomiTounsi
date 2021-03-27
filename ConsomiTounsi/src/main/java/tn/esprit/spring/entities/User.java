@@ -43,31 +43,53 @@ public  class User implements Serializable {
     private String password;
     private boolean actived;
     private String email;
-    //erreur hethy el eager t5arej fi erreur!! fetch = FetchType.EAGER
-      @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles=new ArrayList<>();
 
 
-
-@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Product> product;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Rating> rating;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Coupon> coupon;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Add> add;
-@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<ADDView> view;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Comment> comments;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Exchange> exchanges;
 
 
 
+
+
+@Override
+public String toString() {
+	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
+			+ roles + ", products=" + product + ", ratings=" + rating + ", coupons=" + coupon + ", adds=" + add
+			+ ", views=" + view + ", reclamations=" + reclamations + ", comments=" + comments + ", donations="
+			+ donations + ", eventsuser=" + eventsuser + "]";
+}
 public Long getId() {
 	return id;
 }
@@ -99,13 +121,13 @@ public void setPassword(String password) {
 	this.password = password;
 }
 
-
 public String getEmail() {
 	return email;
 }
 public void setEmail(String email) {
 	this.email = email;
 }
+
 public Set<Product> getProduct() {
 	return product;
 }
@@ -137,7 +159,7 @@ public Set<ADDView> getView() {
 public void setView(Set<ADDView> view) {
 	this.view = view;
 }
-@JsonIgnore
+
 public Set<Reclamation> getReclamations() {
 	return reclamations;
 }
@@ -152,7 +174,7 @@ public void setComments(Set<Comment> comments) {
 	this.comments = comments;
 }
 
-@JsonIgnore
+
 public Set<Exchange> getExchanges() {
 	return exchanges;
 }
@@ -162,7 +184,7 @@ public void setExchanges(Set<Exchange> exchanges) {
 
 public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> products,
 		Set<Rating> ratings, Set<Coupon> coupons, Set<Add> adds, Set<ADDView> views, Set<Reclamation> reclamations,
-		Set<Comment> comments, Set<Donation> donations, Set<Participation> participations) {
+		Set<Comment> comments, Set<Donation> donations, Set<Event> eventsuser) {
 
 
 
@@ -180,7 +202,7 @@ public User(Long id, String username, String password, boolean actived, Collecti
 	this.reclamations = reclamations;
 	this.comments = comments;
 	this.donations = donations;
-	this.participations = participations;
+	this.eventsuser = eventsuser;
 }
 
 
@@ -189,12 +211,15 @@ public User() {
 	// TODO Auto-generated constructor stub
 }
 
-
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Donation> donations;
 
-@OneToMany(cascade = CascadeType.ALL, mappedBy="userpr")
-private Set<Participation> participations;
+@JsonIgnore
+@ManyToMany(cascade = CascadeType.ALL, mappedBy="usersevent")
+private Set<Event> eventsuser;
+
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 private Set<Command> command;
 
@@ -205,48 +230,19 @@ public Set<Donation> getDonations() {
 public void setDonations(Set<Donation> donations) {
 	this.donations = donations;
 }
-public Set<Participation> getParticipations() {
-	return participations;
-}
-public void setParticipations(Set<Participation> participations) {
-	this.participations = participations;
-}
+
 public Set<Command> getCommand() {
 	return command;
 }
 public void setCommand(Set<Command> command) {
 	this.command = command;
 }
-@Override
-public String toString() {
-	return "User [id=" + id + ", username=" + username + ", password=" + password + ", actived=" + actived + ", roles="
-			+ roles + ", product=" + product + ", rating=" + rating + ", coupon=" + coupon + ", add=" + add + ", view="
-			+ view + ", reclamations=" + reclamations + ", comments=" + comments + ", exchanges=" + exchanges
-			+ ", donations=" + donations + ", participations=" + participations + ", command=" + command + "]";
+public Set<Event> getEventsuser() {
+	return eventsuser;
 }
-public User(Long id, String username, String password, boolean actived, Collection<Role> roles, Set<Product> product,
-		Set<Rating> rating, Set<Coupon> coupon, Set<Add> add, Set<ADDView> view, Set<Reclamation> reclamations,
-		Set<Comment> comments, Set<Exchange> exchanges, Set<Donation> donations, Set<Participation> participations,
-		Set<Command> command) {
-	super();
-	this.id = id;
-	this.username = username;
-	this.password = password;
-	this.actived = actived;
-	this.roles = roles;
-	this.product = product;
-	this.rating = rating;
-	this.coupon = coupon;
-	this.add = add;
-	this.view = view;
-	this.reclamations = reclamations;
-	this.comments = comments;
-	this.exchanges = exchanges;
-	this.donations = donations;
-	this.participations = participations;
-	this.command = command;
+public void setEventsuser(Set<Event> eventsuser) {
+	this.eventsuser = eventsuser;
 }
-
 
 
 

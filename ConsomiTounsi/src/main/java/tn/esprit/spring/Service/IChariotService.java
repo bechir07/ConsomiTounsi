@@ -15,4 +15,8 @@ public interface IChariotService {
 	public List<Chariot> retrieveAllChariots();
 	
 	public Chariot updateChariot(Chariot c);
+	
+	public void affecterChariotAEvent(int eventId, int chariotId);
+	
+	public void desaffecterChariotDuEvent(int chariotId, int eventId);
 }

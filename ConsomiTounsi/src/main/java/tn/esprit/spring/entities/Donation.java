@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Donation implements Serializable {
 
@@ -25,22 +27,15 @@ public class Donation implements Serializable {
 	
 	private double montant;
 	
+	@JsonIgnore
 	@ManyToOne
 	User user;
 	
+	@JsonIgnore
 	@ManyToOne
 	Jackpot jackpot;
 	
-	@OneToMany(mappedBy="donation", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-	private List<Command> command;
-
-	public List<Command> getCommand() {
-		return command;
-	}
-
-	public void setCommand(List<Command> command) {
-		this.command = command;
-	}
+	
 
 	public int getId() {
 		return id;
@@ -84,8 +79,7 @@ public class Donation implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Donation [id=" + id + ", montant=" + montant + ", user=" + user + ", jackpot=" + jackpot + ", command="
-				+ command + "]";
+		return "Donation [id=" + id + ", montant=" + montant + ", user=" + user + ", jackpot=" + jackpot + "]";
 	}
 
 	public Donation() {

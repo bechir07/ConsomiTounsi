@@ -15,33 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.Service.DonChariotServiceImpl;
 import tn.esprit.spring.entities.DonChariot;
 
-@RestController
-@RequestMapping("/donchariot")
+
 public class DonChariotRestController {
 	
-	@Autowired
-	DonChariotServiceImpl donchariotService;
 	
-	@PostMapping("/addDonChariot")
-	public int addDonChariot(@RequestBody DonChariot DonChariot) {
-		return donchariotService.addDonChariot(DonChariot);
-		
-	}
-	
-	@GetMapping("/getAllDonChariot")
-	public List<DonChariot> getAllDonChariot() {
-
-		return donchariotService.retrieveAllDonChariots();
-	}
-	
-	@DeleteMapping("/deleteDonChariot/{id_DonChariot}") 
-	public void deleteDonChariot(@PathVariable("id_DonChariot") int id) {
-		donchariotService.deleteDonChariot(id);
-	}
-	
-	@PutMapping(value="/updateDonChariot") 
-	public DonChariot updateDonChariot(@RequestBody DonChariot dc) {
-		return donchariotService.updateDonChariot(dc);
-	}
-
 }

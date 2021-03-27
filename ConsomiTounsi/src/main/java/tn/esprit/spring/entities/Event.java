@@ -9,10 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Event implements Serializable {
 	
@@ -36,12 +39,15 @@ public class Event implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dateev;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="eventpr")
-	private Set<Participation> participations;
+	@JsonIgnore
+	@ManyToMany
+	private Set<User> usersevent;
 	
+	@JsonIgnore
 	@OneToOne
 	private Jackpot jackpotev;
 	
+	@JsonIgnore
 	@OneToOne
 	private Chariot chariotev;
 
@@ -108,35 +114,27 @@ public class Event implements Serializable {
 	public void setDateev(Date dateev) {
 		this.dateev = dateev;
 	}
-
-	public Set<Participation> getParticipations() {
-		return participations;
-	}
-
-	public void setParticipations(Set<Participation> participations) {
-		this.participations = participations;
-	}
-
-	public Event(int id, String name, String description, Jackpot jackpotev, Chariot chariotev) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.jackpotev = jackpotev;
-		this.chariotev = chariotev;
-	}
+	
 
 	
-	
+
+	public Set<User> getUsersevent() {
+		return usersevent;
+	}
+
+	public void setUsersevent(Set<User> usersevent) {
+		this.usersevent = usersevent;
+	}
 
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", description=" + description + ", lieu=" + lieu + ", nbpart="
-				+ nbpart + ", dateev=" + dateev + ", participations=" + participations + ", jackpotev=" + jackpotev
+				+ nbpart + ", dateev=" + dateev + ", usersevent=" + usersevent + ", jackpotev=" + jackpotev
 				+ ", chariotev=" + chariotev + "]";
 	}
 
-	public Event(int id, String name, String description, String lieu, int nbpart, Date dateev) {
+	public Event(int id, String name, String description, String lieu, int nbpart, Date dateev, Set<User> usersevent,
+			Jackpot jackpotev, Chariot chariotev) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -144,13 +142,18 @@ public class Event implements Serializable {
 		this.lieu = lieu;
 		this.nbpart = nbpart;
 		this.dateev = dateev;
+		this.usersevent = usersevent;
+		this.jackpotev = jackpotev;
+		this.chariotev = chariotev;
 	}
 
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
-		
 	}
+
+	
+	
 	
 
 }

@@ -6,18 +6,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 @Configuration
 public class PaypalConfig {

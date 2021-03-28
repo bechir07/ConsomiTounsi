@@ -2,6 +2,7 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -62,7 +63,8 @@ Product prod;
 User user ;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
-
+@OneToMany(cascade = CascadeType.ALL, mappedBy="add")
+private List<LikeAdd> addlike;
 @Override
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
@@ -166,6 +168,14 @@ public Set<ADDView> getViews() {
 
 public void setViews(Set<ADDView> views) {
 	this.view = view;
+}
+
+public List<LikeAdd> getAddlike() {
+	return addlike;
+}
+
+public void setAddlike(List<LikeAdd> addlike) {
+	this.addlike = addlike;
 }
 
 

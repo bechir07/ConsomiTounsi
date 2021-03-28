@@ -8,11 +8,13 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.Repository.CouponRepository;
 import tn.esprit.spring.Repository.CategoryRepository;
 import tn.esprit.spring.Repository.ProductRepository;
 import tn.esprit.spring.Repository.AddRepository;
 import tn.esprit.spring.entities.Add;
 import tn.esprit.spring.entities.Category;
+import tn.esprit.spring.entities.Coupon;
 import tn.esprit.spring.entities.Product;
 import tn.esprit.spring.entities.Rating;
 
@@ -25,6 +27,8 @@ public class ProductServiceImpl  implements IProductService{
 	private CategoryRepository CatRepository;
 	@Autowired
 	private AddRepository AddRepository;
+	@Autowired
+	private CouponRepository CouponRepository;
 	private static final Logger l=LogManager.getLogger(ProductServiceImpl.class);
 	
 	@Override
@@ -67,10 +71,7 @@ public class ProductServiceImpl  implements IProductService{
 		}
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 	@Override
 	public void affectProduitToCategory(Long productId, Long catId)
 	{
@@ -127,10 +128,7 @@ public class ProductServiceImpl  implements IProductService{
 	{
 		Add addEntity = AddRepository.findById(addId).get();
 		Product productEntity = ProductRepository.findById(productId).get();
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 		if(productEntity.getAdd() == null){
 
@@ -142,9 +140,13 @@ public class ProductServiceImpl  implements IProductService{
 			productEntity.getAdd().add(addEntity);
 
 		}
-		
-		
-		
+	}
 
-}
+
+		@Override
+		public List<Product> listProductExpensive() {
+			List<Product> products = (List<Product>) ProductRepository.listProductExpensive();	
+			return products;
+		}
+		
 }

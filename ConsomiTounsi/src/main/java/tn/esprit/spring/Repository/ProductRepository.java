@@ -9,16 +9,10 @@ import javax.persistence.NamedNativeQuery;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-<<<<<<< HEAD
 import org.springframework.data.repository.CrudRepository;
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entities.*;
@@ -33,7 +27,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("select p from Product p order by p.Price asc ")
     public List<Product> listProductNotExpensive();
 	
-
+	@Query("select p from Product p order by p.Price desc ")
+    public List<Product> listProductExpensive(); 
+	
 	@Query("SELECT SUM(r.note) FROM Rating r where r.product.id =:idProduct")  
     public float SommeNote(@Param ("idProduct") Long idProduct);
 	

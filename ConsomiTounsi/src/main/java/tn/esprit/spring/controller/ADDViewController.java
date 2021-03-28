@@ -29,7 +29,7 @@ public class ADDViewController {
 	@Autowired
 	private AddRepository addRepository;
 	
-	// http://localhost:8081/ConsomiTounsi/servlet/addview/{iduser}&{idad}
+	// http://localhost:8081/ConsomiTounsi/addview/{iduser}&{idad}
 	@RequestMapping(method=RequestMethod.PUT,value="addview/{iduser}&{idad}")
 	public String addvu(@PathVariable Long  iduser,@PathVariable Long  idad){
 			
@@ -43,7 +43,7 @@ public class ADDViewController {
 			return	addviewService.addVu(iduser, idad,av);
 		}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-nbreviews
+	//http://localhost:8081/ConsomiTounsi/retrieve-nbreviews
 	@GetMapping(value ="/retrieve-nbreviews")
 	@ResponseBody
 	public int getNbreviews(@PathVariable("id") Long id) 

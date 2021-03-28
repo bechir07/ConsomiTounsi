@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 
-
-=======
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,11 +68,9 @@ public class PaypalController {
 	        }
 	        return "redirect:/";
 	    }
-<<<<<<< HEAD
+
 }
 
 
 
-=======
-}
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+

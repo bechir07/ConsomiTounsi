@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -48,25 +49,28 @@ public  class User implements Serializable {
 
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Product> product;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Rating> rating;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Coupon> coupon;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Add> add;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<ADDView> view;
 
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+private List<LikeAdd> addlike; 
 @JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="users")
 private Set<Reclamation> reclamations;
@@ -242,6 +246,12 @@ public Set<Event> getEventsuser() {
 }
 public void setEventsuser(Set<Event> eventsuser) {
 	this.eventsuser = eventsuser;
+}
+public List<LikeAdd> getAddlike() {
+	return addlike;
+}
+public void setAddlike(List<LikeAdd> addlike) {
+	this.addlike = addlike;
 }
 
 

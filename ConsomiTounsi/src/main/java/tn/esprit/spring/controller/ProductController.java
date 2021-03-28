@@ -25,7 +25,7 @@ public class ProductController {
 	ProductServiceImpl productService;
 	
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/addProduct
+	//http://localhost:8081/ConsomiTounsi/addProduct
 	@PostMapping("/addProduct")
 	@ResponseBody
 	public String addArticle(@RequestBody Product p) {
@@ -33,7 +33,7 @@ public class ProductController {
 		return productService.addProduct(p);
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-all-products
+	//http://localhost:8081/ConsomiTounsi/retrieve-all-products
 	@GetMapping("/retrieve-all-products")
 	@ResponseBody
 	public List<Product> getProducts() {
@@ -41,28 +41,28 @@ public class ProductController {
 	 return list;
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/deleteProduct/{id_product}
+	//http://localhost:8081/ConsomiTounsi/deleteProduct/{id_product}
 	@DeleteMapping("/deleteProduct/{id_product}") 
 	@ResponseBody 
 	public void deleteProduct(@PathVariable("id_product")Long id) {
 		productService.deleteProduct(id);
 	}
 
-	//http://localhost:8081/ConsomiTounsi/servlet/updateProduct
+	//http://localhost:8081/ConsomiTounsi/updateProduct
 	@PutMapping(value="/updateProduct") 
 	@ResponseBody
 	public void updateProduct(@RequestBody Product p) {
 		productService.updateProduct(p);
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/affectProductCategory/{productId}/{catId}
+	//http://localhost:8081/ConsomiTounsi/affectProductCategory/{productId}/{catId}
 	@PostMapping("/affectProductCategory/{productId}/{catId}") 
 	@ResponseBody 
 	public void affectProduitToCategory(@PathVariable("productId")Long idProduct,@PathVariable("catId") Long idCat) {
 		productService.affectProduitToCategory(idProduct, idCat);
 	}
 	
-	// http://localhost:8081/ConsomiTounsi/servlet/retrieve-products-by-category
+	// http://localhost:8081/ConsomiTounsi/retrieve-products-by-category
 		@GetMapping(value = "/retrieve-products-by-category")
 		@ResponseBody
 		public List<Product> getProductsByCategory(@PathVariable("id") Long id) {
@@ -72,7 +72,7 @@ public class ProductController {
 		}
 		
 		
-		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-rating-product
+		//http://localhost:8081/ConsomiTounsi/retrieve-rating-product
 		@GetMapping(value ="/retrieve-rating-product")
 		@ResponseBody
 		public float getRatingProduct(@PathVariable("id") Long id) 
@@ -82,7 +82,7 @@ public class ProductController {
 	    
 		}
 		
-		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-not-expensive
+		//http://localhost:8081/ConsomiTounsi/retrieve-product-not-expensive
 		@GetMapping(value ="/retrieve-product-not-expensive")
 		@ResponseBody
 		public List<Product> getProductNotExpensive() 
@@ -90,10 +90,17 @@ public class ProductController {
 		
 		return productService.listProductNotExpensive();	    
 		} 
+		//http://localhost:8081/ConsomiTounsi/retrieve-product-expensive
+				@GetMapping(value ="/retrieve-product-expensive")
+				@ResponseBody
+				public List<Product> getProductExpensive() 
+				{
+				
+				return productService.listProductExpensive();	    
+				}
 		
 		
-		
-		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-note
+		//http://localhost:8081/ConsomiTounsi/retrieve-product-note
 		@GetMapping(value ="/retrieve-product-note")
 		@ResponseBody
 		public float getNoteProduct(@PathVariable("id") Long id) 
@@ -104,14 +111,14 @@ public class ProductController {
 		}
 		
 
-		//http://localhost:8081/ConsomiTounsi/servlet/retrieve-product-by-name
+		//http://localhost:8081/ConsomiTounsi/retrieve-product-by-name
 		    	@GetMapping(value="/retrieve-product-by-name/{name}")
 		    	@ResponseBody
 		    	public Product getProductByName(@PathVariable("name") String name) {
 		    	return productService.getProductByName(name);
 		}
 		    	
-		    	//http://localhost:8081/ConsomiTounsi/servlet/affectProductCategory/{productId}/{addId}
+		    	//http://localhost:8081/ConsomiTounsi/affectProductCategory/{productId}/{addId}
 		    	@PostMapping("/affectProductCategory/{productId}/{addId}") 
 		    	@ResponseBody 
 		    	public void affectProduitToAdd(@PathVariable("productId")Long idProduct,@PathVariable("addId") Long addCat) {

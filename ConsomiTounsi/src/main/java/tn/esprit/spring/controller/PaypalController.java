@@ -1,14 +1,5 @@
-<<<<<<< HEAD
-package tn.esprit.spring.controller;
 
 
-
-
-
-public class PaypalController {
-
-}
-=======
 package tn.esprit.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,4 +72,4 @@ public class PaypalController {
 }
 
 
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+

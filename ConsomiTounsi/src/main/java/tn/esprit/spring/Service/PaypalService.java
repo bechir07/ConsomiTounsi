@@ -1,16 +1,11 @@
 package tn.esprit.spring.Service;
 
-<<<<<<< HEAD
 
-=======
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
-<<<<<<< HEAD
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,19 +19,13 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
 @Service
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+
 public class PaypalService {
-<<<<<<< HEAD
-=======
+
 
 	@Autowired
 	private APIContext apiContext;
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
-	
-<<<<<<< HEAD
 
-}
-=======
 	
 	public Payment createPayment(
 			String total, 
@@ -83,4 +72,4 @@ public class PaypalService {
 		return payment.execute(apiContext, paymentExecute);
 	}
 }
->>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
+

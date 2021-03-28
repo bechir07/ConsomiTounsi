@@ -50,7 +50,7 @@ private List<Rating> rating;
 private List<Add> add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User user ;
+User users ;
 @OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
 
@@ -159,11 +159,11 @@ public void setCoupons(List<Coupon> coupons) {
 }
 
 public User getUser() {
-	return user;
+	return users;
 }
 
 public void setUser(User users) {
-	this.user = users;
+	this.users = users;
 }
 
 public List<Rating> getRating() {
@@ -229,7 +229,7 @@ public Product(Long id, String description, String name, String image, double pr
 	this.coupon = coupon;
 	this.rating = ratings;
 	this.add = adds;
-	this.user = users;
+	this.users = users;
 	Command_line = command_line;
 	
 }

@@ -25,7 +25,7 @@ Product product;
 
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User user ;
+User users ;
 
 @Override
 public String toString() {

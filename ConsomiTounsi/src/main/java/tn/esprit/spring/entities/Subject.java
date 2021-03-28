@@ -16,7 +16,7 @@ public class Subject {
 	
 	@Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String category;
     private String subjectName;
     private String description;

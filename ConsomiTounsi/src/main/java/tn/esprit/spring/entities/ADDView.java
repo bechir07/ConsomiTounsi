@@ -30,19 +30,19 @@ private Date DateView;
 Add add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User user ;
+User users ;
 
 public User getUser() {
-	return user;
+	return users;
 }
 
 public void setUser(User user) {
-	this.user = user;
+	this.users = user;
 }
 
 @Override
 public String toString() {
-	return "ADDView [id=" + id + ", DateView=" + DateView + ", add=" + add + ", user=" + user + "]";
+	return "ADDView [id=" + id + ", DateView=" + DateView + ", add=" + add + ", user=" + users + "]";
 }
 
 public ADDView() {

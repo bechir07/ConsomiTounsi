@@ -59,7 +59,7 @@ public void setName(String name) {
 Product prod;
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 @ManyToOne
-User user ;
+User users ;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
 
@@ -67,7 +67,7 @@ private Set<ADDView> view;
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
 			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
-			+ ", prod=" + prod + ", user=" + user + ", view=" + view + "]";
+			+ ", prod=" + prod + ", user=" + users + ", view=" + view + "]";
 }
 
 public Add() {
@@ -153,11 +153,11 @@ public void setProd(Product prod) {
 }
 
 public User getUser() {
-	return user;
+	return users;
 }
 
 public void setUser(User users) {
-	this.user = users;
+	this.users = users;
 }
 
 public Set<ADDView> getViews() {

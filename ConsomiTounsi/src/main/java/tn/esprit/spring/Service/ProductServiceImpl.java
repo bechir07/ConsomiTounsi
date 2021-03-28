@@ -67,7 +67,10 @@ public class ProductServiceImpl  implements IProductService{
 		}
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 	@Override
 	public void affectProduitToCategory(Long productId, Long catId)
 	{
@@ -124,7 +127,10 @@ public class ProductServiceImpl  implements IProductService{
 	{
 		Add addEntity = AddRepository.findById(addId).get();
 		Product productEntity = ProductRepository.findById(productId).get();
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 		if(productEntity.getAdd() == null){
 

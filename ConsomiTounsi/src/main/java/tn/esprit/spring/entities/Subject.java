@@ -21,6 +21,7 @@ public class Subject {
     private String subjectName;
     private String description;
     private Date dateSubject;
+    private float evaluate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="subject")
     private Set<Comment> comments;
 

@@ -10,7 +10,10 @@ public interface IProductService {
 	public List<Product> retrieveAllProducts();
 	
 	public String updateProduct(Product p);
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 	
 	public void affectProduitToCategory(Long productId, Long catId);
 	
@@ -23,7 +26,10 @@ public interface IProductService {
 	public float SommeNote( Long idProduct);
 	
 	public Product getProductByName( String msg);
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 
 	void deleteProduct(long i);
 	public void affectProduitToAdd(Long productId, Long addId);

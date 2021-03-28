@@ -19,13 +19,21 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 
 @Service
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 public class PaypalService {
 
 
 	@Autowired
 	private APIContext apiContext;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 	
 	public Payment createPayment(
 			String total, 
@@ -72,4 +80,7 @@ public class PaypalService {
 		return payment.execute(apiContext, paymentExecute);
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git

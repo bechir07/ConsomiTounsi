@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -28,7 +30,7 @@ public class Rayon implements Serializable {
 @GeneratedValue (strategy = GenerationType.IDENTITY)
 private int id ;
 private String TypeRayon;
-
+@JsonIgnore
 @OneToOne
 private Category category;
 

@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tn.esprit.spring.Service.IRayonService;
+import tn.esprit.spring.entities.Product;
 import tn.esprit.spring.entities.Rayon;
 
 
@@ -36,7 +39,7 @@ public class RayonRestController {
 	}
 	
 	@PutMapping(value = "/updateRayon") 
-	public Rayon updateBill(@RequestBody Rayon r)  {
+	public Rayon updateRayon(@RequestBody Rayon r)  {
 		return rayonService.updateRayon(r);
 	}
 
@@ -45,5 +48,25 @@ public class RayonRestController {
 
 		return rayonService.getAllRayons();
 	}
+	
+
+	@GetMapping("/getRayonBytype/{type}")
+	public List<Rayon> getRayonBytype(@PathVariable("type")String type) {
+
+		return rayonService.getRayonBytype(type);
+	}
+	@GetMapping("/findByCategory/{id}")
+	public Rayon findByCategory(@PathVariable("id")int id) {
+
+		return rayonService.findByCategory(id);
+	}
+	
+	@GetMapping("/findByrayon/{id}")
+	public Rayon findByrayon(@PathVariable("id")long id)
+	{
+		return rayonService.findByrayon(id);
+	}
+	
+	
 }
 	

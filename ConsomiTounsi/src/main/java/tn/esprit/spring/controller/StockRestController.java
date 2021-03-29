@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.Service.IStockService;
+import tn.esprit.spring.entities.Product;
 import tn.esprit.spring.entities.Stock;
 
 @RestController
@@ -42,5 +43,10 @@ public class StockRestController {
 	public List<Stock> getAllStocks() {
 
 		return stockService.getAllStocks();
+	}
+	@PutMapping(value = "/orderProduct/{pid}/{amount}")
+	public void orderProduct(@PathVariable("pid")int pid,@PathVariable("amount")int amount) {
+		 stockService.orderProduct(pid, amount);
+		
 	}
 }

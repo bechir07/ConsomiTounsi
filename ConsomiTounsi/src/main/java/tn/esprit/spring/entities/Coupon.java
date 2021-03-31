@@ -26,11 +26,17 @@ private double Promo ;
 
 
 @ManyToOne
+<<<<<<< HEAD
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
 User user ;
 @JsonIgnore
 @OneToMany( mappedBy="coupon",cascade = CascadeType.ALL)
 private List<Product> product;
+=======
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+User user ;
+
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 @Override
 public String toString() {
 	return "Coupon [id=" + id + ", Code=" + Code + ", Promo=" + Promo + "]";

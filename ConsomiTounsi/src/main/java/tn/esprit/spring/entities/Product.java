@@ -54,7 +54,11 @@ private List<Rating> rating;
 @OneToMany(mappedBy="prod",cascade = CascadeType.ALL )
 private List<Add> add;
 @ManyToOne
+<<<<<<< HEAD
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+=======
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 User user ;
 @OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
@@ -190,8 +194,13 @@ public User getUser() {
 	return user;
 }
 
+<<<<<<< HEAD
 public void setUser(User users) {
 	this.user = users;
+=======
+public void setUser(User user) {
+	this.user = user;
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 }
 
 public List<Rating> getRating() {
@@ -233,7 +242,30 @@ public static long getSerialversionuid() {
 	return serialVersionUID;
 }
 
+<<<<<<< HEAD
 
+=======
+public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
+		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User user,
+		List<tn.esprit.spring.entities.Command_line> command_line) {
+	super();
+	this.id = id;
+	Description = description;
+	Name = name;
+	Image = image;
+	Price = price;
+	this.reference = reference;
+	DateProd = dateProd;
+	this.categorie = categories;
+	this.stock = stock;
+	this.coupon = coupon;
+	this.rating = ratings;
+	this.add = adds;
+	this.user = user;
+	Command_line = command_line;
+	
+}
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 public Reparation getReparation() {
 	return reparation;
 }

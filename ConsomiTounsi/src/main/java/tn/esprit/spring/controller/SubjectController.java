@@ -13,7 +13,9 @@ import org.springframework.messaging.simp.stomp.StompSessionHandler;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.WebSocketStompClient;
@@ -23,7 +25,8 @@ import tn.esprit.spring.entities.Message;
 import tn.esprit.spring.entities.OutputMessage;
 import tn.esprit.spring.entities.Subject;
 
-@RestController("/Subject")
+@RestController
+@RequestMapping("/subjects")
 public class SubjectController {
 
 	@Autowired
@@ -39,6 +42,11 @@ public class SubjectController {
 	@GetMapping("/SujetAlaLigne")
 	List<Subject>getSujetAlaLigne(){
 		return subjectService.AffichageSujetAlaLaUne();
+	}
+	
+	@PostMapping("/addSubject")
+	String addSubject(@RequestBody Subject s) {
+		return subjectService.addSubject(s);
 	}
 	
 	@PatchMapping("/Rating")

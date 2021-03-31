@@ -27,6 +27,7 @@ public class ReclamationService {
 	public ReclamationRepository reclamationRepository;
 	public ReparationRepository reparationRepository;
 	public ProductRepository productRepository;
+
 	@Autowired
 	public ReclamationService(ExchangeRepository exchangeRepository,UserRepository userRepository,ReclamationRepository reclamationRepository,ReparationRepository reparationRepository,ProductRepository productRepository) {
 		this.exchangeRepository=exchangeRepository;
@@ -38,12 +39,20 @@ public class ReclamationService {
 
 	public Reclamation clientAddReclamation(Reclamation r , Long id) {	
 		r.setUsers(userRepository.getOne(id));
+		r.setDateLimit(LocalDate.now().plusDays(15));
+		r.setDecision(Decision.Pending);
 		return reclamationRepository.save(r);
 	}
 	
-	public String decision(Reclamation r,float couponValue,String typePanne,float prixReparation,Long idProduct) {
+	public Reclamation clientUpdateReclamation(Reclamation r , Long id) {	
+		r.setDecision(Decision.Pending);
+		r.setUsers(userRepository.getOne(id));
+		return reclamationRepository.save(r);
+	}
+	
+	public String decision(Reclamation r,float couponValue,String typePanne,float prixReparation,Long idProduct,Long idClient) {
 		if(r.getDecision().equals(Decision.Remboursement)) {
-			return exchange(r,couponValue);
+			return "Remboursement";
 		}
 		if(r.getDecision().equals(Decision.Echange)) {
 					return  exchange(r,couponValue);
@@ -51,7 +60,13 @@ public class ReclamationService {
 		if(r.getDecision().equals(Decision.Réparation)) {
 			return reparation(r,typePanne,prixReparation,idProduct);
 		}
-		return null;
+		if(r.getDecision().equals(Decision.Refusé)) {
+			r.setState(false);
+			r.setUsers(userRepository.getOne(idClient));
+			reclamationRepository.save(r);
+			return"Reclamation Refusé";
+		}
+		return "";
 	}
 
 	private String exchange(Reclamation r,float couponValue) {
@@ -63,13 +78,18 @@ public class ReclamationService {
 		//LocalDateTime tomorrow = today.plusDays(15); 
 		exchange.setDateLimite(LocalDate.now().plusDays(15));
 		//exchange.setNumCoupon(numCoupon); LocalDate.now().plusDays(15)
-		System.out.println("====================>"+ r.getUsers().toString());
-		exchange.setUsers(r.getUsers());
-		exchangeRepository.save(exchange);
-		//affecter coupon au user
-		User u=userRepository.getOne(r.getUsers().getId());
-		u.getExchanges().add(exchange);
-		userRepository.save(u);
+		Reclamation reclamation = reclamationRepository.getOne(r.getId());
+		reclamation.setDecision(r.getDecision());
+		reclamationRepository.save(reclamation);
+		System.out.println("====================>"+ reclamation.getUsers().getId());
+		
+		  exchange.setUsers(reclamation.getUsers());
+		  exchangeRepository.save(exchange);
+		  //affecter coupon au user 
+		  User u=userRepository.getOne(reclamation.getUsers().getId());
+		  u.getExchanges().add(exchange); 
+		  userRepository.save(u);
+		 
 		return 		"{done}";
 
 	}

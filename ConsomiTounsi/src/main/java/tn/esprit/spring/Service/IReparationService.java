@@ -9,7 +9,7 @@ public interface IReparationService {
 
 	public int addReparation(Reparation r);
 	public void deleteReparation(int i);
-	public Reparation updateReparation(Reparation r,Long idProduct);
+	public String updateReparation(Reparation r,Long idProduct);
 	public List<Reparation> getAllReparations();
 	
 }

@@ -63,7 +63,10 @@ Product prod;
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
 @ManyToOne
 User user ;
+<<<<<<< HEAD
 @JsonIgnore
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
 @JsonIgnore
@@ -76,7 +79,11 @@ private List<LikeAdd> addlike;
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
 			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
+<<<<<<< HEAD
 			+ ", prod=" + prod + ", user=" + user + ", view=" + view + ", addlike=" + addlike + "]";
+=======
+			+ ", prod=" + prod + ", user=" + user + ", view=" + view + "]";
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 }
 
 public Add() {

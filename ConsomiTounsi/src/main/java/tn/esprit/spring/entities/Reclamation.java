@@ -1,4 +1,5 @@
 package tn.esprit.spring.entities;
+import java.time.LocalDate;
 import java.util.*;
 
 import javax.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class Reclamation {
     private boolean state;
     @Enumerated(EnumType.STRING)
     private Decision decision;
-    private Date dateLimit;
+    private LocalDate dateLimit;
     @ManyToOne()
     @JsonIgnore
     User users;

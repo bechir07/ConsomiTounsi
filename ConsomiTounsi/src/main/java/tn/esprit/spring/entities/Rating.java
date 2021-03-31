@@ -32,7 +32,7 @@ private String review ;
 Product product;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+User user ;
 
 @Override
 public String toString() {
@@ -93,11 +93,11 @@ public void setProduct(Product product) {
 }
 
 public User getUser() {
-	return users;
+	return user;
 }
 
 public void setUser(User user) {
-	this.users = user;
+	this.user = user;
 }
 
 

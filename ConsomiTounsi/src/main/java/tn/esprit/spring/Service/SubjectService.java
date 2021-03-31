@@ -18,6 +18,15 @@ public class SubjectService {
 	@Autowired
 	SubjectRepository subjectRepository;
 	
+	public String addSubject(Subject s) {
+		if(this.sujetRedondant(s)) {
+			return "Error!!! redundant subject!";
+		}else {
+			subjectRepository.save(s);
+			return "Subject added successfully";
+		}
+	}
+	
 	public boolean deleteSujetRedondant(Subject s ) {
 		if(this.sujetRedondant(s)) {
 			subjectRepository.delete(s);
@@ -51,7 +60,7 @@ public class SubjectService {
 	
 	public void Rating (Subject s, int nbEtoiles) {
 		s.setEvaluate((s.getEvaluate()+nbEtoiles)/2);
-		subjectRepository.flush();
+		subjectRepository.save(s);
 	}
 
 }

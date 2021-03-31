@@ -37,7 +37,7 @@ public class ReparationController {
 	}
 	
 	@PutMapping("/updateReparation/{id}")
-	@ResponseBody Reparation updateReparation(@RequestBody Reparation r ,@PathVariable("id") Long idProduct ) {
+	@ResponseBody String updateReparation(@org.springframework.web.bind.annotation.RequestBody Reparation r ,@PathVariable("id") Long idProduct ) {
 		return reparationService.updateReparation(r, idProduct);
 	}
 

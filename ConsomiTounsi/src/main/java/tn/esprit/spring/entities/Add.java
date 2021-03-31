@@ -60,7 +60,7 @@ public void setName(String name) {
 Product prod;
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
 @ManyToOne
-User users ;
+User user ;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
@@ -69,7 +69,7 @@ private List<LikeAdd> addlike;
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
 			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
-			+ ", prod=" + prod + ", user=" + users + ", view=" + view + "]";
+			+ ", prod=" + prod + ", user=" + user + ", view=" + view + "]";
 }
 
 public Add() {
@@ -155,11 +155,11 @@ public void setProd(Product prod) {
 }
 
 public User getUser() {
-	return users;
+	return user;
 }
 
-public void setUser(User users) {
-	this.users = users;
+public void setUser(User user) {
+	this.user = user;
 }
 
 public Set<ADDView> getViews() {

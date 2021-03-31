@@ -50,7 +50,7 @@ private List<Rating> rating;
 private List<Add> add;
 @ManyToOne
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+User user ;
 @OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
 
@@ -159,11 +159,11 @@ public void setCoupons(List<Coupon> coupons) {
 }
 
 public User getUser() {
-	return users;
+	return user;
 }
 
-public void setUser(User users) {
-	this.users = users;
+public void setUser(User user) {
+	this.user = user;
 }
 
 public List<Rating> getRating() {
@@ -214,7 +214,7 @@ public static long getSerialversionuid() {
 }
 
 public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
-		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User users,
+		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User user,
 		List<tn.esprit.spring.entities.Command_line> command_line) {
 	super();
 	this.id = id;
@@ -229,7 +229,7 @@ public Product(Long id, String description, String name, String image, double pr
 	this.coupon = coupon;
 	this.rating = ratings;
 	this.add = adds;
-	this.users = users;
+	this.user = user;
 	Command_line = command_line;
 	
 }

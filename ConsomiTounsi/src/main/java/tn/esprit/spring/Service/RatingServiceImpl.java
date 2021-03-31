@@ -33,6 +33,8 @@ public class RatingServiceImpl implements IRatingService {
 		if (ra==null)
 		{
 		r.setDateRating(new Date());
+		r.setNote(r.getNote());
+		r.setReview(r.getReview());
 		RatingRepository.save(r);
 		return "save with succes";
 		}

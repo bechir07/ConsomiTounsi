@@ -21,4 +21,7 @@ public interface LikeAddRepository extends JpaRepository< LikeAdd , Long> {
 		//nb de dislike par post
 		@Query("SELECT count(*) FROM LikeAdd l where (l.add.id =:idadd and l.etat = false)")
 		public int nbDisLike(@Param ("idadd") Long idadd);
+		
+		
+
 }

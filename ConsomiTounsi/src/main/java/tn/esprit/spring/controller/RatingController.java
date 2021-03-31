@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import tn.esprit.spring.Repository.RatingRepository;
 
 import tn.esprit.spring.Repository.UserRepository;
 import tn.esprit.spring.Repository.ProductRepository;
@@ -31,17 +32,22 @@ public class RatingController {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository ProductRepository;
-	
+	@Autowired
+	private RatingRepository RatingRepository;
 	
 	// http://localhost:8081/ConsomiTounsi/addRating/{iduser}/{idp}
+	
 	@RequestMapping(method=RequestMethod.PUT,value="/addRating/{iduser}/{idp}")
-	public String addRating(@PathVariable("iduser") Long  iduser,@PathVariable("idp") Long  idp){
+	public String addRating(@PathVariable("iduser") Long  iduser,@PathVariable("idp") Long  idp,@RequestBody Rating r){
 			
 			Optional<User> user=userRepository.findById(iduser);
 			//System.out.println(user);
 			Product prod = ProductRepository.findById(idp).get();
 			
-			Rating r=new Rating();
+			//Rating r=new Rating();
+			
+			//r.setNote(r.getNote());
+			//r.setReview(r.getReview());
 			r.setUser(user.get());
 			r.setProduct(prod);
 			return	ratingService.addRating(r, idp,iduser);

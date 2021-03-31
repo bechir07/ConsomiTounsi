@@ -69,14 +69,14 @@ public class ADDController {
 
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/retrieve-add-by-name
+	//http://localhost:8081/ConsomiTounsi/retrieve-add-by-name/{name}
 	@GetMapping(value="/retrieve-add-by-name/{name}")
 	@ResponseBody
 	public Add getAddByName(@PathVariable("name") String name) {
 	return addService.getAddByName(name);
 	}
 
-	//http://localhost:8081/ConsomiTounsi/search-add
+	//http://localhost:8081/ConsomiTounsi/search-add/{msg}
 	    	@GetMapping(value="/search-add/{msg}")
 	    	@ResponseBody
 	    	public List<Add> getAddSearch(@PathVariable("msg") String msg) {

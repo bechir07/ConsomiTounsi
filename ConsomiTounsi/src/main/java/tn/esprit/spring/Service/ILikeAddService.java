@@ -13,5 +13,6 @@ public interface ILikeAddService {
 	public int nbLike(Long id);
 	void deletePubLike(Long id);
 	public String deleteLike(Long iduser,Long idadd);
+	public int nbdisLike(Long id);
 
 }

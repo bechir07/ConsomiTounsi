@@ -1,13 +1,18 @@
 package tn.esprit.spring.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Coupon implements Serializable {
@@ -19,17 +24,24 @@ private Long id ;
 private String Code ;
 private double Promo ;
 
-@ManyToOne
-@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
-Product product;
 
 @ManyToOne
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
-
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+User user ;
+@JsonIgnore
+@OneToMany( mappedBy="coupon",cascade = CascadeType.ALL)
+private List<Product> product;
 @Override
 public String toString() {
 	return "Coupon [id=" + id + ", Code=" + Code + ", Promo=" + Promo + "]";
+}
+
+public List<Product> getProduct() {
+	return product;
+}
+
+public void setProduct(List<Product> product) {
+	this.product = product;
 }
 
 public Coupon(Long id, String code, double promo) {
@@ -68,12 +80,14 @@ public void setPromo(double promo) {
 	Promo = promo;
 }
 
-public Product getProduct() {
-	return product;
+
+
+public User getUser() {
+	return user;
 }
 
-public void setProduct(Product products) {
-	this.product = products;
+public void setUser(User user) {
+	this.user = user;
 }
 
 

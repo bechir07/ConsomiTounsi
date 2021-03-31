@@ -1,21 +1,24 @@
 package tn.esprit.spring.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 import tn.esprit.spring.entities.*;
 
 public interface IProductService {
 	public 	String addProduct(Product p);
 
-	
+	public Iterable<Product> findAll();
+
 	public List<Product> retrieveAllProducts();
 	
 	public String updateProduct(Product p);
 	
-	public void affectProduitToCategory(Long productId, Long catId);
+	public String affectProduitToCategory(Long productId, Long catId);
 	
 	public List<Product> retrieveProductByCategory(Long idcc);
 	
-	public float getRating( Long id);
+	public Rating getRating( Long id);
 	
 	public List<Product> listProductNotExpensive();
 	
@@ -28,7 +31,16 @@ public interface IProductService {
 
 	void deleteProduct(long i);
 	
-	public void affectProduitToAdd(Long productId, Long addId);
+	public String affectProduitToAdd(Long productId, Long addId);
 	
+	
+	public String applyCouponOnAdd(Long productId, Long cId);
+	
+	public List<Product> retrieveProductWithCoupon (Long idc);
+
+	public  Long top_note_product();
+	
+	public Optional<Product> getProdById(Long prodId);
+
 
 }

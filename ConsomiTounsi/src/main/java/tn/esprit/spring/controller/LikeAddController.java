@@ -57,8 +57,8 @@ public class LikeAddController {
 	
 	
 	// http://localhost:8081/ConsomiTounsi/addLike/{idad}/{etat}/{iduser}
-	@RequestMapping(method=RequestMethod.PUT,value="/{idad}/{etat}/{iduser}")
-    public String addlike(@PathVariable Long  iduser,@PathVariable Long  idad,@PathVariable boolean  etat){
+	@RequestMapping(method=RequestMethod.PUT,value="/addLike/{idad}/{etat}/{iduser}")
+    public String addlike(@PathVariable("iduser") Long  iduser,@PathVariable("iduser") Long  idad,@PathVariable boolean  etat){
 		
 		
 		User us=userRepository.findAllById(iduser);
@@ -86,8 +86,8 @@ public class LikeAddController {
 		likeaddService.deleteLike(iduser,idadd);
 		}
 	
-		//http://localhost:8081/ConsomiTounsi/nblikes
-		@GetMapping(value ="/nblikes")
+		//http://localhost:8081/ConsomiTounsi/nblikes/{id}
+		@GetMapping(value ="/nblikes/{id}")
 		@ResponseBody
 		public int getNblikes(@PathVariable("id") Long id) 
 		{
@@ -95,9 +95,20 @@ public class LikeAddController {
 		return likeaddService.nbLike(id);
 	    
 		}
+		
+		
+		//http://localhost:8081/ConsomiTounsi/nbdislikes/{id}
+		@GetMapping(value ="/nbdislikes/{id}")
+		@ResponseBody
+		public int getNbdislikes(@PathVariable("id") Long id) 
+		{
+		
+		return likeaddService.nbdisLike(id);
+	    
+		}
 		// http://localhost:8081/ConsomiTounsi/addDislike/{idad}/{iduser}
 		@RequestMapping(method=RequestMethod.PUT,value="/addDislike/{idad}/{iduser}")
-	    public String addlike(@PathVariable Long  iduser,@PathVariable Long  idad,LikeAdd likeadd)
+	    public String addDislike(@PathVariable Long  iduser,@PathVariable Long  idad,LikeAdd likeadd)
 		{
 			
 			

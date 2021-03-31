@@ -20,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 @Entity
@@ -56,20 +58,25 @@ public void setName(String name) {
 }
 
 @ManyToOne
-@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =true , updatable=true)
 Product prod;
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
 @ManyToOne
-User users ;
+User user ;
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
+@JsonIgnore
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private List<LikeAdd> addlike;
+
+
+
 @Override
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
 			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
-			+ ", prod=" + prod + ", user=" + users + ", view=" + view + "]";
+			+ ", prod=" + prod + ", user=" + user + ", view=" + view + ", addlike=" + addlike + "]";
 }
 
 public Add() {
@@ -155,11 +162,11 @@ public void setProd(Product prod) {
 }
 
 public User getUser() {
-	return users;
+	return user;
 }
 
-public void setUser(User users) {
-	this.users = users;
+public void setUser(User user) {
+	this.user = user;
 }
 
 public Set<ADDView> getViews() {

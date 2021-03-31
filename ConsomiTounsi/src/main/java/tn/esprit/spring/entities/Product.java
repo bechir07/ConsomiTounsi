@@ -20,6 +20,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -36,21 +38,24 @@ private String reference ;
 private Date DateProd;
 
 @ManyToOne
-@JoinColumn(name="idCategory", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idCategory", referencedColumnName="id" , insertable =true , updatable=true)
 Category categorie;
 @ManyToOne
 //@JoinColumn(name="idStock", referencedColumnName="id" , insertable =false , updatable=false)
 Stock stock;
 
-@OneToMany( mappedBy="product",cascade = CascadeType.ALL)
-private List<Coupon> coupon;
+@ManyToOne
+@JoinColumn(name="idcoupon", referencedColumnName="id" , insertable =true , updatable=true)
+Coupon coupon;
+@JsonIgnore
 @OneToMany( mappedBy="product",cascade = CascadeType.ALL)
 private List<Rating> rating;
+@JsonIgnore
 @OneToMany(mappedBy="prod",cascade = CascadeType.ALL )
 private List<Add> add;
 @ManyToOne
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+User user ;
 @OneToMany(mappedBy="product", cascade = {CascadeType.PERSIST,CascadeType.ALL})
 private List<Command_line> Command_line;
 
@@ -58,11 +63,46 @@ private List<Command_line> Command_line;
 private Reparation reparation;
 
 
+public Coupon getCoupon() {
+	return coupon;
+}
+
+
+public void setCoupon(Coupon coupon) {
+	this.coupon = coupon;
+}
+
+
+public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
+		Category categorie, Stock stock, Coupon coupon, List<Rating> rating, List<Add> add, User user,
+		List<tn.esprit.spring.entities.Command_line> command_line, Reparation reparation) {
+	super();
+	this.id = id;
+	Description = description;
+	Name = name;
+	Image = image;
+	Price = price;
+	this.reference = reference;
+	DateProd = dateProd;
+	this.categorie = categorie;
+	this.stock = stock;
+	this.coupon = coupon;
+	this.rating = rating;
+	this.add = add;
+	this.user = user;
+	Command_line = command_line;
+	this.reparation = reparation;
+}
+
+
 @Override
 public String toString() {
 	return "Product [id=" + id + ", Description=" + Description + ", Name=" + Name + ", Image=" + Image + ", Price="
-			+ Price + ", reference=" + reference + ", DateProd=" + DateProd + "]";
+			+ Price + ", reference=" + reference + ", DateProd=" + DateProd + ", categorie=" + categorie + ", stock="
+			+ stock + ", coupon=" + coupon + ", rating=" + rating + ", add=" + add + ", user=" + user
+			+ ", Command_line=" + Command_line + ", reparation=" + reparation + "]";
 }
+
 
 public Product() {
 	super();
@@ -146,24 +186,12 @@ public void setCategorie(Category categorie) {
 }
 
 
-
-
-
-
-public List<Coupon> getCoupons() {
-	return coupon;
-}
-
-public void setCoupons(List<Coupon> coupons) {
-	this.coupon = coupons;
-}
-
 public User getUser() {
-	return users;
+	return user;
 }
 
 public void setUser(User users) {
-	this.users = users;
+	this.user = users;
 }
 
 public List<Rating> getRating() {
@@ -193,14 +221,6 @@ public void setStock(Stock stock) {
 	this.stock = stock;
 }
 
-public List<Coupon> getCoupon() {
-	return coupon;
-}
-
-public void setCoupon(List<Coupon> coupon) {
-	this.coupon = coupon;
-}
-
 public List<Command_line> getCommand_line() {
 	return Command_line;
 }
@@ -213,26 +233,7 @@ public static long getSerialversionuid() {
 	return serialVersionUID;
 }
 
-public Product(Long id, String description, String name, String image, double price, String reference, Date dateProd,
-		Category categories, Stock stock, List<Coupon> coupon, List<Rating> ratings, List<Add> adds, User users,
-		List<tn.esprit.spring.entities.Command_line> command_line) {
-	super();
-	this.id = id;
-	Description = description;
-	Name = name;
-	Image = image;
-	Price = price;
-	this.reference = reference;
-	DateProd = dateProd;
-	this.categorie = categories;
-	this.stock = stock;
-	this.coupon = coupon;
-	this.rating = ratings;
-	this.add = adds;
-	this.users = users;
-	Command_line = command_line;
-	
-}
+
 public Reparation getReparation() {
 	return reparation;
 }

@@ -33,12 +33,12 @@ public class RatingController {
 	private ProductRepository ProductRepository;
 	
 	
-	// http://localhost:8081/ConsomiTounsi/addRating/{iduser}&{idp}
-	@RequestMapping(method=RequestMethod.PUT,value="addRating/{iduser}&{idp}")
-	public String addRating(@PathVariable Long  iduser,@PathVariable Long  idp){
+	// http://localhost:8081/ConsomiTounsi/addRating/{iduser}/{idp}
+	@RequestMapping(method=RequestMethod.PUT,value="/addRating/{iduser}/{idp}")
+	public String addRating(@PathVariable("iduser") Long  iduser,@PathVariable("idp") Long  idp){
 			
 			Optional<User> user=userRepository.findById(iduser);
-			System.out.println(user);
+			//System.out.println(user);
 			Product prod = ProductRepository.findById(idp).get();
 			
 			Rating r=new Rating();
@@ -73,15 +73,15 @@ public class RatingController {
 		return ratingService.updateRating(id,note);
 
 	}
-	//http://localhost:8081/ConsomiTounsi/editNote/{id}&{note}
-	@GetMapping("/editNote/{id}&{note}")
+	//http://localhost:8081/ConsomiTounsi/editNote/{id}/{note}
+	@GetMapping("/editNote/{id}/{note}")
 	public String updateNote(@PathVariable("id") Long id,@PathVariable("note") int note){
 			return ratingService.updateRating(id, note);
 		
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/retrieve-nbvu
-		@GetMapping(value ="/retrieve-nbvu")
+	//http://localhost:8081/ConsomiTounsi/retrieve-nbvu/{id}
+		@GetMapping(value ="/retrieve-nbvu/{id}")
 		@ResponseBody
 		public int getNbvu(@PathVariable("id") Long id) 
 		{
@@ -100,10 +100,10 @@ public class RatingController {
 		}
 		
 		
-		//http://localhost:8081/ConsomiTounsi/retrieve-last-reviews
-		@GetMapping(value ="/retrieve-last-reviews")
+		//http://localhost:8081/ConsomiTounsi/retrieve-last-reviews/{id}
+		@GetMapping(value ="/retrieve-last-reviews/{id}")
 		@ResponseBody
-		public List<Rating> getLastReviews(Long id) 
+		public List<Rating> getLastReviews(@PathVariable("id")Long id) 
 		{
 		
 		return ratingService.listLastReviews(id);

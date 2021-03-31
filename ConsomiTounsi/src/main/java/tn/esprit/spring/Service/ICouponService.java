@@ -13,6 +13,5 @@ public interface ICouponService {
 	
 	public Coupon updateCoupon(Coupon c);
 
-	public String addCouponToProduct(Long productId, Long cId);
 
 }

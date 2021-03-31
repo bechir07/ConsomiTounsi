@@ -75,9 +75,9 @@ public String addLike(Long iduser,Long idad,LikeAdd likeadd){
 	@Override
 	public List<LikeAdd> retrieveAllLike() {
 		List<LikeAdd> likes = (List<LikeAdd>) LikeAddRepository.findAll();
-		for (LikeAdd like : likes) {
+		/*for (LikeAdd like : likes) {
 			L.info("user +++ : " + like);
-		}
+		}*/
 		return likes;
 	}
 
@@ -95,6 +95,10 @@ public String addLike(Long iduser,Long idad,LikeAdd likeadd){
 	@Override
 	public int nbLike(Long id) {
 		return LikeAddRepository.nbLike(id);
+	}
+	@Override
+	public int nbdisLike(Long id) {
+		return LikeAddRepository.nbDisLike(id);
 	}
 
 	@Override

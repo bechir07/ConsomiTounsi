@@ -25,36 +25,20 @@ public class RatingServiceImpl implements IRatingService {
 
 	
 	@Override
-	public String addRating(Rating r,Long idp,long u ){
+	public String addRating(Rating r,Long idp,long u )
+	{
 
-		List<Rating> rating = new ArrayList<Rating>();
-		rating = (List<Rating>) RatingRepository.findAll();
-
-		for (Rating rate : rating) {
-			if (r.getProduct().getId() == rate.getProduct().getId()
-					&& (r.getUser().getId()==(rate.getUser().getId())))
-
-			{
-			
-				
-					return "user a déja évalué ce Produit ";
-				
-			}
-
-			 else 
-			    {  
-				 
-				 r.setDateRating(new Date ());
-				 RatingRepository.save(r);
-				 return " rating added successfully" ;
-				 
-			    }
-			
-
+		Rating ra= new Rating();
+		ra=RatingRepository.ratingexist(u, idp);
+		if (ra==null)
+		{
+		r.setDateRating(new Date());
+		RatingRepository.save(r);
+		return "save with succes";
 		}
-
-				return "note enregistré";
+		return "rating added";
 	}
+	
 
 	@Override
 	public void deleteRating(Long i) {
@@ -97,9 +81,9 @@ public class RatingServiceImpl implements IRatingService {
 	
 	public List<Rating> retrieveAllRating() {
 		List<Rating> ratings = (List<Rating>) RatingRepository.findAll();
-		for (Rating rating : ratings) {
+		/*for (Rating rating : ratings) {
 			L.info("user +++ : " + rating);
-		}
+		}*/
 		return ratings;
 
 	}

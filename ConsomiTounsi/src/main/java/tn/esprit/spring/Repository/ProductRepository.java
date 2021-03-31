@@ -35,9 +35,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 
 	@Query("select p.rating from Product p where p.id=:id")
-	public float getRating(@Param("id") Long id);
+	public Rating getRating(@Param("id") Long id);
 	
-	@Query("SELECT p FROM Product p WHERE p.Name=: string")
-	public Product getProductByName(@Param("string") String msg);
+	@Query("SELECT p FROM Product p WHERE p.Name= :msg")
+	public Product getProductByName(@Param("msg") String msg);
+	
+	
+	@Query("select p FROM Product p where p.coupon = :coupon ")
+	List<Product> retrieveProductWithCoupon(@Param("coupon") Coupon coupon);
+	
+	@Query(value="Select  r.id,(SUM(r.note)) as somme from Rating r "
+			+ "GROUP BY(r.id) ORDER BY somme desc limit 1" ,nativeQuery=true)
+	
+	public  Long top_note_product();
 	
 }

@@ -26,23 +26,23 @@ private Long id;
 private Date DateView;
 
 @ManyToOne
-@JoinColumn(name="idAdd", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idAdd", referencedColumnName="id" , insertable =true , updatable=false)
 Add add;
 @ManyToOne
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+User user ;
 
 public User getUser() {
-	return users;
+	return user;
 }
 
 public void setUser(User user) {
-	this.users = user;
+	this.user = user;
 }
 
 @Override
 public String toString() {
-	return "ADDView [id=" + id + ", DateView=" + DateView + ", add=" + add + ", user=" + users + "]";
+	return "ADDView [id=" + id + ", DateView=" + DateView + ", add=" + add + ", user=" + user + "]";
 }
 
 public ADDView() {

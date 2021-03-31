@@ -41,23 +41,10 @@ public class CouponServiceImpl implements ICouponService {
 		CouponRepository.save(c);
 		return c;
 	}
+
+
 	
-	@Override
-	public String addCouponToProduct(Long productId, Long cId)
-	{
-		Coupon couponEntity = CouponRepository.findById(cId).get();
-		Product productEntity = ProductRepository.findById(productId).get();
-
-		if(couponEntity.getProduct() == null)
-		{
-			productEntity.setPrice(productEntity.getPrice()*couponEntity.getPromo());
-			couponEntity.setProduct(productEntity);
-			return "Coupon Added Successfully";
-
-		}
-		else
-			return "Coupon already exsit on this product" ;
-	}
+	
 	
 
 }

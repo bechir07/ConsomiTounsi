@@ -28,11 +28,11 @@ private int note ;
 private String review ;
 
 @ManyToOne
-@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =true , updatable=false)
 Product product;
 @ManyToOne
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
-User users ;
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+User user ;
 
 @Override
 public String toString() {
@@ -93,11 +93,11 @@ public void setProduct(Product product) {
 }
 
 public User getUser() {
-	return users;
+	return user;
 }
 
 public void setUser(User user) {
-	this.users = user;
+	this.user = user;
 }
 
 

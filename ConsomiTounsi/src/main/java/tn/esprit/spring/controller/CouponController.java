@@ -54,11 +54,13 @@ public class CouponController {
 		return couponService.addCoupon(c);
 
 	}
+	/*
 	//http://localhost:8081/ConsomiTounsi/addCouponOnProduct/{productId}/{cId}
-			    	@PostMapping("/addCouponOnProduct/{productId}/{cId}") 
-			    	@ResponseBody 
-			    	public void addCouponOnProduct(@PathVariable("productId")Long idProduct,@PathVariable("cId") Long cId) {
-			    		couponService.addCouponToProduct(idProduct, cId);
-			    	}
+	@PostMapping("/addCouponOnProduct/{productId}/{cId}") 
+	@ResponseBody 
+	public void addCouponOnProduct(@PathVariable("productId")Long idProduct,@PathVariable("cId") Long cId)
+	{
+			   couponService.addCouponToProduct(idProduct, cId);
+	}*/
 	
 }

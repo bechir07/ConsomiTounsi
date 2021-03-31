@@ -67,6 +67,12 @@ public class RayonRestController {
 		return rayonService.findByrayon(id);
 	}
 	
+	@GetMapping("/findAllProductByrayon/{idr}")
+	public List<Product> findAllProductByrayon(@PathVariable("idr")int idr)
+	{
+		return rayonService.findAllProductByrayon(idr);
+	}
+	
 	
 }
 	

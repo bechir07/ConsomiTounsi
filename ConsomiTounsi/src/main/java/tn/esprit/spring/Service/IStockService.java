@@ -13,7 +13,7 @@ public interface IStockService {
 	public void deleteStock(int i);
 	public Stock updateStock(Stock s);
 	public List<Stock> getAllStocks();
-	public long missingProduct();
+	public List<Long> missingProduct();
 	public void orderProduct(long pid,int amount);
 	
 	

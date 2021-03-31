@@ -17,6 +17,7 @@ public interface IRayonService {
 	public Rayon findByrayon(long id);
 	public List<Rayon> getRayonBytype(String type);
 	public Rayon findByCategory(int id);
+	public List<Product> findAllProductByrayon(int idr);
 	
 	
 

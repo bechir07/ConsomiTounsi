@@ -1,5 +1,6 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,21 @@ public class RayonServiceImpl implements IRayonService {
 		int products=rayonRepository.findByrayon(id);
 		Rayon p=rayonRepository.findById(products).get();
 		return p;
+	}
+
+	@Override
+	public List<Product> findAllProductByrayon(int idr) {
+		List<Product> products=new ArrayList<Product>();
+		List<Long> productID =rayonRepository.findAllProductByrayon(idr);
+		 for (int i = 0; i < productID.size(); i++) {
+		      System.out.println(productID.get(i));
+		     long p= productID.get(i);
+		      Product product =productRepository.findById(p).get();
+		      
+		      products.add(product);
+		      
+		    }
+		return products;
 	}
 	
 	

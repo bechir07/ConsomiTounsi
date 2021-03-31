@@ -22,7 +22,7 @@ public interface RayonRepository extends CrudRepository <Rayon, Integer> {
 	@Query(value="SELECT r.id FROM rayon r,product p ,category c  WHERE p.id = ? and p.id_category = c.id and c.id = r.category_id  ",nativeQuery=true)
 	int findByrayon(long p);
 	
-	@Query(value="SELECT p.* FROM product p ,category c,rayon r  WHERE r.id= ? and r.category_id = c.id  and c.id = p.id_category   ",nativeQuery=true)
-	List<Product> findAllProductByrayon(int idr);
+	@Query(value="SELECT p.id FROM product p ,category c,rayon r  WHERE r.id= ? and r.category_id = c.id  and c.id = p.id_category   ",nativeQuery=true)
+	List<Long> findAllProductByrayon(int idr);
 
 }

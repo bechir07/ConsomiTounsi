@@ -12,8 +12,8 @@ import tn.esprit.spring.entities.Product;
 
 @Repository
 public interface StockRepository extends CrudRepository <Stock, Integer> {
-	@Query(value="SELECT p.id FROM product p,stock s  WHERE  p.stock_id = 1 and s.amount<10 ",nativeQuery=true)
-	long missingProduct();
+	@Query(value="SELECT p.id FROM product p,stock s  WHERE   s.amount<10 ",nativeQuery=true)
+	List<Long> missingProduct();
 	
 
 }

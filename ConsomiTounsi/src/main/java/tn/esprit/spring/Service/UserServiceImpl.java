@@ -1,9 +1,19 @@
 package tn.esprit.spring.Service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
-
+import java.util.Map;
+import java.util.Set;
+import java.util.TimeZone;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +30,11 @@ import tn.esprit.spring.Configuration.UserPrincipal;
 import tn.esprit.spring.Repository.RoleRepository;
 import tn.esprit.spring.Repository.UserRepository;
 import tn.esprit.spring.Repository.DonationRepository;
+import tn.esprit.spring.Repository.EventRepository;
+import tn.esprit.spring.entities.DeliveryMen;
 import tn.esprit.spring.entities.Donation;
+
+import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Jackpot;
 import tn.esprit.spring.entities.Role;
 import tn.esprit.spring.entities.User;
@@ -36,6 +50,8 @@ public class UserServiceImpl implements IUserService{
 	RoleRepository RoleRepository;
 	@Autowired
 	DonationRepository DonationRepository;
+	@Autowired
+	EventRepository EventRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
     
@@ -75,7 +91,7 @@ public class UserServiceImpl implements IUserService{
 
    
     @Override
-    public User saveUser(String username, String password, String confirmedPassword) {
+    public User saveUser(String username, String password, String confirmedPassword,String role) {
         User  user=userRepository.findByUsername(username);
         if(user!=null) throw new RuntimeException("User already exists");
         if(!password.equals(confirmedPassword)) throw new RuntimeException("Please confirm your password");
@@ -84,7 +100,7 @@ public class UserServiceImpl implements IUserService{
         User.setActived(true);
         User.setPassword(passwordEncoder.encode(password));
         userRepository.save(User);
-        addRoleToUser(username,"USER");
+        addRoleToUser(username,role.toUpperCase());
         return User;
     }
 
@@ -110,6 +126,7 @@ public class UserServiceImpl implements IUserService{
         User User=userRepository.findByUsername(username);
         Role Role=RoleRepository.findByRoleName(rolename);
         User.getRoles().add(Role);
+        userRepository.save(User);
     }
 
     @Override
@@ -142,5 +159,57 @@ public class UserServiceImpl implements IUserService{
     		DonationRepository.save(donation);
     	}
     }
+    
+    @Override
+	public void affecterUserAEvent(String username,int eventId) {
+		User user = userRepository.findByUsername(username);
+		Event event = EventRepository.findById(eventId).get();
+		if(event.getUsersevent() == null){
+
+			Set<User> users = new HashSet<>();
+			users.add(user);
+			event.setUsersevent(users);
+		}else if (!event.getUsersevent().contains(user) && event.getUsersevent().size()<50){
+			event.getUsersevent().add(user);
+		}
+		else{
+			System.out.println("vous avez deja participe dans cet evenement");
+		}
+		EventRepository.save(event);
+	}
+    
+    @Override
+	public void desaffecterUserDuEvent(String username, int eventId) {
+    	User user = userRepository.findByUsername(username);
+		Event event = EventRepository.findById(eventId).get();
+		if (!ObjectUtils.isEmpty(user) && !ObjectUtils.isEmpty(event)) {
+            //departement.getEmployes().remove(departement.getEmployes().indexOf(employe));
+			event.getUsersevent().remove(user);
+			EventRepository.save(event);
+		}
+	}
+    
+    
+	@Override
+	public void notificationEvent(String username){
+    	User user = userRepository.findByUsername(username);
+    	Set<Event> eventList = new HashSet<>();
+		eventList=user.getEventsuser();
+		Calendar cal = Calendar.getInstance();
+		for (Event e : eventList) {
+		    cal.setTime(e.getDateev());
+			
+			if(cal.get(Calendar.MONTH)==Calendar.getInstance().get(Calendar.MONTH)){
+				System.out.println("Vous avez un evenement le "+e.getDateev());
+				
+			}
+		}
+    	
+    }
+	
+	
+   
+    
+    
     
 }

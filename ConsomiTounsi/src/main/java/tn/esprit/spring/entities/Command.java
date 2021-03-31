@@ -141,10 +141,12 @@ public class Command implements Serializable {
 		this.bill = bill;
 		this.client = client;
 	}
+	
 	@Override
 	public String toString() {
-		return "Command [reference=" + reference + ", total_price=" + total_price + ", order_date=" + order_date
-				+ ", delivery=" + delivery + ", bill=" + bill + ", client=" + client + "]";
+		return "Command [reference=" + reference + ", total_price=" + total_price + ", type=" + type + ", order_date="
+				+ order_date + ", delivery=" + delivery + ", chariot=" + chariot + ", bill=" + bill + ", Command_line="
+				+ Command_line + ", client=" + client + "]";
 	}
 	public List<Command_line> getCommand_line() {
 		return Command_line;
@@ -154,6 +156,25 @@ public class Command implements Serializable {
 	}
 	public Command() {
 		super();
+	}
+	public Chariot getChariot() {
+		return chariot;
+	}
+	public void setChariot(Chariot chariot) {
+		this.chariot = chariot;
+	}
+	public Command(long reference, float total_price, Payment_type type, LocalDate order_date, Delivery delivery,
+			Chariot chariot, Bill bill, List<tn.esprit.spring.entities.Command_line> command_line, User client) {
+		super();
+		this.reference = reference;
+		this.total_price = total_price;
+		this.type = type;
+		this.order_date = order_date;
+		this.delivery = delivery;
+		this.chariot = chariot;
+		this.bill = bill;
+		Command_line = command_line;
+		this.client = client;
 	}
 	
 	

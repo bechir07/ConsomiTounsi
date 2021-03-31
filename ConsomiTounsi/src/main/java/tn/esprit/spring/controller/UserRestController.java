@@ -45,7 +45,7 @@ public class UserRestController {
 	 @PostMapping("/register")
 	    public User register(@RequestBody  UserForm userForm){
 	        return  userService.saveUser(
-	                userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword());
+	                userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword(),userForm.getRole());
 	    }
 	 @PostMapping(path="/login" , consumes = {MediaType.APPLICATION_JSON_VALUE} , produces= {MediaType.APPLICATION_JSON_VALUE})
 		public ResponseEntity<User> login(@RequestBody UserLogin userr) {
@@ -53,7 +53,7 @@ public class UserRestController {
 			this.authenticate(userr.getUsername(), userr.getPassword());
 			
 			User user = userService.findUserByUserName(userr.getUsername());
-			
+			userService.notificationEvent(userr.getUsername());
 			user.setPassword(null);
 			System.out.println("hani");
 			String jwtToken = this.jwtTokenUtil.generateToken(new UserPrincipal(user));
@@ -122,6 +122,41 @@ public class UserRestController {
 			
 			userService.desaffecterUserDuDonation(userName, jackpotId);
 		}
+		
+		@PutMapping(value = "/affecterUserAEvent/{id}") 
+		public void affecterUserAEvent(@PathVariable("id")int eventId,HttpServletRequest httpServletRequest) {
+			
+			String requestToken = httpServletRequest.getHeader("Authorization");
+			String userName = null;
+			String jwtToken = null;
+			jwtToken = requestToken.substring(7);
+			userName = this.jwtTokenUtil.getUserNameFromToken(jwtToken);
+			
+			userService.affecterUserAEvent(userName, eventId);
+		}
+		
+		@PutMapping(value = "/desaffecterUserAEvent/{id}") 
+		public void desaffecterUserDuEvent(@PathVariable("id")int eventId,HttpServletRequest httpServletRequest) {
+			
+			String requestToken = httpServletRequest.getHeader("Authorization");
+			String userName = null;
+			String jwtToken = null;
+			jwtToken = requestToken.substring(7);
+			userName = this.jwtTokenUtil.getUserNameFromToken(jwtToken);
+			
+			userService.desaffecterUserDuEvent(userName, eventId);
+		}
+		@PutMapping(value = "/affecterRoleAUser/{role}")
+		public void addRoleToUser(@PathVariable("role")String role,HttpServletRequest httpServletRequest){
+			
+			String requestToken = httpServletRequest.getHeader("Authorization");
+			String userName = null;
+			String jwtToken = null;
+			jwtToken = requestToken.substring(7);
+			userName = this.jwtTokenUtil.getUserNameFromToken(jwtToken);
+			
+			userService.addRoleToUser(userName,role.toUpperCase());
+		}
 
 		
 	}
@@ -130,6 +165,13 @@ public class UserRestController {
 	    private String username;
 	    private String password;
 	    private String confirmedPassword;
+	    private String role;
+		public String getRole() {
+			return role;
+		}
+		public void setRole(String role) {
+			this.role = role;
+		}
 		public String getUsername() {
 			return username;
 		}

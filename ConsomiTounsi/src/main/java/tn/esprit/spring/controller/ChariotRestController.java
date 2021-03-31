@@ -44,13 +44,22 @@ public class ChariotRestController {
 		return chariotService.updateChariot(c);
 	}
 	
-	@PutMapping(value = "/affecterEventAJackpot/{id}/{id}") 
-	public void affecterEventAJackpot(@PathVariable("id")int eventId, @PathVariable("id")int chariotId) {
+	@PutMapping(value = "/affecterChariotAEvent/{id}/{id}") 
+	public void affecterChariotAEvent(@PathVariable("id")int eventId, @PathVariable("id")int chariotId) {
 		chariotService.affecterChariotAEvent(eventId, chariotId);
 	}
-	@PutMapping(value = "/desaffecterEventDuJackpot/{id}/{id}") 
-	public void desaffecterEventDuJackpot(@PathVariable("id")int chariotId, @PathVariable("id")int eventId) {
-		chariotService.desaffecterChariotDuEvent(chariotId, eventId);
+	@PutMapping(value = "/desaffecterChariotDuEvent/{id}/{id}") 
+	public void desaffecterEventDuJackpot(@PathVariable("id")int eventId, @PathVariable("id")int chariotId) {
+		chariotService.desaffecterChariotDuEvent(eventId, chariotId);
+	}
+	
+	@PutMapping(value = "/affecterCommandAChariot/{id}/{id}") 
+	public void affecterCommandAChariot(@PathVariable("id")Long commandId, @PathVariable("id")int chariotId) {
+		chariotService.affecterCommandAChariot(commandId, chariotId);
+	}
+	@PutMapping(value = "/desaffecterEventDuChariot/{id}/{id}") 
+	public void desaffecterCommandDuChariot(@PathVariable("id")Long commandId, @PathVariable("id")int chariotId) {
+		chariotService.desaffecterCommandDuChariot(commandId, chariotId);
 	}
 
 }

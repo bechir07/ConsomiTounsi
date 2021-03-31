@@ -8,7 +8,10 @@ import org.springframework.util.ObjectUtils;
 
 import tn.esprit.spring.Repository.ChariotRepository;
 import tn.esprit.spring.Repository.EventRepository;
+import tn.esprit.spring.Repository.CommandRepository;
 import tn.esprit.spring.entities.Chariot;
+import tn.esprit.spring.entities.Command;
+import tn.esprit.spring.entities.Donation;
 import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Jackpot;
 
@@ -19,6 +22,8 @@ public class ChariotServiceImpl implements IChariotService {
 	private ChariotRepository ChariotRepository;
 	@Autowired
 	private EventRepository EventRepository;
+	@Autowired
+	private CommandRepository CommandRepository;
 	@Override
 	public int addChariot(Chariot c) {
 		ChariotRepository.save(c);
@@ -55,7 +60,7 @@ public class ChariotServiceImpl implements IChariotService {
 	}
 	
 	@Override
-	public void desaffecterChariotDuEvent(int chariotId, int eventId)
+	public void desaffecterChariotDuEvent(int eventId, int chariotId)
 	{
 		Event event = EventRepository.findById(eventId).get();
 		Chariot chariot = ChariotRepository.findById(chariotId).get();
@@ -64,6 +69,30 @@ public class ChariotServiceImpl implements IChariotService {
 		event.setChariotev(null);
 		EventRepository.save(event);
 			
+		}
+	}
+	
+	@Override	
+	public void affecterCommandAChariot(Long commandId, int chariotId) {
+			
+			
+			Chariot chariot = ChariotRepository.findById(chariotId).get();
+			Command command = CommandRepository.findById(commandId).get();
+			if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(chariot)) {
+				command.setChariot(chariot);
+				CommandRepository.save(command);
+			}
+		}
+	
+	@Override
+	public void desaffecterCommandDuChariot(Long commandId, int chariotId)
+	{
+		
+		 Command command = CommandRepository.findById(commandId).get();
+		Chariot chariot = ChariotRepository.findById(chariotId).get();
+		if (!ObjectUtils.isEmpty(command) && !ObjectUtils.isEmpty(chariot)) {
+			command.setChariot(null);
+			CommandRepository.save(command);
 		}
 	}
 	

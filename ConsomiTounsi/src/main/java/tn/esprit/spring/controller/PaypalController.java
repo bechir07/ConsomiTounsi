@@ -1,5 +1,7 @@
 package tn.esprit.spring.controller;
 
+import java.util.Calendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,8 @@ import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
 
 import tn.esprit.spring.Service.PaypalService;
+import tn.esprit.spring.Service.DonationServiceImpl;
+import tn.esprit.spring.entities.Donation;
 import tn.esprit.spring.entities.Order;
 
 @RestController
@@ -21,6 +25,8 @@ public class PaypalController {
 
 	@Autowired
 	PaypalService service;
+	@Autowired
+	DonationServiceImpl donationService;
 
 	public static final String SUCCESS_URL = "pay/success";
 	public static final String CANCEL_URL = "pay/cancel";
@@ -31,10 +37,12 @@ public class PaypalController {
 	}
 
 	@PostMapping("/pay")
-	public String payment(@RequestBody Order order) {
+	public String payment(@RequestBody Donation donation) {
+		donationService.addDonation(donation);
 		try {
-			Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-					order.getIntent(), order.getDescription(), "http://localhost:8081/ConsomiTounsi/" + CANCEL_URL,
+			//System.out.println(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+			Payment payment = service.createPayment(donation.getMontant(), "USD", "paypal",
+					"sale", "testing", "http://localhost:8081/ConsomiTounsi/" + CANCEL_URL,
 					"http://localhost:8081/ConsomiTounsi/" + SUCCESS_URL);
 			for(Links link:payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {

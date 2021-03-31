@@ -1,6 +1,7 @@
 package tn.esprit.spring.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,4 +51,25 @@ public class EventRestController {
 		return eventService.updateEvent(e);
 	}
 
+	@GetMapping(value = "/getNbreParticipantsByEvent/{id}")
+	public String getNbreParticipantsByEvent(@PathVariable("id")int eventId){
+		int i = eventService.getNbreParticipantsByEvent(eventId);
+		return "Le nombre du participants du evenement:["+ i +"]";
+	}
+	
+	@GetMapping(value = "/getEventSortedByParticipation")
+	public Map<String,Integer> getEventSortedByParticipation(){
+		return eventService.getEventSortedByParticipation();
+	}
+	
+	@GetMapping(value = "/getTauxParticpationPourEvent/{id}")
+	public String getTauxParticpationPourEvent(@PathVariable("id")int eventId){ 
+		int i = eventService.getTauxParticpationPourEvent(eventId);
+		return "Le taux d'occupation de cet evenement est :["+ i +"%]";
+	}
+
+	@GetMapping(value = "/getMaxParticipationForEvent")
+	public Map<String,Integer> getMaxParticipationForEvent(){
+		return eventService.getMaxParticipationForEvent();
+	}
 }

@@ -48,23 +48,23 @@ public  class User implements Serializable {
 
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Product> product;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Rating> rating;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Coupon> coupon;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<Add> add;
 
 @JsonIgnore
-@OneToMany(cascade = CascadeType.ALL, mappedBy="users")
+@OneToMany(cascade = CascadeType.ALL, mappedBy="user")
 private Set<ADDView> view;
 
 @JsonIgnore

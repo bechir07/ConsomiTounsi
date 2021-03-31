@@ -13,7 +13,7 @@ import lombok.ToString;
 public class Order {
 
 	
-	private String price;
+	private Double price;
 	private String currency;
 	private String method;
 	private String intent;

@@ -2,6 +2,7 @@ package tn.esprit.spring.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,22 +23,26 @@ public class PaypalService {
 
 	@Autowired
 	private APIContext apiContext;
-	
+	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	
 	public Payment createPayment(
-			String total, 
+			Double total, 
 			String currency, 
 			String method,
 			String intent,
 			String description, 
 			String cancelUrl, 
 			String successUrl) throws PayPalRESTException{
+		
 		System.out.println(currency);
 		Amount amount = new Amount();
 		amount.setCurrency("USD");
-		//total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
-		//amount.setTotal(String.format("%.2f", total));
-		amount.setTotal(total);
+		total = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		String.format("%.2f", total);
+		//df2.format(total);
+		System.out.println(total);
+		amount.setTotal(String.valueOf(total));
+		//amount.setTotal(total);
 
 		Transaction transaction = new Transaction();
 		transaction.setDescription(description);

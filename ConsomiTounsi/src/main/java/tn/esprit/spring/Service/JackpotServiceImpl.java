@@ -1,6 +1,13 @@
 package tn.esprit.spring.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -11,11 +18,14 @@ import org.springframework.util.ObjectUtils;
 import tn.esprit.spring.Repository.DonationRepository;
 import tn.esprit.spring.Repository.EventRepository;
 import tn.esprit.spring.Repository.JackpotRepository;
-
+import tn.esprit.spring.Repository.UserRepository;
+import tn.esprit.spring.entities.Category;
 import tn.esprit.spring.entities.Donation;
 
 import tn.esprit.spring.entities.Event;
 import tn.esprit.spring.entities.Jackpot;
+import tn.esprit.spring.entities.Product;
+import tn.esprit.spring.entities.User;
 
 @Service
 public class JackpotServiceImpl implements IJackpotService {
@@ -26,6 +36,8 @@ public class JackpotServiceImpl implements IJackpotService {
 	private DonationRepository DonationRepository;
 	@Autowired
 	private EventRepository EventRepository;
+	@Autowired
+	private UserRepository UserRepository;
 	
 	@Override
 	public int addJackpot(Jackpot j) {
@@ -66,7 +78,20 @@ public void affecterDonationAJackpot(int donationId, int jackpotId) {
 		if (!ObjectUtils.isEmpty(jackpot) && !ObjectUtils.isEmpty(donation)) {
 			donation.setJackpot(jackpot);
 			DonationRepository.save(donation);
-		}
+			}
+		
+		//if(jackpot.getDonations() == null){
+
+			//Set<Donation> donations = new HashSet<>();
+			 //donations.add(donation);
+			//jackpot.setDonations(donations);
+		//}else{
+
+			//jackpot.getDonations().add(donation);
+
+		//}
+		//JackpotRepository.save(jackpot);
+		
 	}
 @Override
 public void affecterEventAJackpot(int eventId, int jackpotId) {
@@ -139,5 +164,57 @@ public void desaffecterDonationDuJackpot(int jackpotId, int donationId)
 		return JackpotRepository.getMaxDonationForJackpot(jackpotId);
 	}
 	
+	@Override
+	public double getSumDonationForJackpot(int jackpotId){
+		return JackpotRepository.getSumDonationForJackpot(jackpotId);
+	}
+	
+	@Override
+	public Map<String,Double> getJackpotSortedBySumDonation() {
+		List<Jackpot> jackpotList = (List<Jackpot>) JackpotRepository.findAll();
+		Set<Donation> donationList = new HashSet<>();
+		Double sum =0.0;
+		Map<String,Double> m =new HashMap<>();
+		
+		for (Jackpot j : jackpotList) {
+		donationList=j.getDonations();
+			for (Donation d : donationList) {
+			sum+=d.getMontant();
+			}
+			m.put(j.getName(),sum);
+			sum=0.0;
+		}
+		Map<String,Double> sortedMap= m.entrySet()
+                .stream()
+                .sorted((Map.Entry.<String, Double>comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		return sortedMap;
+	}
+	@Override
+	public Map<String,Double> getUsersSortedBySumDonation() {
+		List<User> userList = (List<User>) UserRepository.findAll();
+		Set<Donation> donationList = new HashSet<>();
+		Double sum =0.0;
+		Map<String,Double> m =new HashMap<>();
+		
+		for (User u : userList) {
+		donationList=u.getDonations();
+			for (Donation d : donationList) {
+			sum+=d.getMontant();
+			}
+			m.put(u.getUsername(),sum);
+			sum=0.0;
+		}
+		Map<String,Double> sortedMap= m.entrySet()
+                .stream()
+                .sorted((Map.Entry.<String, Double>comparingByValue()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		return sortedMap;
+	}
+	
+	@Override
+	public double getAvgDonationForJackpot(int jackpotId){
+		return JackpotRepository.getAvgDonationForJackpot(jackpotId);
+	}
 
 }

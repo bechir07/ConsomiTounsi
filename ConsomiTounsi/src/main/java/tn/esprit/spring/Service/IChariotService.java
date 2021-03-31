@@ -19,4 +19,8 @@ public interface IChariotService {
 	public void affecterChariotAEvent(int eventId, int chariotId);
 	
 	public void desaffecterChariotDuEvent(int chariotId, int eventId);
+	
+	public void affecterCommandAChariot(Long commandId, int chariotId);
+	
+	public void desaffecterCommandDuChariot(Long commandId, int chariotId);
 }

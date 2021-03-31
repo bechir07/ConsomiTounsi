@@ -18,12 +18,17 @@ public interface IUserService extends UserDetailsService {
 	User updateUser(User u);
 	User retrieveUser(Long id);
 	//public User authenticate(String login, String password) ;
-	public User saveUser(String username,String password,String confirmedPassword);
+	public User saveUser(String username, String password, String confirmedPassword,String role);
     public Role save(Role role);
     public UserDetails loadUserByUsername(String username);
     public void addRoleToUser(String username,String rolename);
     public User findUserByUserName(String userName);
     public void affecterUserADonation(String username, int donationId);
     public void desaffecterUserDuDonation(String username, int donationId);
+    public void affecterUserAEvent(String username,int eventId);
+    public void desaffecterUserDuEvent(String username, int eventId);
+    public void notificationEvent(String username);
+    
+     
 	
 }

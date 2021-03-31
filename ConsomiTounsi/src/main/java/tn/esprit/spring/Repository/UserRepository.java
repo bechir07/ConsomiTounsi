@@ -13,6 +13,7 @@ import tn.esprit.spring.entities.*;
 @Repository
 public interface UserRepository extends JpaRepository <User, Long> {
 	public User findByUsername(String username);
+	<Optional> User findAllById(Long id );
 
 
 }

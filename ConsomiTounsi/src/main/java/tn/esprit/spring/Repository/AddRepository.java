@@ -20,8 +20,8 @@ public interface AddRepository extends JpaRepository <Add, Long> {
 	public byte[] getImage(@Param("id") int id);
 	
 	
-	@Query("SELECT a FROM Add a WHERE a.name=: string")
-	public Add getAddByName(@Param("string") String msg);
+	@Query("SELECT a FROM Add a WHERE a.name= :msg")
+	public Add getAddByName(@Param("msg") String msg);
 	
 	@Query("SELECT a FROM Add a WHERE a.name LIKE CONCAT('%',:string,'%')")
 	public List<Add> searchAdd(@Param("string") String msg);

@@ -2,6 +2,7 @@ package tn.esprit.spring.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -18,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -55,19 +58,32 @@ public void setName(String name) {
 }
 
 @ManyToOne
-@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =true , updatable=true)
 Product prod;
-@JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
 @ManyToOne
 User user ;
+<<<<<<< HEAD
+@JsonIgnore
+=======
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 @OneToMany(cascade = CascadeType.ALL, mappedBy="add")
 private Set<ADDView> view;
+@JsonIgnore
+@OneToMany(cascade = CascadeType.ALL, mappedBy="add")
+private List<LikeAdd> addlike;
+
+
 
 @Override
 public String toString() {
 	return "Add [id=" + id + ", DateStart=" + DateStart + ", DateEnd=" + DateEnd + ", priceSponsoring="
 			+ priceSponsoring + ", average=" + average + ", Image=" + Image + ", type=" + type + ", name=" + name
+<<<<<<< HEAD
+			+ ", prod=" + prod + ", user=" + user + ", view=" + view + ", addlike=" + addlike + "]";
+=======
 			+ ", prod=" + prod + ", user=" + user + ", view=" + view + "]";
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 }
 
 public Add() {
@@ -156,8 +172,8 @@ public User getUser() {
 	return user;
 }
 
-public void setUser(User users) {
-	this.user = users;
+public void setUser(User user) {
+	this.user = user;
 }
 
 public Set<ADDView> getViews() {
@@ -166,6 +182,14 @@ public Set<ADDView> getViews() {
 
 public void setViews(Set<ADDView> views) {
 	this.view = view;
+}
+
+public List<LikeAdd> getAddlike() {
+	return addlike;
+}
+
+public void setAddlike(List<LikeAdd> addlike) {
+	this.addlike = addlike;
 }
 
 

@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 /**
@@ -33,6 +35,7 @@ public class Reparation {
     private float prixReparation;
     private String state;
     private LocalDate dateReparation;
+    @JsonIgnore
     @OneToOne( mappedBy="reparation",fetch = FetchType.EAGER)
     private Product product;
 

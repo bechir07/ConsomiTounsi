@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Stock implements Serializable {
@@ -28,7 +30,7 @@ public class Stock implements Serializable {
 	public Date entry_date;
 	@Temporal(TemporalType.DATE)
 	public Date exit_date;
-	
+	@JsonIgnore
 	@OneToMany( mappedBy="stock",cascade = CascadeType.ALL)
 	private List<Product> product;
 

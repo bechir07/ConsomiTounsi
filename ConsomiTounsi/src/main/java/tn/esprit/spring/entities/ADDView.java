@@ -26,10 +26,14 @@ private Long id;
 private Date DateView;
 
 @ManyToOne
-@JoinColumn(name="idAdd", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idAdd", referencedColumnName="id" , insertable =true , updatable=false)
 Add add;
 @ManyToOne
+<<<<<<< HEAD
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+=======
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 User user ;
 
 public User getUser() {

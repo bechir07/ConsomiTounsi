@@ -69,18 +69,7 @@ public class RemboursementService {
         System.out.println("==============> "+ c.getStatus());
         if (c.getStatus().equals("succeeded")) {
         remboursementRepository.save(remboursement);
-        MimeMessagePreparator messagePreparator = mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,true);
-            messageHelper.setFrom("montassarhmidi@gmail.com");
-            messageHelper.setTo(remboursement.getReceipt_email());
-            messageHelper.setSubject("Remboursement effectue");
-            messageHelper.setText("");
-            //FileSystemResource file = new FileSystemResource(new File("c:/cpg.jpg"));
-            //messageHelper.addAttachment(file.getFilename(), file);
-
-        };
-        mailSender.send(messagePreparator);
-        
+       System.out.println("done!!");
     }
         return c;
     }

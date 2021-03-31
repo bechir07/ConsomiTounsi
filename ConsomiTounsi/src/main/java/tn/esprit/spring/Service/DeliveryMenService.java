@@ -20,7 +20,7 @@ public class DeliveryMenService {
 	@Autowired
 	DeliveryMenRepository deliveryMenRepository;
 
-     public Map<Long,Double> plusProcheDeliveryMen() {
+     public Map<Long,Double> plusProcheDeliveryMen(/*int latitude, int longitude*/) {
 		List<DeliveryMen> d = deliveryMenRepository.findAll();
 		Map<Long,Double> c =new HashMap<>();
 		
@@ -43,7 +43,7 @@ public class DeliveryMenService {
 		dm.stream().forEach(x -> {
 			x.setPrime(this.prime(x));
 		});
-		deliveryMenRepository.flush();
+		deliveryMenRepository.saveAll(dm);
 	}
 	//Statistiques (livreur du mois) idLivreur , nbr livraison
 	public HashMap<Long, Integer> stats(){
@@ -66,7 +66,7 @@ public class DeliveryMenService {
 	// chaque prime égale a 30dt + a chaque livraison on ajoute 5dt
 	public float prime(DeliveryMen dm) {
 
-		return 30 + (dm.getDeliveries().size() + 5F);
+		return 30 + (dm.getDeliveries().size()*5F);
 	}
 
 	// calcul distance entre deux points 2010

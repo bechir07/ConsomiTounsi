@@ -16,11 +16,12 @@ public class Subject {
 	
 	@Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String category;
     private String subjectName;
     private String description;
     private Date dateSubject;
+    private float evaluate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="subject")
     private Set<Comment> comments;
 

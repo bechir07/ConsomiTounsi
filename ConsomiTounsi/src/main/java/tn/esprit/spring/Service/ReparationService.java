@@ -40,41 +40,47 @@ public class ReparationService implements IReparationService {
 	public void deleteReparation(int id) {
 		// TODO Auto-generated method stub
 		Reparation r = reparationRepository.getOne(id);
-		productRepository.getOne(r.getProduct().getId()).setReparation(null);
-		productRepository.flush();
+		Product p=productRepository.getOne(r.getProduct().getId());
+		p.setReparation(null);
+		productRepository.save(p);
 		reparationRepository.deleteById(id);
 		
 	}
 
 	@Override
-	public Reparation updateReparation(Reparation r,Long idProduct ) {
+	public String updateReparation(Reparation r,Long idProduct ) {
 		// TODO Auto-generated method stub
-		Reparation reparation = new Reparation();
-		reparation.setDateReparation(r.getDateReparation());
-		reparation.setTypePanne(r.getTypePanne());
-		reparation.setState(r.getState());
 		
-		reparation.setPrixReparation(r.getPrixReparation());
+		/*
+		 * Reparation reparation = new Reparation();
+		 * reparation.setDateReparation(r.getDateReparation());
+		 * reparation.setTypePanne(r.getTypePanne()); reparation.setState(r.getState());
+		 * 
+		 *  reparation.setPrixReparation(r.getPrixReparation());
+		 */
+		
 		Product p = productRepository.getOne(idProduct);
-		reparation.setProduct(p);
-		reparationRepository.save(reparation);
-		p.setReparation(reparation);
-		productRepository.save(p);
-		if(r.getState().equals("works")) {
-			 MimeMessagePreparator messagePreparator = mimeMessage -> {
-		            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage,true);
-		            messageHelper.setFrom("montassarhmidi@gmail.com");
-		            messageHelper.setTo(p.getUser().getEmail());
-		            messageHelper.setSubject("Produit est en bonne etat");
-		            messageHelper.setText("");
-		            //FileSystemResource file = new FileSystemResource(new File("c:/cpg.jpg"));
-		            //messageHelper.addAttachment(file.getFilename(), file);
-
-		        };
-		        mailSender.send(messagePreparator);
-		     
+		System.out.println("============== "+p.getUser().getEmail());
+		
+		  r.setProduct(p); reparationRepository.save(r);
+		  p.setReparation(r); productRepository.save(p);
+		  System.out.println("==========> "+r.toString());
+		 	if(r.getState().equals("works")) {
+			/*
+			 * MimeMessagePreparator messagePreparator = mimeMessage -> { MimeMessageHelper
+			 * messageHelper = new MimeMessageHelper(mimeMessage,true);
+			 * messageHelper.setFrom("montassarhmidi@gmail.com");
+			 * messageHelper.setTo(p.getUser().getEmail());
+			 * messageHelper.setSubject("Produit est en bonne etat");
+			 * messageHelper.setText(""); //FileSystemResource file = new
+			 * FileSystemResource(new File("c:/cpg.jpg"));
+			 * //messageHelper.addAttachment(file.getFilename(), file);
+			 * 
+			 * }; mailSender.send(messagePreparator);
+			 */
+		     System.out.println("send notifaction to client.. produit fixed!");
 		}
-		return reparationRepository.save(r);
+		return "send notifaction to client.. produit fixed!";
 	}
 
 	@Override

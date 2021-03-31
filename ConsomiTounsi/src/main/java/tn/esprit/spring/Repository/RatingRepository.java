@@ -21,5 +21,7 @@ public List<Rating> listLastReviews(@Param("id") Long id);
 
 @Query("select r from Rating r where r.product.id=:id order by r.DateRating desc")
 public List<Rating> listReviews(@Param("id") Long id);
+@Query("select r  from Rating r  where ( r.user.id=:username and r.product.id=:username1)")
+public Rating ratingexist(@Param("username") Long username,@Param("username1") Long username1);
 
 }

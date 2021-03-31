@@ -24,7 +24,7 @@ public class CategoryController {
 @Autowired
 CategoryServiceImpl categoryService ;
 
-//http://localhost:8081/ConsomiTounsi/servlet/add-category
+//http://localhost:8081/ConsomiTounsi/add-category
 @PostMapping("/add-category")
 @ResponseBody
 public Category addCategory(@RequestBody Category c) 
@@ -33,7 +33,7 @@ return categoryService.addCategory(c);
 
 }
 
-//http://localhost:8081/ConsomiTounsi/servlet/retrieve-all-categories
+//http://localhost:8081/ConsomiTounsi/retrieve-all-categories
 
 @GetMapping(value ="/retrieve-all-categories")
 @ResponseBody
@@ -43,7 +43,7 @@ return categoryService.retrieveAllCategories();
 
 } 
 
-//http://localhost:8081/ConsomiTounsi/servlet/remove-category/{id}
+//http://localhost:8081/ConsomiTounsi/remove-category/{id}
 
 @DeleteMapping("/remove-category/{id}")
 @ResponseBody
@@ -52,7 +52,7 @@ categoryService.deleteCategory(id);
  }
 
 
-//http://localhost:8081/ConsomiTounsi/servlet/update-category
+//http://localhost:8081/ConsomiTounsi/update-category
 
 @PutMapping("/update-category")
 @ResponseBody

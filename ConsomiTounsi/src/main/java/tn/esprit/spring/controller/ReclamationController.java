@@ -44,8 +44,9 @@ public class ReclamationController {
 	@PutMapping("/decision")
 	//@RequestMapping(value="/decision",method=RequestMethod.PUT)
 	@ResponseBody String decision (@RequestBody Reclamation r,@RequestParam(name="couponValue",defaultValue="0")float couponValue,
-			@RequestParam(name="typePanne",defaultValue="")String typePanne,@RequestParam(name="prixReparation",defaultValue="0")float prixReparation,@RequestParam(name="idProduct",defaultValue="0")Long idProduct) {		
-		return reclamationService.decision(r, couponValue,typePanne,prixReparation,idProduct);
+			@RequestParam(name="typePanne",defaultValue="")String typePanne,@RequestParam(name="prixReparation",defaultValue="0")float prixReparation,
+			@RequestParam(name="idProduct",defaultValue="0")Long idProduct,@RequestParam(name="idClient",defaultValue="0")Long idClient) {		
+		return reclamationService.decision(r, couponValue,typePanne,prixReparation,idProduct,idClient);
 		
 	}
 	
@@ -55,7 +56,11 @@ public class ReclamationController {
 		
 	}
 	
-	
+	@PutMapping(value="/updateReclamation")
+	@ResponseBody Reclamation updateReclamation (@RequestBody Reclamation r,@RequestParam(name="id",defaultValue="0")Long id) {		
+		return reclamationService.clientUpdateReclamation(r, id);
+		
+	}
 	
 	
 }

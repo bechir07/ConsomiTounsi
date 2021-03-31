@@ -29,9 +29,9 @@ public class ADDViewController {
 	@Autowired
 	private AddRepository addRepository;
 	
-	// http://localhost:8081/ConsomiTounsi/servlet/addview/{iduser}&{idad}
-	@RequestMapping(method=RequestMethod.PUT,value="addview/{iduser}&{idad}")
-	public String addvu(@PathVariable Long  iduser,@PathVariable Long  idad){
+	// http://localhost:8081/ConsomiTounsi/addview/{iduser}/{idad}
+	@RequestMapping(method=RequestMethod.PUT,value="/addview/{iduser}/{idad}")
+	public String addvu(@PathVariable("iduser") Long  iduser,@PathVariable("idad") Long  idad){
 			
 			Optional<User> user=userRepository.findById(iduser);
 			System.out.println(user);
@@ -43,8 +43,8 @@ public class ADDViewController {
 			return	addviewService.addVu(iduser, idad,av);
 		}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-nbreviews
-	@GetMapping(value ="/retrieve-nbreviews")
+	//http://localhost:8081/ConsomiTounsi/retrieve-nbreviews/{id}
+	@GetMapping(value ="/retrieve-nbreviews/{id}")
 	@ResponseBody
 	public int getNbreviews(@PathVariable("id") Long id) 
 	{

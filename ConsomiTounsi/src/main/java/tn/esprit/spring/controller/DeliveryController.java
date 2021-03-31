@@ -1,5 +1,6 @@
 package tn.esprit.spring.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,6 +52,16 @@ public class DeliveryController {
 	@GetMapping("/distance")
 	Map<Long,Double> getDistance(){
 		return dm.plusProcheDeliveryMen();
+	}
+	
+	@GetMapping("/stats")
+	HashMap<Long, Integer> getDeliveryMenOfTheMonth(){
+		return dm.stats();
+	}
+	
+	@GetMapping("/prime")
+	void prime(){
+		 dm.attributePrimeToDeliveryMen();
 	}
 	
 	//delete delivery

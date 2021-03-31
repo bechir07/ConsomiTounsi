@@ -21,7 +21,7 @@ public class CouponController {
 	@Autowired
 	CouponServiceImpl couponService ;
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/add-coupon
+	//http://localhost:8081/ConsomiTounsi/add-coupon
 	@PostMapping("/add-coupon")
 	@ResponseBody
 	public Coupon addCoupon(@RequestBody Coupon c) 
@@ -30,7 +30,7 @@ public class CouponController {
 
 	}
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/retrieve-all-coupons
+	//http://localhost:8081/ConsomiTounsi/retrieve-all-coupons
 	@GetMapping(value ="/retrieve-all-coupons")
 	@ResponseBody
 	public List<Coupon> getCoupons() {
@@ -39,14 +39,14 @@ public class CouponController {
 
 	} 
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/remove-coupon/{id}
+	//http://localhost:8081/ConsomiTounsi/remove-coupon/{id}
 	@DeleteMapping("/remove-coupon/{id}")
 	@ResponseBody
 	public void removeCoupon(@PathVariable("id") Long id) {
 	couponService.deleteCoupon(id);
 	 }
 	
-	//http://localhost:8081/ConsomiTounsi/servlet/update-coupon
+	//http://localhost:8081/ConsomiTounsi/update-coupon
 	@PutMapping("/update-coupon")
 	@ResponseBody
 	public Coupon modifyCoupon(@RequestBody Coupon c) {
@@ -54,5 +54,13 @@ public class CouponController {
 		return couponService.addCoupon(c);
 
 	}
+	/*
+	//http://localhost:8081/ConsomiTounsi/addCouponOnProduct/{productId}/{cId}
+	@PostMapping("/addCouponOnProduct/{productId}/{cId}") 
+	@ResponseBody 
+	public void addCouponOnProduct(@PathVariable("productId")Long idProduct,@PathVariable("cId") Long cId)
+	{
+			   couponService.addCouponToProduct(idProduct, cId);
+	}*/
 	
 }

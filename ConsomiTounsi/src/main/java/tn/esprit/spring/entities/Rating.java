@@ -28,10 +28,14 @@ private int note ;
 private String review ;
 
 @ManyToOne
-@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =false , updatable=false)
+@JoinColumn(name="idProduct", referencedColumnName="id" , insertable =true , updatable=false)
 Product product;
 @ManyToOne
+<<<<<<< HEAD
+@JoinColumn(name="idUser", referencedColumnName="id" , insertable =true , updatable=false)
+=======
 @JoinColumn(name="idUser", referencedColumnName="id" , insertable =false , updatable=false)
+>>>>>>> branch 'main' of https://github.com/bechir07/ConsomiTounsi.git
 User user ;
 
 @Override

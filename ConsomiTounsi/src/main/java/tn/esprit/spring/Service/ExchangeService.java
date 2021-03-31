@@ -48,8 +48,9 @@ public class ExchangeService {
 	public void deleteExchange(int id) {
 		// TODO Auto-generated method stub
 		Exchange e = exchangeRepository.getOne(id);
-		userRepository.getOne(e.getUsers().getId()).setExchanges(null);
-		userRepository.flush();
+		User u = userRepository.getOne(e.getUsers().getId());
+		u.setExchanges(null);
+		userRepository.save(u);
 		exchangeRepository.deleteById(id);
 		
 	}

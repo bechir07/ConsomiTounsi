@@ -3,6 +3,7 @@ package tn.esprit.spring.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,40 +25,22 @@ public class RatingServiceImpl implements IRatingService {
 
 	
 	@Override
-	public String addRating(Rating r) {
+	public String addRating(Rating r,Long idp,long u )
+	{
 
-		List<Rating> rating = new ArrayList<Rating>();
-		rating = (List<Rating>) RatingRepository.findAll();
-
-		for (Rating rate : rating) {
-			if (r.getProduct().getId() == rate.getProduct().getId()
-					&& (r.getUser().getId()==(rate.getUser().getId())))
-
-			{
-				// updateRating(rate.getId());
-				Rating ratingEdit = new Rating();
-				
-				ratingEdit = RatingRepository.findById(rate.getId()).get();
-
-				// rating.setNote(note);
-
-				ratingEdit.setNote(r.getNote());
-				ratingEdit.setReview(r.getReview());
-				ratingEdit.setDateRating(new Date());
-				RatingRepository.save(ratingEdit);
-				return "user a déja évalué cette pub";
-
-			}
-
-			// r.setDateRating(new Date());
-			// RatingRepository.save(r);
-
-		}
-
+		Rating ra= new Rating();
+		ra=RatingRepository.ratingexist(u, idp);
+		if (ra==null)
+		{
 		r.setDateRating(new Date());
+		r.setNote(r.getNote());
+		r.setReview(r.getReview());
 		RatingRepository.save(r);
-		return "note enregistré";
+		return "save with succes";
+		}
+		return "rating added";
 	}
+	
 
 	@Override
 	public void deleteRating(Long i) {
@@ -100,9 +83,9 @@ public class RatingServiceImpl implements IRatingService {
 	
 	public List<Rating> retrieveAllRating() {
 		List<Rating> ratings = (List<Rating>) RatingRepository.findAll();
-		for (Rating rating : ratings) {
+		/*for (Rating rating : ratings) {
 			L.info("user +++ : " + rating);
-		}
+		}*/
 		return ratings;
 
 	}
